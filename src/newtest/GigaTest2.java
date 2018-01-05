@@ -1,5 +1,4 @@
 package newtest;
-
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -91,6 +90,20 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTime = System.currentTimeMillis();
 
+		//Define buffers
+		BufferedWriter outputTest1 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(5).txt", true));
+		MonteCarloH5 mch5 = new MonteCarloH5(
+				boardTest1.duplicate(), 
+				playersTest1[currentIndexTest1].getColor(), 
+				numberOfMoveTest1, 
+				totalNumberOfMovesTest1);
+		MonteCarlo mct1 = new MonteCarlo(
+				boardTest1.duplicate(), 
+				playersTest1[currentIndexTest1].getColor(), 
+				numberOfMoveTest1, 
+				totalNumberOfMovesTest1);
+		
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test1: " + testIndex + " / 100");
@@ -121,13 +134,8 @@ public class GigaTest2 {
 					//MCTS + H(7) to play.
 					Tuple<Integer, Integer> move;
 					//Pure Monte-Carlo will select a move.
-					MonteCarlo mc = new MonteCarlo(
-							boardTest1.duplicate(), 
-							playersTest1[currentIndexTest1].getColor(), 
-							numberOfMoveTest1, 
-							totalNumberOfMovesTest1);
 
-					move = mc.uct(playersTest1[currentIndexTest1].
+					move = mct1.uct(playersTest1[currentIndexTest1].
 							getSimulationNumber());
 
 					boardTest1.makeMove(move, playersTest1[currentIndexTest1].getColor());
@@ -141,13 +149,9 @@ public class GigaTest2 {
 					//MCTS (UCT) to play.
 					Tuple<Integer, Integer> move;
 					//Pure Monte-Carlo will select move.
-					MonteCarloH5 mc = new MonteCarloH5(
-							boardTest1.duplicate(), 
-							playersTest1[currentIndexTest1].getColor(), 
-							numberOfMoveTest1, 
-							totalNumberOfMovesTest1);
+					
 
-					move = mc.uct(playersTest1[currentIndexTest1].
+					move = mch5.uct(playersTest1[currentIndexTest1].
 							getSimulationNumber());
 
 
@@ -162,8 +166,7 @@ public class GigaTest2 {
 			} //end of single game.
 
 			String gameOutcome = Rules.calculateScore(boardTest1);
-			BufferedWriter outputTest1 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(5).txt", true));
+			
 			outputTest1.append("Match #" + testIndex);
 			outputTest1.newLine();
 			outputTest1.append("Player 1: " + playersTest1[0].getName() + 
@@ -350,6 +353,19 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTimeTest2 = System.currentTimeMillis();
 
+		//Define buffers.
+		BufferedWriter outputTest2 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(7).txt", true));
+		MonteCarloH7 mc7h = new MonteCarloH7(
+				boardTest2.duplicate(), 
+				playersTest2[currentIndexTest2].getColor(), 
+				numberOfMoveTest2, 
+				totalNumberOfMovesTest2);
+		MonteCarlo mct2 = new MonteCarlo(
+				boardTest2.duplicate(), 
+				playersTest2[currentIndexTest2].getColor(), 
+				numberOfMoveTest2, 
+				totalNumberOfMovesTest2);
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test2: " + testIndex + " / 100");
@@ -380,12 +396,8 @@ public class GigaTest2 {
 					//MCTS (UCT) to play.
 					Tuple<Integer, Integer> move;
 					//Pure Monte-Carlo will select move.
-					MonteCarloH7 mc = new MonteCarloH7(
-							boardTest2.duplicate(), 
-							playersTest2[currentIndexTest2].getColor(), 
-							numberOfMoveTest2, 
-							totalNumberOfMovesTest2);
-					move = mc.uct(playersTest2[currentIndexTest2].
+					
+					move = mc7h.uct(playersTest2[currentIndexTest2].
 							getSimulationNumber());
 
 
@@ -400,12 +412,8 @@ public class GigaTest2 {
 					//MCTS (UCT) to play.
 					Tuple<Integer, Integer> move;
 					//Pure Monte-Carlo will select move.
-					MonteCarlo mc = new MonteCarlo(
-							boardTest2.duplicate(), 
-							playersTest2[currentIndexTest2].getColor(), 
-							numberOfMoveTest2, 
-							totalNumberOfMovesTest2);
-					move = mc.uct(playersTest2[currentIndexTest2].
+					
+					move = mct2.uct(playersTest2[currentIndexTest2].
 							getSimulationNumber());
 
 
@@ -420,8 +428,7 @@ public class GigaTest2 {
 			} //end of single game.
 
 			String gameOutcome = Rules.calculateScore(boardTest2);
-			BufferedWriter outputTest2 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(7).txt", true));
+			
 			outputTest2.append("Match #" + testIndex);
 			outputTest2.newLine();
 			outputTest2.append("Player 1: " + playersTest2[0].getName() + 
@@ -608,6 +615,20 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTimeTest3 = System.currentTimeMillis();
 
+		//Declare buffers.
+		BufferedWriter outputTest3 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(10).txt", true));
+		MonteCarloH10 mch10 = new MonteCarloH10(
+				boardTest3.duplicate(), 
+				playersTest3[currentIndexTest3].getColor(), 
+				numberOfMoveTest3, 
+				totalNumberOfMovesTest3);
+		MonteCarlo mc = new MonteCarlo(
+				boardTest3.duplicate(), 
+				playersTest3[currentIndexTest3].getColor(), 
+				numberOfMoveTest3, 
+				totalNumberOfMovesTest3);
+
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test3: " + testIndex + " / 100");
@@ -638,12 +659,8 @@ public class GigaTest2 {
 					//MCTS + H(5) to play.
 					Tuple<Integer, Integer> move;
 					//Pure Monte-Carlo + H(5) will select new move.
-					MonteCarloH10 mc = new MonteCarloH10(
-							boardTest3.duplicate(), 
-							playersTest3[currentIndexTest3].getColor(), 
-							numberOfMoveTest3, 
-							totalNumberOfMovesTest3);
-					move = mc.uct(playersTest3[currentIndexTest3].
+					
+					move = mch10.uct(playersTest3[currentIndexTest3].
 							getSimulationNumber());
 
 
@@ -659,12 +676,7 @@ public class GigaTest2 {
 					Tuple<Integer, Integer> move;
 
 					//Pure Monte-Carlo will select move.
-					MonteCarlo mc = new MonteCarlo(
-							boardTest3.duplicate(), 
-							playersTest3[currentIndexTest3].getColor(), 
-							numberOfMoveTest3, 
-							totalNumberOfMovesTest3);
-
+		
 					move = mc.uct(playersTest3[currentIndexTest3].
 							getSimulationNumber());
 
@@ -680,8 +692,7 @@ public class GigaTest2 {
 			} //end of single game.
 
 			String gameOutcome = Rules.calculateScore(boardTest3);
-			BufferedWriter outputTest3 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(10).txt", true));
+			
 			outputTest3.append("Match #" + testIndex);
 			outputTest3.newLine();
 			outputTest3.append("Player 1: " + playersTest3[0].getName() + 
@@ -868,6 +879,21 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTimeTest4 = System.currentTimeMillis();
 
+		//Declare buffers.
+		BufferedWriter outputTest4 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(5+5).txt", true));
+		MonteCarloH55 mch55 = new MonteCarloH55(
+				boardTest4.duplicate(), 
+				playersTest4[currentIndexTest4].getColor(), 
+				numberOfMoveTest4, 
+				totalNumberOfMovesTest4);
+		MonteCarlo m_c = new MonteCarlo(
+				boardTest4.duplicate(), 
+				playersTest4[currentIndexTest4].getColor(), 
+				numberOfMoveTest4, 
+				totalNumberOfMovesTest4);
+
+		
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test4: " + testIndex + " / 100");
@@ -899,13 +925,8 @@ public class GigaTest2 {
 					Tuple<Integer, Integer> move;
 
 					//Pure Monte-Carlo + H(5) will select new move.
-					MonteCarloH55 mc = new MonteCarloH55(
-							boardTest4.duplicate(), 
-							playersTest4[currentIndexTest4].getColor(), 
-							numberOfMoveTest4, 
-							totalNumberOfMovesTest4);
 
-					move = mc.uct(playersTest4[currentIndexTest4].
+					move = mch55.uct(playersTest4[currentIndexTest4].
 							getSimulationNumber());
 
 
@@ -921,13 +942,8 @@ public class GigaTest2 {
 					Tuple<Integer, Integer> move;
 
 					//Pure Monte-Carlo will select move.
-					MonteCarlo mc = new MonteCarlo(
-							boardTest4.duplicate(), 
-							playersTest4[currentIndexTest4].getColor(), 
-							numberOfMoveTest4, 
-							totalNumberOfMovesTest4);
 
-					move = mc.uct(playersTest4[currentIndexTest4].
+					move = m_c.uct(playersTest4[currentIndexTest4].
 							getSimulationNumber());
 
 
@@ -942,8 +958,7 @@ public class GigaTest2 {
 			} //end of single game.
 
 			String gameOutcome = Rules.calculateScore(boardTest4);
-			BufferedWriter outputTest4 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(5+5).txt", true));
+			
 			outputTest4.append("Match #" + testIndex);
 			outputTest4.newLine();
 			outputTest4.append("Player 1: " + playersTest4[0].getName() + 
@@ -1130,6 +1145,20 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTimeTest5 = System.currentTimeMillis();
 
+		//Delcare buffers.
+		BufferedWriter outputTest5 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_H(5)vMCTS_H(7).txt", true));
+		MonteCarloH5 mc_h5 = new MonteCarloH5(
+				boardTest5.duplicate(), 
+				playersTest5[currentIndexTest5].getColor(), 
+				numberOfMoveTest5, 
+				totalNumberOfMovesTest5);
+		MonteCarloH7 mch7 = new MonteCarloH7(
+				boardTest5.duplicate(), 
+				playersTest5[currentIndexTest5].getColor(), 
+				numberOfMoveTest5, 
+				totalNumberOfMovesTest5);
+		
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test5: " + testIndex + " / 100");
@@ -1162,12 +1191,8 @@ public class GigaTest2 {
 					//Pure Monte-Carlo + H(10) will select new move.
 //					Charles_2 charles = new Charles_2(playersTest5[currentIndexTest5].getColor(), boardTest5);
 //					move = charles.getMove();
-					MonteCarloH7 mc = new MonteCarloH7(
-							boardTest5.duplicate(), 
-							playersTest5[currentIndexTest5].getColor(), 
-							numberOfMoveTest5, 
-							totalNumberOfMovesTest5);
-					move = mc.uct(playersTest5[currentIndexTest5].
+				
+					move = mch7.uct(playersTest5[currentIndexTest5].
 							getSimulationNumber());
 
 
@@ -1183,12 +1208,8 @@ public class GigaTest2 {
 					//MCTS (UCT) to play.
 					Tuple<Integer, Integer> move;
 					//Pure Monte-Carlo will select move.
-					MonteCarloH5 mc = new MonteCarloH5(
-							boardTest5.duplicate(), 
-							playersTest5[currentIndexTest5].getColor(), 
-							numberOfMoveTest5, 
-							totalNumberOfMovesTest5);
-					move = mc.uct(playersTest5[currentIndexTest5].
+					
+					move = mc_h5.uct(playersTest5[currentIndexTest5].
 							getSimulationNumber());
 
 
@@ -1203,8 +1224,7 @@ public class GigaTest2 {
 			} //end of single game.
 
 			String gameOutcome = Rules.calculateScore(boardTest5);
-			BufferedWriter outputTest5 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_H(5)vMCTS_H(7).txt", true));
+			
 			outputTest5.append("Match #" + testIndex);
 			outputTest5.newLine();
 			outputTest5.append("Player 1: " + playersTest5[0].getName() + 
@@ -1391,6 +1411,20 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTimeTest6 = System.currentTimeMillis();
 
+		//Declare buffers.
+		BufferedWriter outputTest6 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_H(7)vMCTS_H(10).txt", true));
+		MonteCarloH7 mch_7 = new MonteCarloH7(
+				boardTest6.duplicate(), 
+				playersTest6[currentIndexTest6].getColor(), 
+				numberOfMoveTest6, 
+				totalNumberOfMovesTest6);
+		MonteCarloH10 mc_h10 = new MonteCarloH10(
+				boardTest6.duplicate(), 
+				playersTest6[currentIndexTest6].getColor(), 
+				numberOfMoveTest6, 
+				totalNumberOfMovesTest6);
+		
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test6: " + testIndex + " / 100");
@@ -1423,12 +1457,8 @@ public class GigaTest2 {
 					//Pure Monte-Carlo + H(10) will select new move.
 //					Charles_2 charles = new Charles_2(playersTest6[currentIndexTest6].getColor(), boardTest6);
 //					move = charles.getMove();
-					MonteCarloH10 mc = new MonteCarloH10(
-							boardTest6.duplicate(), 
-							playersTest6[currentIndexTest6].getColor(), 
-							numberOfMoveTest6, 
-							totalNumberOfMovesTest6);
-					move = mc.uct(playersTest6[currentIndexTest6].
+					
+					move = mc_h10.uct(playersTest6[currentIndexTest6].
 							getSimulationNumber());
 
 
@@ -1444,12 +1474,7 @@ public class GigaTest2 {
 					//MCTS (UCT) to play.
 					Tuple<Integer, Integer> move;
 					//Pure Monte-Carlo will select move.
-					MonteCarloH7 mc = new MonteCarloH7(
-							boardTest6.duplicate(), 
-							playersTest6[currentIndexTest6].getColor(), 
-							numberOfMoveTest6, 
-							totalNumberOfMovesTest6);
-					move = mc.uct(playersTest6[currentIndexTest6].
+					move = mch_7.uct(playersTest6[currentIndexTest6].
 							getSimulationNumber());
 
 
@@ -1464,8 +1489,6 @@ public class GigaTest2 {
 			} //end of single game.
 
 			String gameOutcome = Rules.calculateScore(boardTest6);
-			BufferedWriter outputTest6 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_H(7)vMCTS_H(10).txt", true));
 			outputTest6.append("Match #" + testIndex);
 			outputTest6.newLine();
 			outputTest6.append("Player 1: " + playersTest6[0].getName() + 
