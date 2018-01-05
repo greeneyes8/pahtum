@@ -91,6 +91,9 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTime = System.currentTimeMillis();
 
+		BufferedWriter outputTest1 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(5).txt", true));
+		
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test1: " + testIndex + " / 100");
@@ -102,7 +105,14 @@ public class GigaTest2 {
 			Player tmp = playersTest1[0];
 			playersTest1[0] = playersTest1[1];
 			playersTest1[1] = tmp;
+			
 
+			MonteCarlo mc = new MonteCarlo(
+					boardTest1.duplicate(), 
+					playersTest1[currentIndexTest1].getColor(), 
+					numberOfMoveTest1, 
+					totalNumberOfMovesTest1);
+			
 			//Reset the board to an initial state. When index is odd generate a 
 			//new random board.
 			if(testIndex % 2 == 1) {
@@ -114,14 +124,7 @@ public class GigaTest2 {
 				boardTest1 = initialPositionTest1.duplicate();
 			}
 
-			MonteCarlo mc = new MonteCarlo(
-					boardTest1.duplicate(), 
-					playersTest1[currentIndexTest1].getColor(), 
-					numberOfMoveTest1, 
-					totalNumberOfMovesTest1);
 			//Declare buffers
-			BufferedWriter outputTest1 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(5).txt", true));
 			MonteCarloH5 mch5 = new MonteCarloH5(
 					boardTest1.duplicate(), 
 					playersTest1[currentIndexTest1].getColor(), 
@@ -349,6 +352,9 @@ public class GigaTest2 {
 
 		//Report when games commenced.
 		startTimeTest2 = System.currentTimeMillis();
+		
+		BufferedWriter outputTest2 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(7).txt", true));
 
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
@@ -374,8 +380,6 @@ public class GigaTest2 {
 			}
 
 			//Declare buffers 
-			BufferedWriter outputTest2 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(7).txt", true));
 			MonteCarloH7 mch7 = new MonteCarloH7(
 					boardTest2.duplicate(), 
 					playersTest2[currentIndexTest2].getColor(), 
@@ -609,6 +613,9 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTimeTest3 = System.currentTimeMillis();
 
+		BufferedWriter outputTest3 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(10).txt", true));
+		
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test3: " + testIndex + " / 100");
@@ -633,8 +640,6 @@ public class GigaTest2 {
 			}
 
 			//Declare buffers
-			BufferedWriter outputTest3 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(10).txt", true));
 			MonteCarlo mc = new MonteCarlo(
 					boardTest3.duplicate(), 
 					playersTest3[currentIndexTest3].getColor(), 
@@ -869,6 +874,9 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTimeTest4 = System.currentTimeMillis();
 
+		BufferedWriter outputTest4 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(5+5).txt", true));
+		
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test4: " + testIndex + " / 100");
@@ -893,8 +901,6 @@ public class GigaTest2 {
 			}
 
 			//Declare buffers
-			BufferedWriter outputTest4 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_UCTvMCTS_H(5+5).txt", true));
 			MonteCarlo mc = new MonteCarlo(
 					boardTest4.duplicate(), 
 					playersTest4[currentIndexTest4].getColor(), 
@@ -1131,6 +1137,9 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTimeTest5 = System.currentTimeMillis();
 
+		BufferedWriter outputTest5 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_H(5)vMCTS_H(7).txt", true));
+		
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test5: " + testIndex + " / 100");
@@ -1155,8 +1164,6 @@ public class GigaTest2 {
 			}
 			
 			//Declare buffers
-			BufferedWriter outputTest5 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_H(5)vMCTS_H(7).txt", true));
 			MonteCarloH5 mc = new MonteCarloH5(
 					boardTest5.duplicate(), 
 					playersTest5[currentIndexTest5].getColor(), 
@@ -1394,6 +1401,9 @@ public class GigaTest2 {
 		//Report when games commenced.
 		startTimeTest6 = System.currentTimeMillis();
 
+		BufferedWriter outputTest6 = new BufferedWriter(
+				new FileWriter("results_50k_3b_MCTS_H(7)vMCTS_H(10).txt", true));
+		
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test6: " + testIndex + " / 100");
@@ -1418,8 +1428,6 @@ public class GigaTest2 {
 			}
 
 			//Declare buffers
-			BufferedWriter outputTest6 = new BufferedWriter(
-					new FileWriter("results_50k_3b_MCTS_H(7)vMCTS_H(10).txt", true));
 			outputTest6.append("Match #" + testIndex);
 			outputTest6.newLine();
 			outputTest6.append("Player 1: " + playersTest6[0].getName() + 
