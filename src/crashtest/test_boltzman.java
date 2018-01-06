@@ -90,6 +90,16 @@ public class test_boltzman {
 		//Report when games commenced.
 		startTime = System.currentTimeMillis();
 
+		//Declare buffers.
+		BufferedWriter outputTest1 = new BufferedWriter(
+				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		MonteCarloH5Boltzmann mc = new MonteCarloH5Boltzmann(
+				boardTest1.duplicate(), 
+				playersTest1[currentIndexTest1].getColor(), 
+				numberOfMoveTest1, 
+				totalNumberOfMovesTest1);
+		Charles_2 charles = new Charles_2(playersTest1[currentIndexTest1].getColor(), boardTest1);
+
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test1: " + testIndex + " / 100");
@@ -120,11 +130,7 @@ public class test_boltzman {
 					//MCTS + H(7) to play.
 					Tuple<Integer, Integer> move;
 					//Pure Monte-Carlo will select move.
-					MonteCarloH5Boltzmann mc = new MonteCarloH5Boltzmann(
-							boardTest1.duplicate(), 
-							playersTest1[currentIndexTest1].getColor(), 
-							numberOfMoveTest1, 
-							totalNumberOfMovesTest1);
+					
 
 					move = mc.uct(playersTest1[currentIndexTest1].
 							getSimulationNumber());
@@ -151,7 +157,6 @@ public class test_boltzman {
 					/**
 					 * Charles_2
 					 */
-					Charles_2 charles = new Charles_2(playersTest1[currentIndexTest1].getColor(), boardTest1);
 					move = charles.getMove();
 
 					/**
@@ -177,8 +182,7 @@ public class test_boltzman {
 				}
 			} //end of single game.
 			String gameOutcome = Rules.calculateScore(boardTest1);
-			BufferedWriter outputTest1 = new BufferedWriter(
-					new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+			
 			outputTest1.append("Match #" + testIndex);
 			outputTest1.newLine();
 			outputTest1.append("Player 1: " + playersTest1[0].getName() + 
