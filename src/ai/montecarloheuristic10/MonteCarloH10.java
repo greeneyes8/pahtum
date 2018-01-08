@@ -115,7 +115,7 @@ public class MonteCarloH10 {
 				listValidMoves = board.getListValidMoves();
 			}
 			board.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
-			if(color.equals("w")) {
+			if(color == ("w")) {
 				color = "b";
 			} else {
 				color = "w";
@@ -180,7 +180,7 @@ public class MonteCarloH10 {
 	private void back_up(Node node, String delta) {
 		double value;
 		
-		if(delta.equals("0")) {
+		if(delta == ("0")) {
 			value = .5;
 		} else if(delta.equals(node.getColor())) {
 			value = 0;
