@@ -102,7 +102,7 @@ public class Node {
 			board.makeMove(move, color);
 		} catch (Exception e) {
 			//Doesn't happen.
-			e.printStackTrace();
+
 		}
 		
 		//Switch colors.
