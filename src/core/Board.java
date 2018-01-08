@@ -275,7 +275,7 @@ public class Board implements Serializable{
 
 		// Adjustment for the opponent.
 		String enemyColor;
-		if(color.equals("w")) {
+		if(color == ("w")) {
 			enemyColor = "b";
 		} else {
 			enemyColor = "w";
@@ -520,7 +520,7 @@ public class Board implements Serializable{
 
 					// Adjustment for the opponent.
 					String enemyColor;
-					if(color.equals("w")) {
+					if(color == ("w")) {
 						enemyColor = "b";
 					} else {
 						enemyColor = "w";
@@ -767,7 +767,7 @@ public class Board implements Serializable{
 
 					// Adjustment for the opponent.
 					String enemyColor;
-					if(color.equals("w")) {
+					if(color == ("w")) {
 						enemyColor = "b";
 					} else {
 						enemyColor = "w";
@@ -1021,7 +1021,7 @@ public class Board implements Serializable{
 
 					// Adjustment for the opponent.
 					String enemyColor;
-					if(color.equals("w")) {
+					if(color == ("w")) {
 						enemyColor = "b";
 					} else {
 						enemyColor = "w";
