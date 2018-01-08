@@ -57,7 +57,7 @@ public class Node {
 			this.potential = board.getHeuristicValue(
 					move.getFirstElement(), 
 					move.getSecondElement(), 
-					color.equals("w") ? "b" : "w");
+					color == ("w") ? "b" : "w");
 		}
 	}
 	
