@@ -176,7 +176,7 @@ public class GigaTest1 {
 			outputTest1.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -439,7 +439,7 @@ public class GigaTest1 {
 			outputTest2.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -703,7 +703,7 @@ public class GigaTest1 {
 			outputTest3.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -968,7 +968,7 @@ public class GigaTest1 {
 			outputTest4.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -1234,7 +1234,7 @@ public class GigaTest1 {
 			outputTest5.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -1501,7 +1501,7 @@ public class GigaTest1 {
 			outputTest6.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.

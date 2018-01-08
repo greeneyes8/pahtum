@@ -174,7 +174,7 @@ public class GigaTest2 {
 			outputTest1.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -436,7 +436,7 @@ public class GigaTest2 {
 			outputTest2.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -645,7 +645,7 @@ public class GigaTest2 {
 			//new random board.
 			if(testIndex % 2 == 1) {
 				//Load a new board.
-				boardTest3 = boardCollectionTest3[(Integer) testIndex/2];
+				boardTest3 = boardCollectionTest3[maxCast(testIndex/2)];
 				initialPositionTest3 = boardTest3.duplicate();
 			} else {
 				//Reset the board.
@@ -700,7 +700,7 @@ public class GigaTest2 {
 			outputTest3.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -910,7 +910,7 @@ public class GigaTest2 {
 			//new random board.
 			if(testIndex % 2 == 1) {
 				//Load a new board.
-				boardTest4 = boardCollectionTest4[(Integer) testIndex/2];
+				boardTest4 = boardCollectionTest4[maxCast(testIndex/2)];
 				initialPositionTest4 = boardTest4.duplicate();
 			} else {
 				//Reset the board.
@@ -966,7 +966,7 @@ public class GigaTest2 {
 			outputTest4.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -1175,7 +1175,7 @@ public class GigaTest2 {
 			//new random board.
 			if(testIndex % 2 == 1) {
 				//Load a new board.
-				boardTest5 = boardCollectionTest5[(Integer) testIndex/2];
+				boardTest5 = boardCollectionTest5[maxCast(testIndex/2)];
 				initialPositionTest5 = boardTest5.duplicate();
 			} else {
 				//Reset the board.
@@ -1232,7 +1232,7 @@ public class GigaTest2 {
 			outputTest5.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -1441,7 +1441,7 @@ public class GigaTest2 {
 			//new random board.
 			if(testIndex % 2 == 1) {
 				//Load a new board.
-				boardTest6 = boardCollectionTest6[(Integer) testIndex/2];
+				boardTest6 = boardCollectionTest6[maxCast(testIndex/2)];
 				initialPositionTest6 = boardTest6.duplicate();
 			} else {
 				//Reset the board.
@@ -1496,7 +1496,7 @@ public class GigaTest2 {
 			outputTest6.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome == ("0")) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
@@ -1613,5 +1613,13 @@ public class GigaTest2 {
 		output1Test6.close();
 
 	}
+	
+	public static Integer maxCast (int a){
+		
+		Integer valInteger = (Integer) a; 
+			
+		return valInteger;
+		}
+		
 
 }
