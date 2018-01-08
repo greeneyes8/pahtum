@@ -59,7 +59,8 @@ public class MonteCarloH7 {
 	 * @throws Exception 
 	 */
 	private Node treePolicy(Node node, Board board) throws Exception {
-		while(node.getMoveNumber() < this.allMovesNumber) {
+		int number_ = node.getMoveNumber();
+		while(number_ < this.allMovesNumber) {
 			if(node.getUntriedMoves().size() != 0) {
 				Node newNode =  node.expand(board, this.color);
 				return newNode;
@@ -98,7 +99,7 @@ public class MonteCarloH7 {
 				listValidMoves = board.getListValidMoves();
 			}
 			board.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
-			if(color.equals("w")) {
+			if(color == ("w")) {
 				color = "b";
 			} else {
 				color = "w";
@@ -163,7 +164,7 @@ public class MonteCarloH7 {
 	private void back_up(Node node, String delta) {
 		double value;
 		
-		if(delta.equals("0")) {
+		if(delta == ("0")) {
 			value = .5;
 		} else if(delta.equals(node.getColor())) {
 			value = 0;
