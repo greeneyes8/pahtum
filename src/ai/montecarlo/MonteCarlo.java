@@ -126,7 +126,7 @@ public class MonteCarlo {
 			//Pick one at random.
 			board.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
 			//Switch the colors.
-			if(color.equals("w")) {
+			if(color == ("w")) {
 				color = "b";
 			} else {
 				color = "w";
@@ -149,7 +149,7 @@ public class MonteCarlo {
 		
 		//Assign numeric value based on the outcome of simulation and color of 
 		//the move (whether this move is good for MC or not).
-		if(delta.equals("0")) {
+		if(delta == ("0")) {
 			value = .5;
 		} else if(delta.equals(node.getColor())) {
 			value = 0;
