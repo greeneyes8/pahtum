@@ -1,4 +1,4 @@
-package ai.mch7boltzmann_t40;
+package ai.mch5boltzmann_t40;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class Node {
 		this.value = 0;
 		this.visit = 0;
 		this.children = new ArrayList<Node>();
-		this.untriedMoves = board.heuristic_bestX_moves(color, 7);
+		this.untriedMoves = board.heuristic_bestX_moves(color, 5);
 		this.moveNumber = moveNumber;
 		
 		//Update potential.
@@ -102,7 +102,6 @@ public class Node {
 			board.makeMove(move, color);
 		} catch (Exception e) {
 			//Doesn't happen.
-			e.printStackTrace();
 		}
 		
 		//Switch colors.
