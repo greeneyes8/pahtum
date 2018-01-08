@@ -46,7 +46,6 @@ public class Node {
 			board.makeMove(move, color);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		if(this.color.equals("w")) {
 			newColor = "b";
