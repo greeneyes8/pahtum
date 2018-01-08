@@ -48,8 +48,6 @@ public class MonteCarloH10 {
 				node = treePolicy(root.getRoot(), tempBoard);
 			} catch (Exception e) {
 				System.out.println("TREE_POLICY");
-				
-				e.printStackTrace();
 				System.exit(0);
 			}
 			String delta = null;
@@ -57,7 +55,6 @@ public class MonteCarloH10 {
 				delta = defaultPolicy(node, tempBoard);
 			} catch (Exception e) {
 				System.out.println("DEFAULT_POLICY");
-				e.printStackTrace();
 				System.exit(0);
 			}
 			back_up(node, delta);
@@ -91,7 +88,6 @@ public class MonteCarloH10 {
 					System.out.println("EXception when making move");
 					System.out.println(">>" + node.getParent().getMoveNumber());
 					System.exit(0);
-					e.printStackTrace();
 				}
 			}
 		}
