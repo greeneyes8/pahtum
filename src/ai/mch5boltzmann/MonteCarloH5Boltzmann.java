@@ -145,7 +145,7 @@ public class MonteCarloH5Boltzmann implements Engine {
 					listValidMoves.size())), color);
 			
 			//Switch the colors.
-			color = color.equals("w") ? "b" : "w";
+			color = color == ("w") ? "b" : "w";
 			
 			//Increment the move's counter.
 			++moveNumber;
@@ -167,7 +167,7 @@ public class MonteCarloH5Boltzmann implements Engine {
 		
 		//Assign numeric value based on the outcome of simulation and color of 
 		//the move (whether this move is good for MC or not).
-		if(delta.equals("0")) {
+		if(delta == ("0")) {
 			value = .5;
 		} else if(delta.equals(node.getColor())) {
 			value = 0;
