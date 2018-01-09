@@ -59,9 +59,11 @@ public class MonteCarloH2 {
 	 * @throws Exception 
 	 */
 	private Node treePolicy(Node node, Board board) throws Exception {
-		while(node.getMoveNumber() <= this.allMovesNumber) {
+		int numberNode = node.getMoveNumber() ;
+		while(numberNode <= this.allMovesNumber) {
 			if(node.getUntriedMoves().size() != 0) {
 				Node newNode =  node.expand(board, this.color);
+				numberNode = node.getMoveNumber() ;
 				return newNode;
 			} else {
 				String color = node.getColor();
@@ -72,6 +74,7 @@ public class MonteCarloH2 {
 					return node;
 				}
 				board.makeMove(node.getMove(), color);
+				 numberNode = node.getMoveNumber() ;
 			}
 		}
 		return node;
@@ -89,6 +92,7 @@ public class MonteCarloH2 {
 		Random generator = new Random();
 		String color = node.getColor();
 		int moveNumber = node.getMoveNumber();
+		String w = "w";
 
 		while(moveNumber < this.allMovesNumber) {
 			List<Tuple<Integer, Integer>> listValidMoves;
@@ -98,7 +102,7 @@ public class MonteCarloH2 {
 				listValidMoves = board.heuristic_bestX_moves(color, 9);
 			}
 			board.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
-			if(color == ("w")) {
+			if(color.equals(w)) {
 				color = "b";
 			} else {
 				color = "w";
@@ -162,8 +166,9 @@ public class MonteCarloH2 {
 	 */
 	private void back_up(Node node, String delta) {
 		double value;
+		String zero = "0";
 		
-		if(delta == ("0")) {
+		if(delta.equals(zero)) {
 			value = .5;
 		} else if(delta.equals(node.getColor())) {
 			value = 0;
