@@ -181,7 +181,9 @@ public class test_boltzman {
 					currentIndexTest1 = (currentIndexTest1 + 1) % 2;
 				}
 			} //end of single game.
+
 			String gameOutcome = Rules.calculateScore(boardTest1);
+			String zero= "0";
 			
 			outputTest1.append("Match #" + testIndex);
 			outputTest1.newLine();
@@ -190,7 +192,7 @@ public class test_boltzman {
 			outputTest1.newLine();
 
 			//Append the result to the text file and update counters..
-			if(gameOutcome.equals("0")) {
+			if(gameOutcome.equals(zero)) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
