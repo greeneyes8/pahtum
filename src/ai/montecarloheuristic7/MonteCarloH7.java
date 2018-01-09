@@ -63,16 +63,20 @@ public class MonteCarloH7 {
 		while(number_ < this.allMovesNumber) {
 			if(node.getUntriedMoves().size() != 0) {
 				Node newNode =  node.expand(board, this.color);
+				number_ = node.getMoveNumber();
 				return newNode;
+				
 			} else {
 				String color = node.getColor();
 				try {
 					node = bestChild(node, this.c);
+					number_ = node.getMoveNumber();
 				} catch(Exception e) {
 					//node is a terminal state.
 					return node;
 				}
 				board.makeMove(node.getMove(), color);
+				number_ = node.getMoveNumber();
 			}
 		}
 		return node;
@@ -90,6 +94,7 @@ public class MonteCarloH7 {
 		Random generator = new Random();
 		String color = node.getColor();
 		int moveNumber = node.getMoveNumber();
+		String w = "w";
 
 		while(moveNumber < this.allMovesNumber) {
 			List<Tuple<Integer, Integer>> listValidMoves;
@@ -99,7 +104,7 @@ public class MonteCarloH7 {
 				listValidMoves = board.getListValidMoves();
 			}
 			board.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
-			if(color == ("w")) {
+			if(color.equals(w)) {
 				color = "b";
 			} else {
 				color = "w";
@@ -161,10 +166,12 @@ public class MonteCarloH7 {
 	 * @param node
 	 * @param delta
 	 */
+	
+	String zero = "0";
 	private void back_up(Node node, String delta) {
 		double value;
 		
-		if(delta == ("0")) {
+		if(delta.equals(zero)) {
 			value = .5;
 		} else if(delta.equals(node.getColor())) {
 			value = 0;
