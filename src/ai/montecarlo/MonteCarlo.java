@@ -130,7 +130,9 @@ public class MonteCarlo {
 			//Pick one at random.
 			board.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
 			//Switch the colors.
-			if(color.equals("w")) {
+			String sw = "w";
+			
+			if(color.equals(sw)) {
 				color = "b";
 			} else {
 				color = "w";
