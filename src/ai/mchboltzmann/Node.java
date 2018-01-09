@@ -51,13 +51,16 @@ public class Node {
 		this.children = new ArrayList<Node>();
 		this.untriedMoves = board.getListValidMoves();
 		this.moveNumber = moveNumber;
+
+		String w = "w";
+		String b = "b";
 		
 		//Update potential.
 		if(move != null) {
 			this.potential = board.getHeuristicValue(
 					move.getFirstElement(), 
 					move.getSecondElement(), 
-					color == ("w") ? "b" : "w");
+					color.equals(w) ? b : w);
 		}
 	}
 	
