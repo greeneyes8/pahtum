@@ -90,11 +90,13 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 	private Node treePolicy(Node node, Board board) throws Exception {
 		//While node is not a terminal state apply Tree Policy. Terminal state 
 		//is the same as fully populated board.
-		while(node.getMoveNumber() < this.allMovesNumber) {
+		int numberNode = node.getMoveNumber();
+		while(numberNode < this.allMovesNumber) {
 			//Check if node is fully expanded.
 			if(node.getUntriedMoves().size() != 0) {
 				//Not fully expanded. Return a newly created node.
 				Node newNode =  node.expand(board, this.color);
+				numberNode = node.getMoveNumber();
 				return newNode;
 			} else {
 				//Node is fully expanded. Get color of currently investigated 
@@ -113,6 +115,7 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 				
 				//Update a board of a move from selected node.
 				board.makeMove(node.getMove(), color);
+				numberNode = node.getMoveNumber();
 			}
 		}
 		return node;
@@ -129,6 +132,8 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 		Random generator = new Random();
 		String color = node.getColor();
 		int moveNumber = node.getMoveNumber();
+		String w = "w";
+		String b = "b";
 
 		//Check if terminal state hasn't been reached. If not play next move.
 		while(moveNumber < this.allMovesNumber) {
@@ -143,7 +148,7 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 					listValidMoves.size())), color);
 			
 			//Switch the colors.
-			color = color.equals("w") ? "b" : "w";
+			color = color.equals(w) ? b : w;
 			
 			//Increment the move's counter.
 			++moveNumber;
@@ -162,10 +167,11 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 	 */
 	private void backUp(Node node, String delta) {
 		double value;
+		String zero = "0";
 		
 		//Assign numeric value based on the outcome of simulation and color of 
 		//the move (whether this move is good for MC or not).
-		if(delta.equals("0")) {
+		if(delta.equals(zero)) {
 			value = .5;
 		} else if(delta.equals(node.getColor())) {
 			value = 0;
@@ -246,10 +252,11 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 		for(Node item : node.getChildren()) {
 			candidateChildren.add(item);
 		}
-		
-		while(candidateChildren.size() != 0) {
+		int numberChildren = candidateChildren.size();
+		while(numberChildren != 0) {
 			double tmpProbability = 99999999;
 			Node tmpChild = null;
+			
 			
 			for(Node item : candidateChildren) {
 				double currentProbability = item.getProbability();
@@ -259,6 +266,7 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 				}
 			}
 			candidateChildren.remove(tmpChild);
+			numberChildren = candidateChildren.size();
 			
 			double summedProbabilities = 0;
 			if(!organizedChildren.isEmpty()) {
