@@ -52,12 +52,15 @@ public class Node {
 		this.untriedMoves = board.heuristic_bestX_moves(color, 7);
 		this.moveNumber = moveNumber;
 		
+		String w = "w";
+		String b = "b";	
+		
 		//Update potential.
 		if(move != null) {
 			this.potential = board.getHeuristicValue(
 					move.getFirstElement(), 
-					move.getSecondElement(), 
-					color == ("w") ? "b" : "w");
+					move.getSecondElement(),
+					color.equals(w) ? b : w); 
 		}
 	}
 	
