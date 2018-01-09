@@ -85,11 +85,13 @@ public class MonteCarloH5 {
 	private Node treePolicy(Node node, Board board) throws Exception {
 		//While node is not a terminal state apply Tree Policy. Terminal state 
 		//is the same as fully populated board.
-		while(node.getMoveNumber() < this.allMovesNumber) {
+		int numberNode = node.getMoveNumber() ;
+		while(numberNode < this.allMovesNumber) {
 			//Check if node is fully expanded.
 			if(node.getUntriedMoves().size() != 0) {
 				//Not fully expanded. Return a newly created node.
 				Node newNode =  node.expand(board, this.color);
+				numberNode = node.getMoveNumber() ;
 				return newNode;
 			} else {
 				//Node is fully expanded. Get color of currently investigated 
@@ -108,6 +110,7 @@ public class MonteCarloH5 {
 				
 				//Update a board of a move from selected node.
 				board.makeMove(node.getMove(), color);
+				numberNode = node.getMoveNumber() ;
 			}
 		}
 		return node;
@@ -126,6 +129,7 @@ public class MonteCarloH5 {
 		Random generator = new Random();
 		String color = node.getColor();
 		int moveNumber = node.getMoveNumber();
+		String w = "w";
 
 		//Check if terminal state hasn't been reached. If not play next move.
 		while(moveNumber < this.allMovesNumber) {
@@ -146,7 +150,7 @@ public class MonteCarloH5 {
 					listValidMoves.size())), color);
 			
 			//Switch the colors.
-			if(color == ("w")) {
+			if(color.equals(w)) {
 				color = "b";
 			} else {
 				color = "w";
@@ -166,10 +170,10 @@ public class MonteCarloH5 {
 	 */
 	private void back_up(Node node, String delta) {
 		double value;
-		
+		String zero = "0";
 		//Assign numeric value based on the outcome of simulation and color of 
 		//the move (whether this move is good for MC or not).
-		if(delta == ("0")) {
+		if(delta.equals(zero)) {
 			value = .5;
 		} else if(delta.equals(node.getColor())) {
 			value = 0;
