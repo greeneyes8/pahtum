@@ -90,7 +90,7 @@ public class Node {
 	 * @return New node.
 	 * @throws Exception Doesn't occur.
 	 */
-	public Node expand(Board board, String mcColor){
+	public Node expand(Board board_ex, String mcColor_ex){
 		String newColor;
 		
 		//Get random from untried moves and next remove from list of untried 
@@ -102,7 +102,7 @@ public class Node {
 		
 		//Make selected move on the board.
 		try {
-			board.makeMove(move, color);
+			board_ex.makeMove(move, color);
 		} catch (Exception e) {
 			//Doesn't happen.
 		}
@@ -111,7 +111,7 @@ public class Node {
 		newColor = this.color.equals("w") ? "b" : "w";
 		
 		//Initialize a new node.
-		Node node = new Node(this, move, newColor, board, this.moveNumber + 1);
+		Node node = new Node(this, move, newColor, board_ex, this.moveNumber + 1);
 		
 		//Add new node as a child to the THIS node.
 		this.children.add(node);
