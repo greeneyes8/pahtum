@@ -128,10 +128,10 @@ public class MonteCarloH5Boltzmann_t100 implements Engine {
 	 * @return Winning side: "w" for white, "b" for black, "0" for draw.
 	 * @throws Exception Don't remember... it doesn't occur.
 	 */
-	private String defaultPolicy(Node node, Board board) throws Exception {
+	private String defaultPolicy(Node defaultPolicy_node, Board defaultPolicy_board) throws Exception {
 		Random generator = new Random();
-		String color = node.getColor();
-		int moveNumber = node.getMoveNumber();
+		String color = defaultPolicy_node.getColor();
+		int moveNumber = defaultPolicy_node.getMoveNumber();
 		String w = "w";
 		String b = "b";
 
@@ -141,10 +141,10 @@ public class MonteCarloH5Boltzmann_t100 implements Engine {
 			
 			//Narrow list of valid moves to the best 5 in accordance to the 
 			//heuristic function.
-			listValidMoves = board.heuristic_bestX_moves(color, 5);
+			listValidMoves = defaultPolicy_board.heuristic_bestX_moves(color, 5);
 			
 			//Select at random from given selection a move, and make it.
-			board.makeMove(listValidMoves.get(generator.nextInt(
+			defaultPolicy_board.makeMove(listValidMoves.get(generator.nextInt(
 					listValidMoves.size())), color);
 			
 			//Switch the colors.
@@ -156,7 +156,7 @@ public class MonteCarloH5Boltzmann_t100 implements Engine {
 		
 		//The simulation reached the terminate state, return the outcome of a 
 		//game (who win: "w"/"b"/"0").
-		return Rules.calculateScore(board);
+		return Rules.calculateScore(defaultPolicy_board);
 	}
 	
 	/**

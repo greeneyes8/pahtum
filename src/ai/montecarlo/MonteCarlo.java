@@ -188,15 +188,15 @@ public class MonteCarlo {
 	 * robust child is selected. 
 	 * @return Child node.
 	 */
-	private Node bestChild(Node node_, double c) {
+	private Node bestChild(Node node_b, double c) {
 		Node bestChild = null;
 		double tempScore = -1;
 		
 		//Check all children, one by one.
-		for(Node child: node_.getChildren()) {
+		for(Node child: node_b.getChildren()) {
 			//Calculate the score for current child.
 			double score = (child.getValue() / child.getVisit()) + 
-					(c * Math.sqrt((2 * Math.log(node_.getVisit())) / 
+					(c * Math.sqrt((2 * Math.log(node_b.getVisit())) / 
 							(child.getVisit())));
 			
 			//If the score is better than the previous best update current best 

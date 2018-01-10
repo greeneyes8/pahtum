@@ -203,12 +203,12 @@ public class MonteCarloH5 {
 	 * @param c Constant C (when =0 the the most robust child is selected).
 	 * @return Best node.
 	 */
-	private Node bestChild(Node node_bc, double c) {
+	private Node bestChild(Node node_b_c, double d_c) {
 		Node bestChild = null;
 		double tempScore = -1;
-		for(Node child: node_bc.getChildren()) {
+		for(Node child: node_b_c.getChildren()) {
 			double score = (child.getValue() / child.getVisit()) + 
-					(c * Math.sqrt((2 * Math.log(node_bc.getVisit())) / 
+					(d_c * Math.sqrt((2 * Math.log(node_b_c.getVisit())) / 
 							(child.getVisit())));
 			if(score >= tempScore) {
 				bestChild = child;

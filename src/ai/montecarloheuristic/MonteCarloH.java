@@ -144,12 +144,12 @@ public class MonteCarloH {
 	/**
 	 * Select the best child based on evaluation function (UCT).
 	 */
-	private Node bestChild(Node node_bc, double c) {
+	private Node bestChild(Node no_de_bc, double c_bc) {
 		Node bestChild = null;
 		double tempScore = -1;
-		for(Node child: node_bc.getChildren()) {
+		for(Node child: no_de_bc.getChildren()) {
 			double score = (child.getValue() / child.getVisit()) + 
-					(c * Math.sqrt((2 * Math.log(node_bc.getVisit())) / 
+					(c_bc * Math.sqrt((2 * Math.log(no_de_bc.getVisit())) / 
 							(child.getVisit())));
 			if(score >= tempScore) {
 				bestChild = child;

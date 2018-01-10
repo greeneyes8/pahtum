@@ -19,16 +19,20 @@ public class Rules {
 				try {
 					if(b[x][y].equals("w")) {
 						try {
-							while(b[x][y+1].equals("w")) {
+							boolean valueW = b[x][y+1].equals("w");
+							while(valueW) {
 								whiteLine++;
 								y++;
+								valueW = b[x][y+1].equals("w");
 							}
 						}catch(Exception e) { }
 					} else if(b[x][y].equals("b")){
 						try {
-							while(b[x][y+1].equals("b")) {
+							boolean value_ = b[x][y+1].equals("b");
+							while(value_) {
 								blackLine++;
 								y++;
+								value_ = b[x][y+1].equals("b");
 							}
 						} catch(Exception e) { } 
 					}
@@ -92,16 +96,20 @@ public class Rules {
 				try {
 					if(b[x][y].equals("w")) {
 						try {
-							while(b[x][y+1].equals("w")) {
+							boolean valueW = b[x][y+1].equals("w");
+							while(valueW) {
 								whiteLine++;
 								y++;
+								valueW = b[x][y+1].equals("w");
 							}
 						}catch(Exception e) { }
 					} else if(b[x][y].equals("b")){
 						try {
-							while(b[x][y+1].equals("b")) {
+							boolean valueB = b[x][y+1].equals("b");
+							while(valueB) {
 								blackLine++;
 								y++;
+								valueB = b[x][y+1].equals("b");
 							}
 						} catch(Exception e) { } 
 					}

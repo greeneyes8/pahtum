@@ -134,8 +134,8 @@ public class Node {
 	/**
 	 * @param value the value of which update
 	 */
-	public void updateValue(double value) {
-		this.value += value;
+	public void updateValue(double val) {
+		this.value += val;
 	}
 
 	/**
