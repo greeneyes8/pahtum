@@ -69,31 +69,31 @@ public class MonteCarloH10 {
 	 * @return
 	 * @throws Exception 
 	 */
-	private Node treePolicy(Node node, Board board) {
-		int numberNode = node.getMoveNumber() ;
+	private Node treePolicy(Node treePolicynode, Board boardtreePolicy) {
+		int numberNode = treePolicynode.getMoveNumber() ;
 		while(numberNode < this.allMovesNumber) {
-			if(node.getUntriedMoves().size() != 0) {
-				Node newNode =  node.expand(board, this.color);
-				numberNode = node.getMoveNumber() ;
+			if(treePolicynode.getUntriedMoves().size() != 0) {
+				Node newNode =  treePolicynode.expand(boardtreePolicy, this.color);
+				numberNode = treePolicynode.getMoveNumber() ;
 				return newNode;
 			} else {
-				String color = node.getColor();
+				String color = treePolicynode.getColor();
 				try {
-					node = bestChild(node, this.c);
+					treePolicynode = bestChild(treePolicynode, this.c);
 				} catch(Exception e) {
 					//node is a terminal state.
-					return node;
+					return treePolicynode;
 				}
 				try {
-					board.makeMove(node.getMove(), color);
+					boardtreePolicy.makeMove(treePolicynode.getMove(), color);
 				} catch (Exception e) {
 					System.out.println("EXception when making move");
-					System.out.println(">>" + node.getParent().getMoveNumber());
+					System.out.println(">>" + treePolicynode.getParent().getMoveNumber());
 					System.exit(0);
 				}
 			}
 		}
-		return node;
+		return treePolicynode;
 	}
 	
 	/**
