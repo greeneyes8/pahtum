@@ -79,33 +79,33 @@ public class MonteCarlo {
 	 * @return A new node.
 	 * @throws Exception Exception I don't remember. It has never occurred.
 	 */
-	private Node treePolicy(Node node, Board board) throws Exception {
+	private Node treePolicy(Node tree_node, Board tree_board) throws Exception {
 		//While node is not a terminal state apply Tree Policy. Terminal state 
 		//is the same as fully populated board.
-		int numberNode = node.getMoveNumber() ;
+		int numberNode = tree_node.getMoveNumber() ;
 		while(numberNode < this.allMovesNumber) {
 			//Check if node is fully expanded.
-			if(node.getUntriedMoves().size() != 0) {
+			if(tree_node.getUntriedMoves().size() != 0) {
 				//Not fully expanded. Return a newly created node.
-				Node newNode =  node.expand(board);
-				numberNode = node.getMoveNumber() ;
+				Node newNode =  tree_node.expand(tree_board);
+				numberNode = tree_node.getMoveNumber() ;
 				return newNode;
 			} else {
 				//Node is fully expanded. Get color of currently investigated 
 				//node.
-				String color = node.getColor();
+				String color = tree_node.getColor();
 				
 				//Select a child for which Tree Policy would be applied again. 
 				//bestChild method relies on Boltzmann's distribution and it 
 				//non-deterministic.
-				node = bestChild(node, this.c);
+				tree_node = bestChild(tree_node, this.c);
 				
 				//Update a board of a move from selected node.
-				board.makeMove(node.getMove(), color);
-				numberNode = node.getMoveNumber() ;
+				tree_board.makeMove(tree_node.getMove(), color);
+				numberNode = tree_node.getMoveNumber() ;
 			}
 		}
-		return node;
+		return tree_node;
 	}
 	
 	/**
