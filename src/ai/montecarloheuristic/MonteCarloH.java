@@ -87,20 +87,20 @@ public class MonteCarloH {
 	 * @return winning side: "w" for white, "b" for black, "0" for draw.
 	 * @throws Exception ???
 	 */
-	private String defaultPolicy(Node node, Board board) throws Exception {
+	private String defaultPolicy(Node node_policy, Board board_policy) throws Exception {
 		Random generator = new Random();
-		String color = node.getColor();
-		int moveNumber = node.getMoveNumber();
+		String color = node_policy.getColor();
+		int moveNumber = node_policy.getMoveNumber();
 		String w = "w";
 
 		while(moveNumber < this.allMovesNumber) {
 			List<Tuple<Integer, Integer>> listValidMoves;
 			if(color.equals(this.color)) {
-				listValidMoves = board.heuristic_bestX_moves(color, 3);
+				listValidMoves = board_policy.heuristic_bestX_moves(color, 3);
 			} else {
-				listValidMoves = board.getListValidMoves();
+				listValidMoves = board_policy.getListValidMoves();
 			}
-			board.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
+			board_policy.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
 			if(color.equals(w)) {
 				color = "b";
 			} else {
@@ -108,7 +108,7 @@ public class MonteCarloH {
 			}
 			++moveNumber;
 		}
-		return Rules.calculateScore(board);
+		return Rules.calculateScore(board_policy);
 	}
 	
 	/**
@@ -144,12 +144,12 @@ public class MonteCarloH {
 	/**
 	 * Select the best child based on evaluation function (UCT).
 	 */
-	private Node bestChild(Node node, double c) {
+	private Node bestChild(Node node_bc, double c) {
 		Node bestChild = null;
 		double tempScore = -1;
-		for(Node child: node.getChildren()) {
+		for(Node child: node_bc.getChildren()) {
 			double score = (child.getValue() / child.getVisit()) + 
-					(c * Math.sqrt((2 * Math.log(node.getVisit())) / 
+					(c * Math.sqrt((2 * Math.log(node_bc.getVisit())) / 
 							(child.getVisit())));
 			if(score >= tempScore) {
 				bestChild = child;
