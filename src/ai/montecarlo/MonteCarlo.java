@@ -117,18 +117,18 @@ public class MonteCarlo {
 	 * @return winning side: "w" for white, "b" for black, "0" for draw.
 	 * @throws Exception Exception I don't remember. It has never occurred.
 	 */
-	private String defaultPolicy(Node node, Board board) throws Exception {
+	private String defaultPolicy(Node no_de, Board board_policy) throws Exception {
 		Random generator = new Random();
-		String color = node.getColor();
-		int moveNumber = node.getMoveNumber();
+		String color = no_de.getColor();
+		int moveNumber = no_de.getMoveNumber();
 		String w = "w";
 		
 		//Check if terminal state hasn't been reached. If not play next move.
 		while(moveNumber < this.allMovesNumber) {
 			//Get list of all valid moves.
-			List<Tuple<Integer, Integer>> listValidMoves = board.getListValidMoves();
+			List<Tuple<Integer, Integer>> listValidMoves = board_policy.getListValidMoves();
 			//Pick one at random.
-			board.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
+			board_policy.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
 			//Switch the colors.
 			String sw = "w";
 			
@@ -141,7 +141,7 @@ public class MonteCarlo {
 			++moveNumber;
 		}
 		//The simulation has finished, calculate the score.
-		return Rules.calculateScore(board);
+		return Rules.calculateScore(board_policy);
 	}
 	
 	/**
@@ -188,15 +188,15 @@ public class MonteCarlo {
 	 * robust child is selected. 
 	 * @return Child node.
 	 */
-	private Node bestChild(Node node, double c) {
+	private Node bestChild(Node node_, double c) {
 		Node bestChild = null;
 		double tempScore = -1;
 		
 		//Check all children, one by one.
-		for(Node child: node.getChildren()) {
+		for(Node child: node_.getChildren()) {
 			//Calculate the score for current child.
 			double score = (child.getValue() / child.getVisit()) + 
-					(c * Math.sqrt((2 * Math.log(node.getVisit())) / 
+					(c * Math.sqrt((2 * Math.log(node_.getVisit())) / 
 							(child.getVisit())));
 			
 			//If the score is better than the previous best update current best 
