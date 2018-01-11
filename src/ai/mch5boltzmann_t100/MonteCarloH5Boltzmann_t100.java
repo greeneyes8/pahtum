@@ -87,38 +87,38 @@ public class MonteCarloH5Boltzmann_t100 implements Engine {
 	 * @return A new node.
 	 * @throws Exception 
 	 */
-	private Node treePolicy(Node node, Board board) throws Exception {
+	private Node treePolicy(Node tpnode, Board tpboard) throws Exception {
 		//While node is not a terminal state apply Tree Policy. Terminal state 
 		//is the same as fully populated board.
-		int numberNode = node.getMoveNumber();
+		int numberNode = tpnode.getMoveNumber();
 		while(numberNode < this.allMovesNumber) {
 			//Check if node is fully expanded.
-			if(node.getUntriedMoves().size() != 0) {
+			if(tpnode.getUntriedMoves().size() != 0) {
 				//Not fully expanded. Return a newly created node.
-				Node newNode =  node.expand(board, this.color);
-				numberNode = node.getMoveNumber();
+				Node newNode =  tpnode.expand(tpboard, this.color);
+				numberNode = tpnode.getMoveNumber();
 				return newNode;
 			} else {
 				//Node is fully expanded. Get color of currently investigated 
 				//node.
-				String color = node.getColor();
+				String color = tpnode.getColor();
 				
 				//Select a child for which Tree Policy would be applied again. 
 				//bestChild method relies on Boltzmann's distribution and it 
 				//non-deterministic.
 				try {
-					node = bestChild(node);
+					tpnode = bestChild(tpnode);
 				} catch(Exception e) {
 					//node is a terminal state.
-					return node;
+					return tpnode;
 				}
 				
 				//Update a board of a move from selected node.
-				board.makeMove(node.getMove(), color);
-				numberNode = node.getMoveNumber();
+				tpboard.makeMove(tpnode.getMove(), color);
+				numberNode = tpnode.getMoveNumber();
 			}
 		}
-		return node;
+		return tpnode;
 	}
 	
 	/**
