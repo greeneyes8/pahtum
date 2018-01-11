@@ -10,13 +10,6 @@ import util.Tuple;
 //import ai.charles2.Charles_2;
 import ai.charles2.Charles_2;
 import ai.mch5boltzmann.MonteCarloH5Boltzmann;
-import ai.montecarlo.MonteCarlo;
-import ai.montecarloheuristic10.MonteCarloH10;
-import ai.montecarloheuristic5.MonteCarloH5;
-import ai.montecarloheuristic55.MonteCarloH55;
-import ai.montecarloheuristic7.MonteCarloH7;
-import ai.random.LuckyAI;
-//import ai.random.LuckyAI;
 
 import core.Board;
 import core.Player;
