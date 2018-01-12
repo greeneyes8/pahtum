@@ -1,5 +1,11 @@
 package core;
 
+/**
+ * Classe che implementa le regole
+ * @author Mina
+ *
+ */
+
 public class Rules {
 	
 	/**
@@ -48,44 +54,44 @@ public class Rules {
 		return stringScore;
 	}
 
-	public static void whiteLine (boolean valueW, int whiteLine, 
+	public static void whiteLine (boolean valueW, int white_Line, 
 			int y, String [][] b, int x ) {
 		
 		while(valueW) {
-			whiteLine++;
+			white_Line++;
 			y++;
 			valueW = b[x][y+1].equals("w");
 		}
 		
 	}
 	
-	public static void blackLine (boolean valueB, int blackLine, 
+	public static void blackLine (boolean valueB, int bl_blackLine, 
 			int y, String [][] b, int x ) {
 		
 		while(valueB) {
-			blackLine++;
+			bl_blackLine++;
 			y++;
 			valueB = b[x][y+1].equals("b");
 		}
 		
 	}
 	
-	public static void whiteSwitch (int whiteLine , int scoreWhite) {
-		switch(whiteLine) {
+	public static void whiteSwitch (int sw_whiteLine , int sw_scoreWhite) {
+		switch(sw_whiteLine) {
 		case 3:
-			scoreWhite += 3;
+			sw_scoreWhite += 3;
 			break;
 		case 4:
-			scoreWhite += 10;
+			sw_scoreWhite += 10;
 			break;
 		case 5:
-			scoreWhite += 25;
+			sw_scoreWhite += 25;
 			break;
 		case 6:
-			scoreWhite += 56;
+			sw_scoreWhite += 56;
 			break;
 		case 7:
-			scoreWhite += 119;
+			sw_scoreWhite += 119;
 			break;
 		default:
 			break;
@@ -93,22 +99,22 @@ public class Rules {
 		
 	}
 	
-	public static void blackSwitch (int blackLine , int scoreBlack) {
-		switch(blackLine) {
+	public static void blackSwitch (int bs_blackLine , int bs_scoreBlack) {
+		switch(bs_blackLine) {
 		case 3:
-			scoreBlack += 3;
+			bs_scoreBlack += 3;
 			break;
 		case 4:
-			scoreBlack += 10;
+			bs_scoreBlack += 10;
 			break;
 		case 5:
-			scoreBlack += 25;
+			bs_scoreBlack += 25;
 			break;
 		case 6:
-			scoreBlack += 56;
+			bs_scoreBlack += 56;
 			break;
 		case 7:
-			scoreBlack += 119;
+			bs_scoreBlack += 119;
 			break;
 		default:
 			break;
@@ -129,18 +135,18 @@ public class Rules {
 		
 	}
 	
-	public static void stringA (String [][] b, int x, int y, int whiteLine, int blackLine) {
+	public static void stringA (String [][] b, int x, int y, int str_whiteLine, int str_blackLine) {
 		
 		if(b[x][y].equals("w")) {
 			try {
 				boolean valueW = b[x][y+1].equals("w");
-				whiteLine ( valueW,  whiteLine, 
+				whiteLine ( valueW,  str_whiteLine, 
 						 y, b,  x );
 			}catch(Exception e) { }
 		} else if(b[x][y].equals("b")){
 			try {
 				boolean value_ = b[x][y+1].equals("b");
-				blackLine ( value_,  blackLine, 
+				blackLine ( value_,  str_blackLine, 
 						 y, b,  x );
 			} catch(Exception e) { } 
 		}

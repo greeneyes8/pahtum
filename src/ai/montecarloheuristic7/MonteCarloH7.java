@@ -7,6 +7,12 @@ import util.Tuple;
 import core.Board;
 import core.Rules;
 
+/**
+ * Classe MonteCarloheuristic7
+ * @author Mina
+ *
+ */
+
 public class MonteCarloH7 {
 	private Board board;
 	private String color;

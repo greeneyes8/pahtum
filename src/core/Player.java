@@ -1,5 +1,11 @@
 package core;
 
+/**
+ * Classe relativa al player
+ * @author Mina
+ *
+ */
+
 public class Player {
 
 	// Fields.
@@ -8,6 +14,14 @@ public class Player {
 	private String color;
 	private int simulationNumber;
 
+	/**
+	 * 
+	 * @param name
+	 * @param type
+	 * @param color
+	 * @param simulationNo
+	 */
+	
 	// Constructor.
 	public Player(String name, String type, String color, int simulationNo) {
 		this.name = name;

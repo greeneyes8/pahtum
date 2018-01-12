@@ -6,6 +6,12 @@ import java.util.Random;
 import util.Tuple;
 import core.Board;
 
+/**
+ * Classe relativa ad AI
+ * @author Mina
+ *
+ */
+
 public class LuckyAI {
 	private Board board;
 	private int moveNumber, allMovesNumber;
@@ -14,6 +20,11 @@ public class LuckyAI {
 		this.moveNumber = moveNumber;
 		this.allMovesNumber = allMovesNumber;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	
 	public Tuple<Integer, Integer> getMove() {
 		String[][] b = board.getState();

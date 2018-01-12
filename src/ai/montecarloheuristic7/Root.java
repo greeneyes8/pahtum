@@ -1,5 +1,11 @@
 package ai.montecarloheuristic7;
 
+/**
+ * Classe che crea il root collegandogli un nodo
+ * @author Mina
+ *
+ */
+
 public class Root {
 	private Node root;
 

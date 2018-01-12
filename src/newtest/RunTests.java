@@ -1,5 +1,11 @@
 package newtest;
 
+/**
+ * Classe relativa al run dei gigatests
+ * @author Mina
+ *
+ */
+
 public class RunTests {
 
 	/**

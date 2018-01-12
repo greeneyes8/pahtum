@@ -5,6 +5,12 @@ import java.io.ObjectOutputStream;
 
 import core.Board;
 
+/**
+ * Classe relativa al BoardGenerator
+ * @author Mina
+ *
+ */
+
 public class BoardGenerator {
 
 	/**

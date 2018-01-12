@@ -2,16 +2,11 @@ package newtest;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import util.Tuple;
 
 //import ai.charles2.Charles_2;
-import ai.charles2.Charles_2;
-import ai.mch5boltzmann.MonteCarloH5Boltzmann;
-import ai.mch7boltzmann.MonteCarloH7Boltzmann;
-import ai.mchboltzmann.MonteCarloHBoltzmann;
 import ai.montecarlo.MonteCarlo;
 import ai.montecarloheuristic10.MonteCarloH10;
 import ai.montecarloheuristic5.MonteCarloH5;
@@ -23,8 +18,20 @@ import core.Board;
 import core.Player;
 import core.Rules;
 
+/**
+ * Classe relativa al gigatest2
+ * @author Mina
+ *
+ */
+
 public class GigaTest2 {
 
+	/**
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
+	
 	public static void main(String[] args) throws Exception {
 		
 				//test go
