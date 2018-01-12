@@ -1,5 +1,11 @@
 package ai.montecarloheuristic2;
 
+/**
+ * Classe che individua il root
+ * @author Mina
+ *
+ */
+
 public class Root {
 	private Node root;
 

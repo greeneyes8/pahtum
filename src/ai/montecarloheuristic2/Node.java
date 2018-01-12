@@ -7,6 +7,12 @@ import core.Board;
 
 import util.Tuple;
 
+/**
+ * Classe che individua i nodi
+ * @author Mina
+ *
+ */
+
 public class Node {
 	private Tuple<Integer, Integer> move;
 	private String color;
@@ -14,6 +20,16 @@ public class Node {
 	private int value, visit, moveNumber;
 	private List<Node> children;
 	private List<Tuple<Integer, Integer>> untriedMoves;
+	
+	/**
+	 * 
+	 * @param parent
+	 * @param move
+	 * @param color
+	 * @param board
+	 * @param moveNumber
+	 * @param mcColor
+	 */
 	
 	public Node(Node parent, Tuple<Integer, Integer> move, String color, Board board, int moveNumber, String mcColor) {
 		this.move = move;

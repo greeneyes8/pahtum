@@ -7,7 +7,11 @@ import core.Board;
 import core.Rules;
 
 import util.Tuple;
-
+/**
+ * Classe che trova il min e il massimo di un nodo.
+ * @author Mina
+ *
+ */
 public class MMNode {
 	private Tuple<Integer, Integer> move;
 	private ArrayList<MMNode> children;
@@ -15,6 +19,15 @@ public class MMNode {
 	private double quality;
 	private String color;
 
+	/**
+	 * 
+	 * @param parent, che è un nodo
+	 * @param move, è di tipo tupla
+	 * @param board, è un oggetto della classe Board
+	 * @param color, è di tipo stringa
+	 * @throws Exception cattura eccezioni
+	 */
+	
 	public MMNode(MMNode parent, Tuple<Integer, Integer> move, Board board, String color) throws Exception {
 		this.move = move;
 		this.quality = -1;

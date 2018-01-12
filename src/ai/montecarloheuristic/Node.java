@@ -8,6 +8,12 @@ import core.Board;
 
 import util.Tuple;
 
+/**
+ * Classe che individua il nodo
+ * @author Mina
+ *
+ */
+
 public class Node {
 	private Tuple<Integer, Integer> move;
 	private String color;

@@ -1,5 +1,11 @@
 package ai.montecarlo;
 
+/**
+ * Crea un nodo root
+ * @author Mina
+ *
+ */
+
 public class Root {
 	private Node root;
 

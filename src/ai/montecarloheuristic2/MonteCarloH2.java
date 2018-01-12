@@ -7,6 +7,12 @@ import util.Tuple;
 import core.Board;
 import core.Rules;
 
+/**
+ * Classe MonteCarloH2 che individua nodi, root
+ * @author Mina
+ *
+ */
+
 public class MonteCarloH2 {
 	private Board board;
 	private String color;

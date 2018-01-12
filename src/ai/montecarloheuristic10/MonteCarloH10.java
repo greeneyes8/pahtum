@@ -7,6 +7,12 @@ import util.Tuple;
 import core.Board;
 import core.Rules;
 
+/**
+ * Classe relativa al Montecarloh10 che estrapola file e tuple dai records
+ * @author Mina
+ *
+ */
+
 public class MonteCarloH10 {
 	private Board board;
 	private String color;

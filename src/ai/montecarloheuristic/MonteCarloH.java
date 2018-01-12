@@ -7,6 +7,12 @@ import util.Tuple;
 import core.Board;
 import core.Rules;
 
+/**
+ * Tra nodi e dati estrapola infomazioni dalle query
+ * @author Mina
+ *
+ */
+
 public class MonteCarloH {
 	private Board board;
 	private String color;

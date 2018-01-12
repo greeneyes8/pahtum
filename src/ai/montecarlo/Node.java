@@ -8,6 +8,12 @@ import core.Board;
 
 import util.Tuple;
 
+/**
+ * Classe per la generazione di nodi
+ * @author Mina
+ *
+ */
+
 public class Node {
 	private Tuple<Integer, Integer> move;
 	private String color;
@@ -15,6 +21,15 @@ public class Node {
 	private int value, visit, moveNumber;
 	private List<Node> children;
 	private List<Tuple<Integer, Integer>> untriedMoves;
+	
+	/**
+	 * 
+	 * @param parent si riferisce al nodo
+	 * @param move è di tipo Tupla
+	 * @param color è di tipo stringa
+	 * @param board è un oggetto della classe Board
+	 * @param moveNumber è di tipo numerico
+	 */
 	
 	public Node(Node parent, Tuple<Integer, Integer> move, String color, Board board, int moveNumber) {
 		this.move = move;

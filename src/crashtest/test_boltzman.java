@@ -10,6 +10,13 @@ import util.Tuple;
 //import ai.charles2.Charles_2;
 import ai.charles2.Charles_2;
 import ai.mch5boltzmann.MonteCarloH5Boltzmann;
+import ai.montecarlo.MonteCarlo;
+import ai.montecarloheuristic10.MonteCarloH10;
+import ai.montecarloheuristic5.MonteCarloH5;
+import ai.montecarloheuristic55.MonteCarloH55;
+import ai.montecarloheuristic7.MonteCarloH7;
+import ai.random.LuckyAI;
+//import ai.random.LuckyAI;
 
 import core.Board;
 import core.Player;
@@ -73,6 +80,7 @@ public class test_boltzman {
 			FileInputStream fisTest1 = new FileInputStream("50_boards_3.sav");
 			ObjectInputStream oisTest1 = new ObjectInputStream(fisTest1);
 			boardCollectionTest1 = (Board[]) oisTest1.readObject();
+			oisTest1.close();
 		} catch(Exception e) {
 			System.err.println("Error" + e.getMessage());
 		}
@@ -194,16 +202,13 @@ public class test_boltzman {
 				outputTest1.close();
 
 				//Update statistics.
-				if(playersTest1[0].getName().equals("Charles_2")) {
-					e1DrawAsPlayer1++;
-					e2DrawAsPlayer2++;
-				} else {
-					e1DrawAsPlayer2++;
-					e2DrawAsPlayer1++;
-				}
+				boolean valuePlayersTest1 = playersTest1[0].getName().equals("Charles_2");
+				updateStatisticsFirst ( valuePlayersTest1,  e1DrawAsPlayer1, 
+						 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 
 			} else {
 				//One side wins the game.
+				
 				if(gameOutcome.equals(playersTest1[0].getColor())) {
 					//Player #1, whoever it is, wins the game.
 
@@ -211,19 +216,10 @@ public class test_boltzman {
 					outputTest1.append("Result: " + playersTest1[0].getName() + " wins");
 
 					//Update statistics.
-					if(playersTest1[0].getName().equals("Charles_2")) {
-						e1TotalWins++;
-						e2TotalLoses++;
-
-						e1WinAsPlayer1++;
-						e2LoseAsPlayer2++;
-					} else {
-						e2TotalWins++;
-						e1TotalLoses++;
-
-						e2WinAsPlayer1++;
-						e1LoseAsPlayer2++;
-					}
+					boolean valuePlayersTest1 = playersTest1[0].getName().equals("Charles_2");
+					updateStatisticsSecond ( valuePlayersTest1,  e1TotalWins,
+							 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+							 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
 
 				} else {
 					//Player #2, whoever it is, wins the game.
@@ -232,19 +228,10 @@ public class test_boltzman {
 					outputTest1.append("Result: " + playersTest1[1].getName() + " wins");
 
 					//Update statistics.
-					if(playersTest1[1].getName().equals("Charles_2")) {
-						e1TotalWins++;
-						e2TotalLoses++;
-
-						e1WinAsPlayer2++;
-						e2LoseAsPlayer1++;
-					} else {
-						e2TotalWins++;
-						e1TotalLoses++;
-
-						e2WinAsPlayer2++;
-						e1LoseAsPlayer1++;
-					}
+					boolean valuePlayersTest1 = playersTest1[1].getName().equals("Charles_2");
+					updateStatisticsSecond ( valuePlayersTest1,  e1TotalWins,
+							 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+							 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
 				}
 				outputTest1.newLine();
 				outputTest1.close();
@@ -1595,5 +1582,38 @@ public class test_boltzman {
 //		output1Test6.close();
 
 	}
+public static void updateStatisticsFirst (boolean value, int e1DrawAsPlayer1, 
+		int e2DrawAsPlayer2, int e1DrawAsPlayer2, int e2DrawAsPlayer1) {
+	
+	if(value) {
+		e1DrawAsPlayer1++;
+		e2DrawAsPlayer2++;
+	} else {
+		e1DrawAsPlayer2++;
+		e2DrawAsPlayer1++;
+	}
+	
+}
+
+public static void updateStatisticsSecond (boolean value, int e1TotalWins,
+		int e2TotalLoses,int e1WinAsPlayer2, int e2LoseAsPlayer1,
+		int e2TotalWins, int e1TotalLoses, int e2WinAsPlayer2, int e1LoseAsPlayer1) {
+	
+	if(value) {
+		e1TotalWins++;
+		e2TotalLoses++;
+
+		e1WinAsPlayer2++;
+		e2LoseAsPlayer1++;
+	} else {
+		e2TotalWins++;
+		e1TotalLoses++;
+
+		e2WinAsPlayer2++;
+		e1LoseAsPlayer1++;
+	}
+	
+}
+
 
 }
