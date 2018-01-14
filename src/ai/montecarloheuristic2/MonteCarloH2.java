@@ -37,7 +37,8 @@ public class MonteCarloH2 {
 		this.allMovesNumber = allMovesNumber;
 		this.root = new Root(new Node(null, null, color, board, moveNumber, 
 				this.color));
-		this.c = 1 / Math.sqrt(2);
+		int thwh2 = 2;
+		this.c = 1 / Math.sqrt(thwh2);
 	}
 	
 	/**
@@ -98,13 +99,14 @@ public class MonteCarloH2 {
 		String color = node_policy.getColor();
 		int moveNumber = node_policy.getMoveNumber();
 		String w = "w";
-
+		int theeh2 = 3;
+		int nineh2 = 9;
 		while(moveNumber < this.allMovesNumber) {
 			List<Tuple<Integer, Integer>> listValidMoves;
 			if(color.equals(this.color)) {
-				listValidMoves = board_policy.heuristic_bestX_moves(color, 3);
+				listValidMoves = board_policy.heuristic_bestX_moves(color, theeh2);
 			} else {
-				listValidMoves = board_policy.heuristic_bestX_moves(color, 9);
+				listValidMoves = board_policy.heuristic_bestX_moves(color, nineh2);
 			}
 			board_policy.makeMove(listValidMoves.get(generator.nextInt(listValidMoves.size())), color);
 			if(color.equals(w)) {

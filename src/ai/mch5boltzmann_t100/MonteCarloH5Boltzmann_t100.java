@@ -134,14 +134,14 @@ public class MonteCarloH5Boltzmann_t100 implements Engine {
 		int moveNumber = defaultPolicy_node.getMoveNumber();
 		String w = "w";
 		String b = "b";
-
+		int valuebo_t100_5 = 5;
 		//Check if terminal state hasn't been reached. If not play next move.
 		while(moveNumber < this.allMovesNumber) {
 			List<Tuple<Integer, Integer>> listValidMoves;
 			
 			//Narrow list of valid moves to the best 5 in accordance to the 
 			//heuristic function.
-			listValidMoves = defaultPolicy_board.heuristic_bestX_moves(color, 5);
+			listValidMoves = defaultPolicy_board.heuristic_bestX_moves(color, valuebo_t100_5);
 			
 			//Select at random from given selection a move, and make it.
 			defaultPolicy_board.makeMove(listValidMoves.get(generator.nextInt(
@@ -166,28 +166,28 @@ public class MonteCarloH5Boltzmann_t100 implements Engine {
 	 * @param delta The outcome of the simulation (w/b/0).
 	 */
 	private void backUp(Node node, String delta) {
-		double value;
-		String zero = "0";
+		double value_t100h5;
+		String zero_t100h5 = "0";
 		
 		//Assign numeric value based on the outcome of simulation and color of 
 		//the move (whether this move is good for MC or not).
-		if(delta.equals(zero)) {
-			value = .5;
+		if(delta.equals(zero_t100h5)) {
+			value_t100h5 = .5;
 		} else if(delta.equals(node.getColor())) {
-			value = 0;
+			value_t100h5 = 0;
 		} else {
-			value = 1;
+			value_t100h5 = 1;
 		}
 		
 		//Until the root is not reached update value and counter of visit of 
 		//each visited node and go to its parent.
 		while(node != null) {
-			node.updateValue(value);
+			node.updateValue(value_t100h5);
 			node.updateVisit();
 			
-			//If not a draw, reverse the value (0 -> 1 or 1 -> 0).
-			if(value != .5) {
-				value = (value + 1) % 2;
+			//If not a draw, reverse the value_t100h5 (0 -> 1 or 1 -> 0).
+			if(value_t100h5 != .5) {
+				value_t100h5 = (value_t100h5 + 1) % 2;
 			}
 			
 			//Go up in the tree (to the parent).
@@ -201,17 +201,17 @@ public class MonteCarloH5Boltzmann_t100 implements Engine {
 	 * @return Best node.
 	 */
 	private Node getHighestQualityChild(Node node) {
-		Node bestChild = null;
-		double tmpQuality = -1;
+		Node bestchild_t100h5 = null;
+		double tmpQuality_t100h5 = -1;
 		
 		//Check all children.
 		for(Node child : node.getChildren()) {
-			if(child.getValue()  > tmpQuality) {
-				tmpQuality = child.getValue();
-				bestChild = child;
+			if(child.getValue()  > tmpQuality_t100h5) {
+				tmpQuality_t100h5 = child.getValue();
+				bestchild_t100h5 = child;
 			}
 		}
-		return bestChild;
+		return bestchild_t100h5;
 	}
 	
 	/**
@@ -225,21 +225,21 @@ public class MonteCarloH5Boltzmann_t100 implements Engine {
 	 * @return
 	 */
 	private Node bestChild(Node node) {
-		double t = 10;
-		Node selectedChild = null;
-		Random generator = new Random();
+		double t_100h5 = 10;
+		Node selectedChild_t100h5 = null;
+		Random generator_t100h5 = new Random();
 		double bestFitProb = 100;
 		
 		//Get random double in [0,1] range. 
-		double randomNumber = generator.nextDouble();
+		double randomNumber = generator_t100h5.nextDouble();
 		
 		//X. Make sure all children has probability assigned.
 		for(Node child : node.getChildren()) {
 			double sum = 0;
 			for(Node kid : node.getChildren()) {
-				sum += Math.exp(kid.getPotential() / t);
+				sum += Math.exp(kid.getPotential() / t_100h5);
 			}
-			childrenProbabilityT100( child,  sum,  t);
+			childrenProbabilityT100( child,  sum,  t_100h5);
 		}//end X.
 		
 		//Y. Organize nodes in a list.
@@ -276,11 +276,11 @@ public class MonteCarloH5Boltzmann_t100 implements Engine {
 
 		//Select which child is associated with a range that satisfies randomly 
 		//picked number.
-		selectedChild = pickedNumberT100(organizedChildren, 
-				 randomNumber,  bestFitProb,  selectedChild   );
+		selectedChild_t100h5 = pickedNumberT100(organizedChildren, 
+				 randomNumber,  bestFitProb,  selectedChild_t100h5   );
 		
 		//Return selected child.
-		return selectedChild;
+		return selectedChild_t100h5;
 	}
 private void childrenProbabilityT100(Node child, double sum, double t) {
 		

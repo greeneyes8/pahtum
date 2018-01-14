@@ -38,10 +38,11 @@ public class Node {
 		this.value = 0;
 		this.visit = 0;
 		this.children = new ArrayList<Node>();
+		int valuenodeh2 = 3;
 		if(mcColor.equals(color)) {
 			//Moves for MC => use heuristic.
 //			System.out.println("First time heuristic");
-			this.untriedMoves = board.heuristic_bestX_moves(mcColor, 3);
+			this.untriedMoves = board.heuristic_bestX_moves(mcColor, valuenodeh2);
 //			System.out.println(untriedMoves);
 //			InputStreamReader isr =  new InputStreamReader(System.in);
 //			BufferedReader br = new BufferedReader(isr);

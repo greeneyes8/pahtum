@@ -134,14 +134,14 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 		int moveNumber = no_de.getMoveNumber();
 		String w = "w";
 		String b = "b";
-
+		int valuebo_t15_5 = 5;
 		//Check if terminal state hasn't been reached. If not play next move.
 		while(moveNumber < this.allMovesNumber) {
 			List<Tuple<Integer, Integer>> listValidMoves;
 			
 			//Narrow list of valid moves to the best 5 in accordance to the 
 			//heuristic function.
-			listValidMoves = board_dp.heuristic_bestX_moves(color, 5);
+			listValidMoves = board_dp.heuristic_bestX_moves(color, valuebo_t15_5);
 			
 			//Select at random from given selection a move, and make it.
 			board_dp.makeMove(listValidMoves.get(generator.nextInt(
@@ -166,28 +166,28 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 	 * @param delta The outcome of the simulation (w/b/0).
 	 */
 	private void backUp(Node node, String delta) {
-		double value;
-		String zero = "0";
+		double value_t15;
+		String zero_t15 = "0";
 		
 		//Assign numeric value based on the outcome of simulation and color of 
 		//the move (whether this move is good for MC or not).
-		if(delta.equals(zero)) {
-			value = .5;
+		if(delta.equals(zero_t15)) {
+			value_t15 = .5;
 		} else if(delta.equals(node.getColor())) {
-			value = 0;
+			value_t15 = 0;
 		} else {
-			value = 1;
+			value_t15 = 1;
 		}
 		
 		//Until the root is not reached update value and counter of visit of 
 		//each visited node and go to its parent.
 		while(node != null) {
-			node.updateValue(value);
+			node.updateValue(value_t15);
 			node.updateVisit();
 			
 			//If not a draw, reverse the value (0 -> 1 or 1 -> 0).
-			if(value != .5) {
-				value = (value + 1) % 2;
+			if(value_t15 != .5) {
+				value_t15 = (value_t15 + 1) % 2;
 			}
 			
 			//Go up in the tree (to the parent).
@@ -201,17 +201,17 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 	 * @return Best node.
 	 */
 	private Node getHighestQualityChild(Node node) {
-		Node bestChild = null;
-		double tmpQuality = -1;
+		Node bestChild_t15 = null;
+		double tmpQuality_t15 = -1;
 		
 		//Check all children.
 		for(Node child : node.getChildren()) {
-			if(child.getValue()  > tmpQuality) {
-				tmpQuality = child.getValue();
-				bestChild = child;
+			if(child.getValue()  > tmpQuality_t15) {
+				tmpQuality_t15 = child.getValue();
+				bestChild_t15 = child;
 			}
 		}
-		return bestChild;
+		return bestChild_t15;
 	}
 	
 	/**
@@ -225,21 +225,21 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 	 * @return
 	 */
 	private Node bestChild(Node node) {
-		double t = 1.5;
-		Node selectedChild = null;
-		Random generator = new Random();
+		double t_t15 = 1.5;
+		Node selectedChild_t15 = null;
+		Random generator_t15 = new Random();
 		double bestFitProb = 100;
 		
 		//Get random double in [0,1] range. 
-		double randomNumber = generator.nextDouble();
+		double randomNumber = generator_t15.nextDouble();
 		
 		//X. Make sure all children has probability assigned.
 		for(Node child : node.getChildren()) {
 			double sum = 0;
 			for(Node kid : node.getChildren()) {
-				sum += Math.exp(kid.getPotential() / t);
+				sum += Math.exp(kid.getPotential() / t_t15);
 			}
-			childrenProbabilityT15( child,  sum,  t);
+			childrenProbabilityT15( child,  sum,  t_t15);
 		}//end X.
 		
 		//Y. Organize nodes in a list.
@@ -277,10 +277,10 @@ public class MonteCarloH5Boltzmann_t15 implements Engine {
 
 		//Select which child is associated with a range that satisfies randomly 
 		//picked number.
-		selectedChild = pickedNumberT15(organizedChildren, 
-				 randomNumber,  bestFitProb,  selectedChild   );
+		selectedChild_t15 = pickedNumberT15(organizedChildren, 
+				 randomNumber,  bestFitProb,  selectedChild_t15   );
 		//Return selected child.
-		return selectedChild;
+		return selectedChild_t15;
 	}
 
 private void childrenProbabilityT15(Node child, double sum, double t) {

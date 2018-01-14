@@ -39,8 +39,9 @@ public class Node {
 		this.value = 0;
 		this.visit = 0;
 		this.children = new ArrayList<Node>();
+		int valuenodeh5 = 5;
 		if(mcColor.equals(color)) {
-			this.untriedMoves = board.heuristic_bestX_moves(mcColor, 5);
+			this.untriedMoves = board.heuristic_bestX_moves(mcColor, valuenodeh5);
 		} else {
 			//Moves for my opponent => use all.
 			this.untriedMoves = board.getListValidMoves();

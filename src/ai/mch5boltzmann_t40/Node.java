@@ -49,18 +49,16 @@ public class Node {
 		this.value = 0;
 		this.visit = 0;
 		this.children = new ArrayList<Node>();
-		this.untriedMoves = board.heuristic_bestX_moves(color, 5);
+		int valuenode_t40_5 = 5;
+		this.untriedMoves = board.heuristic_bestX_moves(color, valuenode_t40_5);
 		this.moveNumber = moveNumber;
-		
-		String w = "w";
-		String b = "b";
 		
 		//Update potential.
 		if(move != null) {
 			this.potential = board.getHeuristicValue(
 					move.getFirstElement(), 
 					move.getSecondElement(), 
-					color.equals(w) ? b : w);
+					color.equals("w") ? "b" : "w");
 		}
 	}
 	
@@ -105,6 +103,7 @@ public class Node {
 			board.makeMove(move, color);
 		} catch (Exception e) {
 			//Doesn't happen.
+			e.printStackTrace();
 		}
 		
 		//Switch colors.
@@ -134,8 +133,8 @@ public class Node {
 	/**
 	 * @param value the value of which update
 	 */
-	public void updateValue(double val) {
-		this.value += val;
+	public void updateValue(double value) {
+		this.value += value;
 	}
 
 	/**

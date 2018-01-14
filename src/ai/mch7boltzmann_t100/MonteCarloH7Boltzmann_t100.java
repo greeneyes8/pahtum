@@ -134,6 +134,7 @@ public class MonteCarloH7Boltzmann_t100 implements Engine {
 		int moveNumber = sdp_node.getMoveNumber();
 		String w = "w";
 		String b = "b";
+		int valuebo_t100 = 7;
 
 		//Check if terminal state hasn't been reached. If not play next move.
 		while(moveNumber < this.allMovesNumber) {
@@ -141,7 +142,7 @@ public class MonteCarloH7Boltzmann_t100 implements Engine {
 			
 			//Narrow list of valid moves to the best 5 in accordance to the 
 			//heuristic function.
-			listValidMoves = board.heuristic_bestX_moves(color, 7);
+			listValidMoves = board.heuristic_bestX_moves(color, valuebo_t100);
 			
 			//Select at random from given selection a move, and make it.
 			sdp_board.makeMove(listValidMoves.get(generator.nextInt(

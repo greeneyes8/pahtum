@@ -18,7 +18,10 @@ public class test_minimax {
 	 */
 	
 	public static void main(String[] args) throws Exception {
-		Board b = new Board(3, false, 0);
+		int valueboard1 = 3;
+		boolean valuevoard2 = false;
+		int valueboard3 = 0;
+		Board b = new Board(valueboard1, false, valueboard3);
 		MiniMax mm = new MiniMax("b", b);
 		System.out.println(mm.getMove().toString());
 	}

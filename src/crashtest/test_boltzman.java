@@ -49,7 +49,7 @@ public class test_boltzman {
 		e2WinAsPlayer2 = 0,
 		e2DrawAsPlayer2 = 0,
 		e2LoseAsPlayer2 = 0;
-
+		int value_1000= 1000;
 		/***********************************************************************
 		 * Test #1: (1050,000 roll-outs) MCTS + H(7) v Charles_2 3-point board.
 		 **********************************************************************/
@@ -72,7 +72,7 @@ public class test_boltzman {
 
 		//Players participating in the test case.
 		Player[] playersTest1 =  {
-				new Player("Boltzmann1k", "Boltzmann1k", "w", 1000),
+				new Player("Boltzmann1k", "Boltzmann1k", "w", value_1000),
 				new Player("Charles_2", "Charles_2", "b", 0)
 		};
 
@@ -80,7 +80,7 @@ public class test_boltzman {
 		//terminate state or not (the game finishes when there is no empty 
 		//fields in the board).
 		int totalNumberOfMovesTest1 = 46;
-
+		
 		//Load board.
 		try {
 			FileInputStream fisTest1 = new FileInputStream("50_boards_3.sav");
@@ -193,8 +193,7 @@ public class test_boltzman {
 		} //End of the test case. (for)
 
 		//Report when games ended.
-		endTime = System.currentTimeMillis();
-
+		endTime = System.currentTimeMillis();	
 		//Append total outcome of the test case to the file.
 		BufferedWriter output1Test1 = new BufferedWriter(
 				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
@@ -208,7 +207,7 @@ public class test_boltzman {
 		output1Test1.newLine();
 		output1Test1.append("Charles_2 total wins: " + e1TotalWins);
 		output1Test1.newLine();
-		output1Test1.append("Play time: " + (endTime - startTime)/1000 + " seconds.");
+		output1Test1.append("Play time: " + (endTime - startTime)/value_1000 + " seconds.");
 		output1Test1.newLine();
 
 		//Write statistics for MCTS.

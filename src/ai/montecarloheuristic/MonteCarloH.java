@@ -37,7 +37,8 @@ public class MonteCarloH {
 		this.allMovesNumber = allMovesNumber;
 		this.root = new Root(new Node(null, null, color, board, moveNumber, 
 				this.color));
-		this.c = 1 / Math.sqrt(2);
+		int twoh = 2;
+		this.c = 1 / Math.sqrt(twoh);
 	}
 	
 	/**
@@ -98,11 +99,11 @@ public class MonteCarloH {
 		String color = node_policy.getColor();
 		int moveNumber = node_policy.getMoveNumber();
 		String w = "w";
-
+		int threeh = 3;
 		while(moveNumber < this.allMovesNumber) {
 			List<Tuple<Integer, Integer>> listValidMoves;
 			if(color.equals(this.color)) {
-				listValidMoves = board_policy.heuristic_bestX_moves(color, 3);
+				listValidMoves = board_policy.heuristic_bestX_moves(color, threeh);
 			} else {
 				listValidMoves = board_policy.getListValidMoves();
 			}

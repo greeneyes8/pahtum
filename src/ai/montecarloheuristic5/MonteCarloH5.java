@@ -36,7 +36,8 @@ public class MonteCarloH5 {
 		this.allMovesNumber = allMovesNumber;
 		this.root = new Root(new Node(null, null, color, board, moveNumber, 
 				this.color));
-		this.c = 1 / Math.sqrt(2);
+		int twoh5 = 2;
+		this.c = 1 / Math.sqrt(twoh5);
 	}
 	
 	/**
@@ -130,7 +131,7 @@ public class MonteCarloH5 {
 		String color = node_policy.getColor();
 		int moveNumber = node_policy.getMoveNumber();
 		String w = "w";
-
+		int fiveh5 = 5;
 		//Check if terminal state hasn't been reached. If not play next move.
 		while(moveNumber < this.allMovesNumber) {
 			List<Tuple<Integer, Integer>> listValidMoves;
@@ -139,7 +140,7 @@ public class MonteCarloH5 {
 			if(color.equals(this.color)) {
 				//Narrow list of valid moves to the best 5 in accordance to the 
 				//heuristic evaluation.
-				listValidMoves = board_policy.heuristic_bestX_moves(color, 5);
+				listValidMoves = board_policy.heuristic_bestX_moves(color, fiveh5);
 			} else {
 				//Provide a list of all valid moves.
 				listValidMoves = board_policy.getListValidMoves();

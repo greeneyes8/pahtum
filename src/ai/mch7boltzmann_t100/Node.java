@@ -49,7 +49,8 @@ public class Node {
 		this.value = 0;
 		this.visit = 0;
 		this.children = new ArrayList<Node>();
-		this.untriedMoves = board.heuristic_bestX_moves(color, 7);
+		int valuebo_t100 = 7;
+		this.untriedMoves = board.heuristic_bestX_moves(color, valuebo_t100);
 		this.moveNumber = moveNumber;
 		
 		String w = "w";

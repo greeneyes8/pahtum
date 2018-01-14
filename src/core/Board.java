@@ -607,11 +607,11 @@ public class Board implements Serializable{
 	
 	public void halfCase1 (boolean random, int numberBlackHoles,
 			Random generator ) {
-		
+		int sevenvalue = 7;
 		if(random) {
 			while(numberBlackHoles > 0) {
-				int coordianteX = generator.nextInt(7);
-				int coordinateY = generator.nextInt(7);
+				int coordianteX = generator.nextInt(sevenvalue);
+				int coordinateY = generator.nextInt(sevenvalue);
 				if(board[coordianteX][coordinateY].equals("e")) {
 					board[coordianteX][coordinateY] = "x";
 					--numberBlackHoles;
