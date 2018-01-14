@@ -16,8 +16,8 @@ public class MMNode {
 	private Tuple<Integer, Integer> move;
 	private ArrayList<MMNode> children;
 	private MMNode parent;
-	private double quality;
-	private String color;
+	private static double quality;
+	private static String color;
 
 	/**
 	 * 
@@ -35,9 +35,8 @@ public class MMNode {
 		String w = "w";
 		String bs = "b";
 		
-		if(move != null) {
-			board.makeMove(move, color);
-		}
+		makeMovers ( move,  board,  color);
+		
 		this.parent = parent;
 		color = (color.equals(w) ? bs : w);
 		this.color = color;
@@ -56,23 +55,9 @@ public class MMNode {
 				System.out.println();
 			}
 
-			String result = Rules.calculateScore(board);
-			System.out.println(result);
-			double value;
-			String zero = "0";
+			result ( board);
 			
-			if(result.equals(zero)) {
-				System.out.println(">> .5");
-				value = .5;
-			} else if(!result.equals(this.color)) {
-				System.out.println(">> 1");
-				value = 1;
-			} else {
-				System.out.println(">> 0");
-				value = 0;
-			}
-			this.quality = value;
-			System.out.println("===========================");
+			
 		}
 
 	}
@@ -164,6 +149,35 @@ public class MMNode {
 			}
 
 		}
+	}
+	
+	public static void makeMovers (Tuple<Integer, Integer> move, Board board, String color) throws Exception {
+		
+		if(move != null) {
+			board.makeMove(move, color);
+		}
+	}
+	
+	public static void result (Board board) {
+		
+		String result = Rules.calculateScore(board);
+		System.out.println(result);
+		double value;
+		String zero = "0";
+		
+		if(result.equals(zero)) {
+			System.out.println(">> .5");
+			value = .5;
+		} else if(!result.equals(color)) {
+			System.out.println(">> 1");
+			value = 1;
+		} else {
+			System.out.println(">> 0");
+			value = 0;
+		}
+		quality = value;
+		System.out.println("===========================");
+		
 	}
 
 }

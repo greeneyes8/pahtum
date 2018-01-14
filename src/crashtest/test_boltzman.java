@@ -132,62 +132,10 @@ public class test_boltzman {
 
 
 			//Run a single game.
-			while(numberOfMoveTest1 < totalNumberOfMovesTest1) {
-				if(playersTest1[currentIndexTest1].getType().equals("Boltzmann1k")) {
-					//MCTS + H(7) to play.
-					Tuple<Integer, Integer> move;
-					//Pure Monte-Carlo will select move.
-					
-
-					move = mc.uct(playersTest1[currentIndexTest1].
-							getSimulationNumber());
-
-
-					boardTest1.makeMove(move, playersTest1[currentIndexTest1].getColor());
-//					System.out.println("move >> " + move.toString());
-					//Increment number of currently made moves.
-					++numberOfMoveTest1;
-
-					//Adjust index of current player.
-					currentIndexTest1 = (currentIndexTest1 + 1) % 2;
-				} else if(playersTest1[currentIndexTest1].getType().equals("Charles_2")) {
-					//MCTS (UCT) to play.
-					Tuple<Integer, Integer> move;
-					//Pure Monte-Carlo will select move.
-					
-					/**
-					 * Random AI.
-					 */
-//					LuckyAI random = new LuckyAI(boardTest1, numberOfMoveTest1, totalNumberOfMovesTest1);
-//					move = random.getMove();
-					
-					/**
-					 * Charles_2
-					 */
-					move = charles.getMove();
-
-					/**
-					 * Boltzmann
-					 */
-//					MonteCarloH5Boltzmann mc = new MonteCarloH5Boltzmann(
-//							boardTest1.duplicate(), 
-//							playersTest1[currentIndexTest1].getColor(), 
-//							numberOfMoveTest1, 
-//							totalNumberOfMovesTest1);
-//
-//					move = mc.uct(playersTest1[currentIndexTest1].
-//							getSimulationNumber());
-
-
-					boardTest1.makeMove(move, playersTest1[currentIndexTest1].getColor());
-
-					//Increment number of currently made moves.
-					++numberOfMoveTest1;
-
-					//Adjust index of current player.
-					currentIndexTest1 = (currentIndexTest1 + 1) % 2;
-				}
-			} //end of single game.
+			RunASingleGame ( numberOfMoveTest1,  totalNumberOfMovesTest1
+					,  currentIndexTest1,  playersTest1,
+					 boardTest1,  mc,  charles);
+		 //end of single game.
 
 			String gameOutcome = Rules.calculateScore(boardTest1);
 			String zero= "0";
@@ -1621,5 +1569,70 @@ public static void updateStatisticsSecond (boolean value, int e1TotalWins,
 	
 }
 
+public static void RunASingleGame (int numberOfMoveTest1, int totalNumberOfMovesTest1
+		, int currentIndexTest1, Player[] playersTest1,
+		Board boardTest1, MonteCarloH5Boltzmann mc, Charles_2 charles) throws Exception {
+	
+	while(numberOfMoveTest1 < totalNumberOfMovesTest1) {
+		if(playersTest1[currentIndexTest1].getType().equals("Boltzmann1k")) {
+			//MCTS + H(7) to play.
+			Tuple<Integer, Integer> move;
+			//Pure Monte-Carlo will select move.
+			
+
+			
+			move = mc.uct(playersTest1[currentIndexTest1].
+					getSimulationNumber());
+
+
+			boardTest1.makeMove(move, playersTest1[currentIndexTest1].getColor());
+//			System.out.println("move >> " + move.toString());
+			//Increment number of currently made moves.
+			++numberOfMoveTest1;
+
+			//Adjust index of current player.
+			currentIndexTest1 = (currentIndexTest1 + 1) % 2;
+		} else if(playersTest1[currentIndexTest1].getType().equals("Charles_2")) {
+			//MCTS (UCT) to play.
+			Tuple<Integer, Integer> move;
+			//Pure Monte-Carlo will select move.
+			
+			/**
+			 * Random AI.
+			 */
+//			LuckyAI random = new LuckyAI(boardTest1, numberOfMoveTest1, totalNumberOfMovesTest1);
+//			move = random.getMove();
+			
+			/**
+			 * Charles_2
+			 */
+			
+			
+			move = charles.getMove();
+
+			/**
+			 * Boltzmann
+			 */
+//			MonteCarloH5Boltzmann mc = new MonteCarloH5Boltzmann(
+//					boardTest1.duplicate(), 
+//					playersTest1[currentIndexTest1].getColor(), 
+//					numberOfMoveTest1, 
+//					totalNumberOfMovesTest1);
+//
+//			move = mc.uct(playersTest1[currentIndexTest1].
+//					getSimulationNumber());
+
+
+			boardTest1.makeMove(move, playersTest1[currentIndexTest1].getColor());
+
+			//Increment number of currently made moves.
+			++numberOfMoveTest1;
+
+			//Adjust index of current player.
+			currentIndexTest1 = (currentIndexTest1 + 1) % 2;
+		}
+	}
+	
+}
 
 }

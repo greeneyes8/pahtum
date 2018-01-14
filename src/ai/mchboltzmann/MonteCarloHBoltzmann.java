@@ -236,10 +236,7 @@ public class MonteCarloHBoltzmann implements Engine {
 			for(Node kid : node.getChildren()) {
 				sum += Math.exp(kid.getPotential() / t);
 			}
-			if(child.getProbability() == -1) {
-				child.setProbability((Math.exp(child.getPotential() / t)) / 
-						(sum));
-			}
+			yChildValue (child, sum,  t);
 		}//end X.
 		
 		//Y. Organize nodes in a list.
@@ -276,6 +273,15 @@ public class MonteCarloHBoltzmann implements Engine {
 
 		//Select which child is associated with a range that satisfies randomly 
 		//picked number.
+		selectedChild =	pickedNumber  (organizedChildren,  randomNumber
+				, bestFitProb,  selectedChild);
+		//Return selected child.
+		return selectedChild;
+	}
+	
+	private  Node pickedNumber (List<Tuple<Double, Node>> organizedChildren, double randomNumber
+			,double bestFitProb, Node selectedChild) {
+		
 		for(Tuple<Double, Node> item : organizedChildren) {
 			if(randomNumber < item.getFirstElement()) {
 				if(item.getFirstElement() < bestFitProb) {
@@ -285,7 +291,15 @@ public class MonteCarloHBoltzmann implements Engine {
 			}
 		}
 		
-		//Return selected child.
 		return selectedChild;
 	}
+	
+	private  void yChildValue (Node child, double sum, double t) {
+		
+		if(child.getProbability() == -1) {
+			child.setProbability((Math.exp(child.getPotential() / t)) / 
+					(sum));
+		}
+	}
+	
 }

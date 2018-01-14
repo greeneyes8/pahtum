@@ -239,10 +239,7 @@ public class MonteCarloH5Boltzmann_t40 implements Engine {
 			for(Node kid : node.getChildren()) {
 				sum += Math.exp(kid.getPotential() / t);
 			}
-			if(child.getProbability() == -1) {
-				child.setProbability((Math.exp(child.getPotential() / t)) / 
-						(sum));
-			}
+			childrenProbabilityT40( child,  sum,  t);
 		}//end X.
 		
 		//Y. Organize nodes in a list.
@@ -279,6 +276,24 @@ public class MonteCarloH5Boltzmann_t40 implements Engine {
 
 		//Select which child is associated with a range that satisfies randomly 
 		//picked number.
+		selectedChild = pickedNumberT40(organizedChildren, 
+				 randomNumber,  bestFitProb,  selectedChild   );
+		
+		//Return selected child.
+		return selectedChild;
+	}
+	
+private void childrenProbabilityT40(Node child, double sum, double t) {
+		
+		if(child.getProbability() == -1) {
+				child.setProbability((Math.exp(child.getPotential() / t)) / 
+						(sum));
+			}
+	}
+	
+	private Node pickedNumberT40 (List<Tuple<Double, Node>> organizedChildren, 
+			double randomNumber, double bestFitProb, Node selectedChild   ) {
+		
 		for(Tuple<Double, Node> item : organizedChildren) {
 			if(randomNumber < item.getFirstElement()) {
 				if(item.getFirstElement() < bestFitProb) {
@@ -287,8 +302,8 @@ public class MonteCarloH5Boltzmann_t40 implements Engine {
 				}
 			}
 		}
-		
-		//Return selected child.
 		return selectedChild;
+		
 	}
+	
 }
