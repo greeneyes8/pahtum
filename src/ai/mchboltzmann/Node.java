@@ -90,7 +90,7 @@ public class Node {
 	 * @return New node.
 	 * @throws Exception Doesn't occur.
 	 */
-	public Node expand(Board board, String mcColor){
+	public Node expand(Board board){
 		String newColor;
 		
 		//Get first from untried moves and next remove from list of untried 

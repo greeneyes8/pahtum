@@ -32,7 +32,7 @@ public class Node {
 	 * @param mcColor
 	 */
 	
-	public Node(Node parent, Tuple<Integer, Integer> move, String color, Board board, int moveNumber, String mcColor) {
+	public Node(Node parent, Tuple<Integer, Integer> move, String color, Board board, int moveNumber) {
 		this.move = move;
 		this.color = color;
 		this.parent = parent;
@@ -66,7 +66,7 @@ public class Node {
 		} else {
 			newColor = "w";
 		}
-		Node node = new Node(this, move, newColor, board, this.moveNumber + 1, mcColor);
+		Node node = new Node(this, move, newColor, board, this.moveNumber + 1);
 		this.children.add(node);
 		return node;
 	}

@@ -35,8 +35,7 @@ public class MonteCarloH55 {
 		this.board = board;
 		this.color = color;
 		this.allMovesNumber = allMovesNumber;
-		this.root = new Root(new Node(null, null, color, board, moveNumber, 
-				this.color));
+		this.root = new Root(new Node(null, null, color, board, moveNumber));
 		int twoh55 =2;
 		this.c = 1 / Math.sqrt(twoh55);
 	}

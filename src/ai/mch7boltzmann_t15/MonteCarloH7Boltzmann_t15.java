@@ -95,7 +95,7 @@ public class MonteCarloH7Boltzmann_t15 implements Engine {
 			//Check if node is fully expanded.
 			if(nodetp.getUntriedMoves().size() != 0) {
 				//Not fully expanded. Return a newly created node.
-				Node newNode =  nodetp.expand(boardtp, this.color);
+				Node newNode =  nodetp.expand(boardtp);
 				numberNode = nodetp.getMoveNumber();
 				return newNode;
 			} else {

@@ -33,6 +33,7 @@ public class BoardGenerator {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(boardCollection);
 			oos.close();
+			fos.close();
 		} catch(Exception e) {
 			System.err.println("Error occured during saving.");
 			System.out.println("Something was wrong");

@@ -71,6 +71,7 @@ public class Board implements Serializable{
 			};
 			board = qwe;
 			break;
+		 default:
 		}
 
 	}
@@ -104,12 +105,17 @@ public class Board implements Serializable{
 			oos.writeObject(this);
 			oos.flush();
 			oos.close();
-			bos.close();
+			
 			byte [] byteData = bos.toByteArray();
-
+			bos.close();
 			ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
 			replica = (Board) new ObjectInputStream(bais).readObject();
-		} catch(Exception e) { System.out.println("Something was wrong");  }
+			bais.close();
+		} catch(Exception e) { 
+			
+			System.out.println("Something was wrong");  
+		
+		}
 		return replica;
 	}
 
@@ -552,25 +558,25 @@ public class Board implements Serializable{
 
 					int enemy_adjustment_x = 1, enemy_adjustment_y = 1;
 					
-					enemyAdjustmentExtra1 ( board,  index_x,  index_y,  x,  y
+					enemyAdjustmentExtra1 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_x,  extra_x_minus);
 
 					index_x = x;
 					index_y = y;
 					
-					enemyAdjustmentExtra2 ( board,  index_x,  index_y,  x,  y
+					enemyAdjustmentExtra2 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_x,  extra_x_plus);
 
 					index_x = x;
 					index_y = y;
 					
-					enemyAdjustmentExtra3 ( board,  index_x,  index_y,  x,  y
+					enemyAdjustmentExtra3 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_y,  extra_y_minus);
 
 					index_x = x;
 					index_y = y;
 					
-					enemyAdjustmentExtra4 ( board,  index_x,  index_y,  x,  y
+					enemyAdjustmentExtra4 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_y,  extra_y_plus);
 
 					enemyAdjustmentDirectionXY ( extra_x_minus,  extra_x_plus 
@@ -1293,7 +1299,7 @@ public class Board implements Serializable{
 		} catch(Exception e) { }
 		
 	}
-	public void enemyAdjustmentExtra1 (String[][] board, int index_x, int index_y, int x, int y
+	public void enemyAdjustmentExtra1 (String[][] board, int index_x, int index_y
 			,String enemyColor, int enemy_adjustment_x, boolean extra_x_minus) {
 		
 		try {
@@ -1309,7 +1315,7 @@ public class Board implements Serializable{
 		} catch(Exception e) { }
 	}
 	
-	public void enemyAdjustmentExtra2 (String[][] board, int index_x, int index_y, int x, int y
+	public void enemyAdjustmentExtra2 (String[][] board, int index_x, int index_y
 			,String enemyColor, int enemy_adjustment_x, boolean extra_x_plus) {
 		
 		try {
@@ -1325,7 +1331,7 @@ public class Board implements Serializable{
 		} catch(Exception e) { }
 	}
 	
-	public void enemyAdjustmentExtra3 (String[][] board, int index_x, int index_y, int x, int y
+	public void enemyAdjustmentExtra3 (String[][] board, int index_x, int index_y
 			,String enemyColor, int enemy_adjustment_y, boolean extra_y_minus) {
 		
 		try {
@@ -1341,7 +1347,7 @@ public class Board implements Serializable{
 		} catch(Exception e) { }
 	}
 	
-	public void enemyAdjustmentExtra4 (String[][] board, int index_x, int index_y, int x, int y
+	public void enemyAdjustmentExtra4 (String[][] board, int index_x, int index_y
 			,String enemyColor, int enemy_adjustment_y, boolean extra_y_plus) {
 		
 		try {

@@ -91,7 +91,7 @@ public class Node {
 	 * @return New node.
 	 * @throws Exception Doesn't occur.
 	 */
-	public Node expand(Board board_ex, String mcColor_ex){
+	public Node expand(Board board_ex){
 		String newColor;
 		
 		//Get random from untried moves and next remove from list of untried 

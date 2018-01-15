@@ -87,6 +87,7 @@ public class test_boltzman {
 			ObjectInputStream oisTest1 = new ObjectInputStream(fisTest1);
 			boardCollectionTest1 = (Board[]) oisTest1.readObject();
 			oisTest1.close();
+			fisTest1.close();
 		} catch(Exception e) {
 			System.err.println("Error" + e.getMessage());
 		}
@@ -100,6 +101,7 @@ public class test_boltzman {
 		//Declare buffers.
 		BufferedWriter outputTest1 = new BufferedWriter(
 				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		outputTest1.close();
 		MonteCarloH5Boltzmann mc = new MonteCarloH5Boltzmann(
 				boardTest1.duplicate(), 
 				playersTest1[currentIndexTest1].getColor(), 
@@ -197,6 +199,7 @@ public class test_boltzman {
 		//Append total outcome of the test case to the file.
 		BufferedWriter output1Test1 = new BufferedWriter(
 				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		output1Test1.close();
 		output1Test1.append("========================================");
 		output1Test1.newLine();
 		output1Test1.append("*Summary (1k/100) 3-point board*");
@@ -240,6 +243,7 @@ public class test_boltzman {
 
 		output1Test1.append("========================================");
 		output1Test1.close();
+		
 
 //		/***********************************************************************
 //		 * Test #2: (100,000 roll-outs) MCTS + H(7) v Charles_2.

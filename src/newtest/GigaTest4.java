@@ -117,11 +117,11 @@ public static void testOne () throws Exception {
 
 			//Number of all moves that was made during the game.
 			int numberOfMoveTest1 = 0;
-
+			int value1_grt4_50000 = 50000; 
 			//Players participating in the test case.
 			Player[] playersTest1 =  {
-					new Player("MCTS_UCT", "MCTS_UCT", "w", 50000),
-					new Player("MCTS_H(5)", "MCTS_H(5)", "b", 50000)
+					new Player("MCTS_UCT", "MCTS_UCT", "w", value1_grt4_50000),
+					new Player("MCTS_H(5)", "MCTS_H(5)", "b", value1_grt4_50000)
 			};
 
 			//Number of total moves. It is used to check whether the game is in 
@@ -275,7 +275,7 @@ public static void testOne () throws Exception {
 
 	//Report when games ended.
 	endTime = System.currentTimeMillis();
-
+int value1gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test1 = new BufferedWriter(
 			new FileWriter("results_50k_11b_MCTS_UCTvMCTS_H(5).txt", true));
@@ -289,7 +289,7 @@ public static void testOne () throws Exception {
 	output1Test1.newLine();
 	output1Test1.append("MCTS_H(5) total wins: " + e1TotalWins);
 	output1Test1.newLine();
-	output1Test1.append("Play time: " + (endTime - startTime)/1000 + " seconds.");
+	output1Test1.append("Play time: " + (endTime - startTime)/value1gt4_1000 + " seconds.");
 	output1Test1.newLine();
 
 	//Write statistics for MCTS.
@@ -408,11 +408,11 @@ public static void testTwo () throws Exception {
 
 	//Number of all moves that was made during the game.
 	int numberOfMoveTest2 = 0;
-
+	int value2_grt4_50000 = 50000; 
 	//Players participating in the test case.
 	Player[] playersTest2 =  {
-			new Player("MCTS_UCT", "MCTS_UCT", "w", 50000),
-			new Player("MCTS_H(7)", "MCTS_H(7)", "b", 50000)
+			new Player("MCTS_UCT", "MCTS_UCT", "w", value2_grt4_50000),
+			new Player("MCTS_H(7)", "MCTS_H(7)", "b", value2_grt4_50000)
 	};
 
 	//Number of total moves. It is used to check whether the game is in 
@@ -563,7 +563,7 @@ public static void testTwo () throws Exception {
 
 	//Report when games ended.
 	endTimeTest2 = System.currentTimeMillis();
-
+	int value2gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test2 = new BufferedWriter(
 			new FileWriter("results_50k_11b_MCTS_UCTvMCTS_H(7).txt", true));
@@ -577,7 +577,7 @@ public static void testTwo () throws Exception {
 	output1Test2.newLine();
 	output1Test2.append("MCTS_H(7) total wins: " + e1TotalWins);
 	output1Test2.newLine();
-	output1Test2.append("Play time: " + (endTimeTest2 - startTimeTest2)/1000 + " seconds.");
+	output1Test2.append("Play time: " + (endTimeTest2 - startTimeTest2)/value2gt4_1000 + " seconds.");
 	output1Test2.newLine();
 
 	//Write statistics for MCTS.
@@ -665,11 +665,11 @@ public static void testThree () throws Exception {
 
 	//Number of all moves that was made during the game.
 	int numberOfMoveTest3 = 0;
-
+	int value3_grt4_50000 = 50000; 
 	//Players participating in the test case.
 	Player[] playersTest3 =  {
-			new Player("MCTS_UCT", "MCTS_UCT", "w", 50000),
-			new Player("MCTS_H(10)", "MCTS_H(10)", "b", 50000)
+			new Player("MCTS_UCT", "MCTS_UCT", "w", value3_grt4_50000),
+			new Player("MCTS_H(10)", "MCTS_H(10)", "b", value3_grt4_50000)
 	};
 
 	//Number of total moves. It is used to check whether the game is in 
@@ -825,7 +825,7 @@ public static void testThree () throws Exception {
 
 	//Report when games ended.
 	endTimeTest3 = System.currentTimeMillis();
-
+	int value3gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test3 = new BufferedWriter(
 			new FileWriter("results_50k_11b_MCTS_UCTvMCTS_H(10).txt", true));
@@ -839,7 +839,7 @@ public static void testThree () throws Exception {
 	output1Test3.newLine();
 	output1Test3.append("MCTS_H(10) total wins: " + e1TotalWins);
 	output1Test3.newLine();
-	output1Test3.append("Play time: " + (endTimeTest3 - startTimeTest3)/1000 + " seconds.");
+	output1Test3.append("Play time: " + (endTimeTest3 - startTimeTest3)/value3gt4_1000 + " seconds.");
 	output1Test3.newLine();
 
 	//Write statistics for MCTS.
@@ -936,11 +936,11 @@ public static void testFour () throws Exception {
 
 	//Number of all moves that was made during the game.
 	int numberOfMoveTest4 = 0;
-
+	int value4_grt4_50000 = 50000; 
 	//Players participating in the test case.
 	Player[] playersTest4 =  {
-			new Player("MCTS_UCT", "MCTS_UCT", "w", 50000),
-			new Player("MCTS_H(5+5)", "MCTS_H(5+5)", "b", 50000)
+			new Player("MCTS_UCT", "MCTS_UCT", "w", value4_grt4_50000),
+			new Player("MCTS_H(5+5)", "MCTS_H(5+5)", "b", value4_grt4_50000)
 	};
 
 	//Number of total moves. It is used to check whether the game is in 
@@ -1093,7 +1093,7 @@ public static void testFour () throws Exception {
 
 	//Report when games ended.
 	endTimeTest4 = System.currentTimeMillis();
-
+	int value4gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test4 = new BufferedWriter(
 			new FileWriter("results_50k_11b_MCTS_UCTvMCTS_H(5+5).txt", true));
@@ -1107,7 +1107,7 @@ public static void testFour () throws Exception {
 	output1Test4.newLine();
 	output1Test4.append("MCTS_H(5+5) total wins: " + e1TotalWins);
 	output1Test4.newLine();
-	output1Test4.append("Play time: " + (endTimeTest4 - startTimeTest4)/1000 + " seconds.");
+	output1Test4.append("Play time: " + (endTimeTest4 - startTimeTest4)/value4gt4_1000 + " seconds.");
 	output1Test4.newLine();
 
 	//Write statistics for MCTS.
@@ -1191,11 +1191,11 @@ public static void testFive () throws Exception {
 
 	//Number of all moves that was made during the game.
 	int numberOfMoveTest5 = 0;
-
+	int value5_grt4_50000 = 50000; 
 	//Players participating in the test case.
 	Player[] playersTest5 =  {
-			new Player("MCTS_H(5)", "MCTS_H(5)", "w", 50000),
-			new Player("MCTS_H(7)", "MCTS_H(7)", "b", 50000)
+			new Player("MCTS_H(5)", "MCTS_H(5)", "w", value5_grt4_50000),
+			new Player("MCTS_H(7)", "MCTS_H(7)", "b", value5_grt4_50000)
 	};
 
 	//Number of total moves. It is used to check whether the game is in 
@@ -1348,7 +1348,7 @@ public static void testFive () throws Exception {
 
 	//Report when games ended.
 	endTimeTest5 = System.currentTimeMillis();
-
+	int value5gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test5 = new BufferedWriter(
 			new FileWriter("results_50k_11b_MCTS_H(5)vMCTS_H(7).txt", true));
@@ -1362,7 +1362,7 @@ public static void testFive () throws Exception {
 	output1Test5.newLine();
 	output1Test5.append("MCTS_H(7) total wins: " + e1TotalWins);
 	output1Test5.newLine();
-	output1Test5.append("Play time: " + (endTimeTest5 - startTimeTest5)/1000 + " seconds.");
+	output1Test5.append("Play time: " + (endTimeTest5 - startTimeTest5)/value5gt4_1000 + " seconds.");
 	output1Test5.newLine();
 
 	//Write statistics for MCTS.
@@ -1445,11 +1445,11 @@ public static void testSix () throws Exception {
 
 	//Number of all moves that was made during the game.
 	int numberOfMoveTest6 = 0;
-
+	int value6_grt4_50000 = 50000; 
 	//Players participating in the test case.
 	Player[] playersTest6 =  {
-			new Player("MCTS_H(7)", "MCTS_H(7)", "w", 50000),
-			new Player("MCTS_H(10)", "MCTS_H(10)", "b", 50000)
+			new Player("MCTS_H(7)", "MCTS_H(7)", "w", value6_grt4_50000),
+			new Player("MCTS_H(10)", "MCTS_H(10)", "b", value6_grt4_50000)
 	};
 
 	//Number of total moves. It is used to check whether the game is in 
@@ -1600,7 +1600,7 @@ public static void testSix () throws Exception {
 
 	//Report when games ended.
 	endTimeTest6 = System.currentTimeMillis();
-
+	int value6gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test6 = new BufferedWriter(
 			new FileWriter("results_50k_11b_MCTS_H(7)vMCTS_H(10).txt", true));
@@ -1614,7 +1614,7 @@ public static void testSix () throws Exception {
 	output1Test6.newLine();
 	output1Test6.append("MCTS_H(10) total wins: " + e1TotalWins);
 	output1Test6.newLine();
-	output1Test6.append("Play time: " + (endTimeTest6 - startTimeTest6)/1000 + " seconds.");
+	output1Test6.append("Play time: " + (endTimeTest6 - startTimeTest6)/value6gt4_1000 + " seconds.");
 	output1Test6.newLine();
 
 	//Write statistics for MCTS (UCT).
