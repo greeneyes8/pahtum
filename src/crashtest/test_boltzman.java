@@ -157,6 +157,7 @@ public class test_boltzman {
 				outputTest1.append("Result: draw");
 				outputTest1.newLine();
 				outputTest1.close();
+				outputTest1.flush();
 
 				//Update statistics.
 				boolean valuePlayersTest1 = playersTest1[0].getName().equals("Charles_2");
@@ -202,6 +203,7 @@ public class test_boltzman {
 		BufferedWriter output1Test1 = new BufferedWriter(
 				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
 		output1Test1.close();
+		outputTest1.flush();
 		output1Test1.append("========================================");
 		output1Test1.newLine();
 		output1Test1.append("*Summary (1k/100) 3-point board*");

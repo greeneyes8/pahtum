@@ -47,7 +47,6 @@ public class Node {
 		this.parent = parent;
 		this.probability = -1;
 		this.value = 0;
-		this.visit = 0;
 		this.children = new ArrayList<Node>();
 		this.untriedMoves = board.getListValidMoves();
 		this.moveNumber = moveNumber;

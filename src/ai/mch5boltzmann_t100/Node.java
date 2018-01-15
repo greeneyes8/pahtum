@@ -104,6 +104,7 @@ public class Node {
 		try {
 			board_ex.makeMove(move, color);
 		} catch (Exception e) {
+			System.out.println("There's an error");
 			//Doesn't happen.
 		}
 		
