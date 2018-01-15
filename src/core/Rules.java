@@ -24,7 +24,9 @@ public class Rules {
 				int whiteLine = 1, blackLine = 1;
 				try {
 					stringA (b,  x,  y,  whiteLine,  blackLine);
-				} catch(Exception e) { }
+				} catch(Exception e) { 
+					System.out.println("There's an error"); 
+				}
 				
 				whiteSwitch ( whiteLine ,  scoreWhite);
 				blackSwitch ( blackLine ,  scoreBlack);		
@@ -41,7 +43,9 @@ public class Rules {
 				int whiteLine = 1, blackLine = 1;
 				try {
 					stringA (b,  x,  y,  whiteLine,  blackLine);
-					} catch(Exception e) { }
+					} catch(Exception e) { 
+						System.out.println("There's an error"); 
+					}
 				
 				whiteSwitch ( whiteLine ,  scoreWhite);
 				blackSwitch ( blackLine ,  scoreBlack);
@@ -142,13 +146,17 @@ public class Rules {
 				boolean valueW = b[x][y+1].equals("w");
 				whiteLine ( valueW,  str_whiteLine, 
 						 y, b,  x );
-			}catch(Exception e) { }
+			}catch(Exception e) {
+				System.out.println("There's an error"); 
+			}
 		} else if(b[x][y].equals("b")){
 			try {
 				boolean value_ = b[x][y+1].equals("b");
 				blackLine ( value_,  str_blackLine, 
 						 y, b,  x );
-			} catch(Exception e) { } 
+			} catch(Exception e) { 
+				System.out.println("There's an error"); 
+			} 
 		}
 		
 	}

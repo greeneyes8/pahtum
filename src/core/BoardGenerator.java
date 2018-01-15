@@ -37,7 +37,9 @@ public class BoardGenerator {
 		} catch(Exception e) {
 			System.err.println("Error occured during saving.");
 			System.out.println("Something was wrong");
-		}
+		}finally {
+	                 System.out.println("I/O Exception");
+	               }
 	}
 
 }

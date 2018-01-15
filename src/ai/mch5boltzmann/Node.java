@@ -47,7 +47,6 @@ public class Node {
 		this.parent = parent;
 		this.probability = -1;
 		this.value = 0;
-		this.visit = 0;
 		this.children = new ArrayList<Node>();
 		int valuenode_bh5bol = 5;
 		this.untriedMoves = board.heuristic_bestX_moves(color, valuenode_bh5bol);
@@ -105,8 +104,8 @@ public class Node {
 		try {
 			board.makeMove(move, color);
 		} catch (Exception e) {
+			System.out.println("There's an error"); 
 			//Doesn't happen.
-
 		}
 		
 		//Switch colors.

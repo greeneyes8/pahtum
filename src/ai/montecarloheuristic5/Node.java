@@ -37,7 +37,6 @@ public class Node {
 		this.color = color;
 		this.parent = parent;
 		this.value = 0;
-		this.visit = 0;
 		this.children = new ArrayList<Node>();
 		int valuenodeh5 = 5;
 		if(mcColor.equals(color)) {
@@ -64,6 +63,7 @@ public class Node {
 		try {
 			board.makeMove(move, color);
 		} catch (Exception e) {
+			System.out.println("There's an error"); 
 			// TODO Auto-generated catch block
 		}
 		if(this.color.equals("w")) {

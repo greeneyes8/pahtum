@@ -90,13 +90,14 @@ public class test_boltzman {
 			fisTest1.close();
 		} catch(Exception e) {
 			System.err.println("Error" + e.getMessage());
-		}
+		}finally {
+            System.out.println("I/O Exception");
+          }
 
 		//The beginning and the end of the test.
-		long startTime = 0, endTime = 0;
-
+		 
 		//Report when games commenced.
-		startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 
 		//Declare buffers.
 		BufferedWriter outputTest1 = new BufferedWriter(
@@ -191,11 +192,12 @@ public class test_boltzman {
 				}
 				outputTest1.newLine();
 				outputTest1.close();
+				outputTest1.flush();
 			}			
 		} //End of the test case. (for)
 
 		//Report when games ended.
-		endTime = System.currentTimeMillis();	
+		long endTime = System.currentTimeMillis();	
 		//Append total outcome of the test case to the file.
 		BufferedWriter output1Test1 = new BufferedWriter(
 				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
@@ -242,6 +244,7 @@ public class test_boltzman {
 		output1Test1.newLine();
 
 		output1Test1.append("========================================");
+		output1Test1.flush();
 		output1Test1.close();
 		
 

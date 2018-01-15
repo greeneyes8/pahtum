@@ -274,7 +274,6 @@ public static void testOne () throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTime = System.currentTimeMillis();
 int value1gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test1 = new BufferedWriter(
@@ -562,7 +561,6 @@ public static void testTwo () throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest2 = System.currentTimeMillis();
 	int value2gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test2 = new BufferedWriter(
@@ -824,7 +822,6 @@ public static void testThree () throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest3 = System.currentTimeMillis();
 	int value3gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test3 = new BufferedWriter(
@@ -1092,7 +1089,6 @@ public static void testFour () throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest4 = System.currentTimeMillis();
 	int value4gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test4 = new BufferedWriter(
@@ -1347,7 +1343,6 @@ public static void testFive () throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest5 = System.currentTimeMillis();
 	int value5gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test5 = new BufferedWriter(
@@ -1395,6 +1390,7 @@ public static void testFive () throws Exception {
 
 	output1Test5.append("========================================");
 	output1Test5.close();
+	output1Test5.flush();
 }
 
 public static void newRandomBoard6 (int testIndex, Board boardTest6, 
@@ -1465,6 +1461,8 @@ public static void testSix () throws Exception {
 		oisTest6.close();
 	} catch(Exception e) {
 		System.err.println("Error" + e.getMessage());
+	}finally{
+		System.out.println("I/O Exception");
 	}
 
 	//The beginning and the end of the test.
@@ -1561,6 +1559,7 @@ public static void testSix () throws Exception {
 			outputTest6.append("Result: draw");
 			outputTest6.newLine();
 			outputTest6.close();
+			outputTest6.flush();
 
 			//Update statistics.
 			boolean valuePlayers6 = playersTest6[0].getName().equals("MCTS_H(10)");
@@ -1595,11 +1594,11 @@ public static void testSix () throws Exception {
 			}
 			outputTest6.newLine();
 			outputTest6.close();
+			outputTest6.flush();
 		}			
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest6 = System.currentTimeMillis();
 	int value6gt4_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test6 = new BufferedWriter(
@@ -1647,6 +1646,7 @@ public static void testSix () throws Exception {
 
 	output1Test6.append("========================================");
 	output1Test6.close();
+	output1Test6.flush();
 
 	
 }

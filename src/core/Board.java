@@ -169,9 +169,6 @@ public class Board implements Serializable{
 		
 
 		// (0,+) direction.
-		index_x = x;
-		index_y = y;
-		distance = 7;
 		
 			try_3 (board,  index_x,  index_y,
 					 color,  case_3,  potential,  distance,
@@ -180,9 +177,6 @@ public class Board implements Serializable{
 		
 
 		// (+,0) direction.
-		index_x = x;
-		index_y = y;
-		distance = 7;
 		
 			try_4 ( board,  index_x,  index_y,
 					 color,  case_4,  potential,  distance,
@@ -201,33 +195,22 @@ public class Board implements Serializable{
 		
 		AdjustmentForTheOpponent ( color ,  enemyColor,	 w);
 
-		index_x = x;
-		index_y = y;
-
 		int enemy_adjustment_x = 1, enemy_adjustment_y = 1;
 		
 			try_5 ( board, index_x,  index_y , 
 					 enemyColor,  enemy_adjustment_x  );
 		
-
-		index_x = x;
-		index_y = y;
 	
 			try_6 ( board, index_x,  index_y , 
 					 enemyColor,  enemy_adjustment_x  );
 
 	
 
-		index_x = x;
-		index_y = y;
 		
 			try_7 ( board, index_x,  index_y , 
 					 enemyColor,  enemy_adjustment_y );
 		
 
-		index_x = x;
-		index_y = y;
-	
 			try_8 ( board, index_x,  index_y , 
 					 enemyColor,  enemy_adjustment_x );
 		
@@ -292,18 +275,11 @@ public class Board implements Serializable{
 							, horizontal_adjustment ); 
 
 					// (0,+) direction.
-					index_x = x;
-					index_y = y;
-					distance = 7;
-					
 					tryEmptyField3 ( index_x,  index_y,  color
 							, case_3,  potential,  distance
 							, horizontal_adjustment );
 
 					// (+,0) direction.
-					index_x = x;
-					index_y = y;
-					distance = 7;
 					
 					tryEmptyField4 ( index_x,  index_y,  color
 							, case_4,  potential,  distance
@@ -320,28 +296,19 @@ public class Board implements Serializable{
 					String w = "w";
 									
 					AdjustmentForTheOpponent ( color ,  enemyColor, w);
-					index_x = x;
-					index_y = y;
 
 					int enemy_adjustment_x = 1, enemy_adjustment_y = 1;
 					
 					 adjustmentForTheOpponentT1 ( board,  index_x,  index_y
 								, enemyColor,  enemy_adjustment_x);
-
-					index_x = x;
-					index_y = y;
 					
 					adjustmentForTheOpponentT2 (board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_x);
 
-					index_x = x;
-					index_y = y;
 					
 					adjustmentForTheOpponentT3 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_y);
 
-					index_x = x;
-					index_y = y;
 					
 					adjustmentForTheOpponentT4 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_y);
@@ -407,17 +374,10 @@ public class Board implements Serializable{
 							,  case_2,  potential,  distance,  horizontal_adjustment,  color);
 
 					// (0,+) direction.
-					index_x = x;
-					index_y = y;
-					distance = 7;
-					
 					direction3 (board,  index_x,  index_y
 							,  case_3,  potential,  distance,  horizontal_adjustment,  color);
 
 					// (+,0) direction.
-					index_x = x;
-					index_y = y;
-					distance = 7;
 					
 					direction4 ( board,  index_x,  index_y
 							,  case_4,  potential,  distance,  vertical_adjustment,  color);
@@ -436,27 +396,17 @@ public class Board implements Serializable{
 					//					boolean extra_x_minus = false, extra_x_plus = false,
 					//					extra_y_minus = false, extra_y_plus = false;
 
-					index_x = x;
-					index_y = y;
 
 					int enemy_adjustment_x = 1, enemy_adjustment_y = 1;
 					enemyAdjustment1 ( board,  enemy_adjustment_x
 							, index_x,  index_y,  enemyColor);
 
-					index_x = x;
-					index_y = y;
 					
 					enemyAdjustment2 (board,  enemy_adjustment_x
 							, index_x,  index_y,  enemyColor);
-
-					index_x = x;
-					index_y = y;
 					
 					enemyAdjustment3 ( board,  enemy_adjustment_y
 							, index_x,  index_y,  enemyColor);
-
-					index_x = x;
-					index_y = y;
 					
 					enemyAdjustment4 ( board,  enemy_adjustment_y
 							, index_x,  index_y,  enemyColor);
@@ -517,24 +467,16 @@ public class Board implements Serializable{
 							,  case_1,  potential,  distance,  vertical_adjustment) ;
 
 					// (0,-) direction.
-					index_x = x;
-					index_y = y;
-					distance = 7;
+
 					
 					 directionMovieList2 ( board,  index_x,  index_y ,  color
 								,  case_2,  potential,  distance,  horizontal_adjustment);
 					// (0,+) direction.
-					index_x = x;
-					index_y = y;
-					distance = 7;
 					
 					directionMovieList3 ( board,  index_x,  index_y ,  color
 							,  case_3,  potential,  distance,  horizontal_adjustment);
 
 					// (+,0) direction.
-					index_x = x;
-					index_y = y;
-					distance = 7;
 					
 					directionMovieList4 ( board,  index_x,  index_y ,  color
 							,  case_4,  potential,  distance,  vertical_adjustment);
@@ -553,28 +495,18 @@ public class Board implements Serializable{
 					boolean extra_x_minus = false, extra_x_plus = false,
 					extra_y_minus = false, extra_y_plus = false;
 
-					index_x = x;
-					index_y = y;
-
 					int enemy_adjustment_x = 1, enemy_adjustment_y = 1;
 					
 					enemyAdjustmentExtra1 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_x,  extra_x_minus);
 
-					index_x = x;
-					index_y = y;
-					
 					enemyAdjustmentExtra2 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_x,  extra_x_plus);
 
-					index_x = x;
-					index_y = y;
 					
 					enemyAdjustmentExtra3 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_y,  extra_y_minus);
 
-					index_x = x;
-					index_y = y;
 					
 					enemyAdjustmentExtra4 ( board,  index_x,  index_y
 							, enemyColor,  enemy_adjustment_y,  extra_y_plus);
@@ -646,166 +578,182 @@ public class Board implements Serializable{
 		}
 	}
 	
-	public void try_2 (String[][] board, int index_x, int index_y,
-			String color, boolean case_2, int potential, int distance,
-			int horizontal_adjustment) {
+	public void try_2 (String[][] board_try, int index_x_try, int index_y_try,
+			String color_try, boolean case_2_try, int potential_try, int distance_try,
+			int horizontal_adjustment_try) {
 		
 		try {
 		boolean equalsE12, equalsColor12;
-		equalsE12 = board[index_x][index_y - 1].equals("e");
-		equalsColor12 = board[index_x][index_y - 1].equals(color);
+		equalsE12 = board_try[index_x_try][index_y_try - 1].equals("e");
+		equalsColor12 = board_try[index_x_try][index_y_try - 1].equals(color_try);
 		while(equalsE12|| 
 				equalsColor12) {
-			if(board[index_x][index_y - 1].equals("e")) {
-				case_2 = false;
-				potential += distance;
-				--distance;
+			if(board_try[index_x_try][index_y_try - 1].equals("e")) {
+				case_2_try = false;
+				potential_try += distance_try;
+				--distance_try;
 			} else {
-				potential += distance + 2;
-				--distance;
-				if(case_2) {
-					++horizontal_adjustment;
+				potential_try += distance_try + 2;
+				--distance_try;
+				if(case_2_try) {
+					++horizontal_adjustment_try;
 				}
 			}
-			--index_y;
-			equalsE12 = board[index_x][index_y - 1].equals("e");
-			equalsColor12 = board[index_x][index_y - 1].equals(color);
+			--index_y_try;
+			equalsE12 = board_try[index_x_try][index_y_try - 1].equals("e");
+			equalsColor12 = board_try[index_x_try][index_y_try - 1].equals(color_try);
 		}
-		}	catch(Exception e) { }
+		}	catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	
 	
 		}
 	
-	public void try_1 (String[][] board, int index_x, int index_y,
-			String color, boolean case_1, int potential, int distance,
-			int vertical_adjustment) { 
+	public void try_1 (String[][] board_t1, int index_x_t1, int index_y_t1,
+			String color_t1, boolean case_1_t1, int potential_t1, int distance_t1,
+			int vertical_adjustment_t1) { 
 		try {
 			boolean 	equalsE14, equalsColor14;
-		equalsE14 = board[index_x - 1][index_y].equals("e");
-		equalsColor14 = board[index_x - 1][index_y].equals(color);
+		equalsE14 = board_t1[index_x_t1 - 1][index_y_t1].equals("e");
+		equalsColor14 = board_t1[index_x_t1 - 1][index_y_t1].equals(color_t1);
 		while(equalsE14 || 
 				equalsColor14) {
-			if(board[index_x - 1][index_y].equals("e")) {
-				case_1 = false;
-				potential += distance;
-				--distance;
+			if(board_t1[index_x_t1 - 1][index_y_t1].equals("e")) {
+				case_1_t1 = false;
+				potential_t1 += distance_t1;
+				--distance_t1;
 			} else {
-				potential += distance + 2;
-				--distance;
-				if(case_1) {
-					++vertical_adjustment;
+				potential_t1 += distance_t1 + 2;
+				--distance_t1;
+				if(case_1_t1) {
+					++vertical_adjustment_t1;
 				}
 			}
-			--index_x;
-			equalsE14 = board[index_x - 1][index_y].equals("e");
-			equalsColor14 = board[index_x - 1][index_y].equals(color);
+			--index_x_t1;
+			equalsE14 = board_t1[index_x_t1 - 1][index_y_t1].equals("e");
+			equalsColor14 = board_t1[index_x_t1 - 1][index_y_t1].equals(color_t1);
 		}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
-	public void try_3 (String[][] board, int index_x, int index_y,
-			String color, boolean case_3, int potential, int distance,
-			int horizontal_adjustment) { 
+	
+	public void try_3 (String[][] board_t3, int index_x_t3, int index_y_t3,
+			String color_t3, boolean case_3_t3, int potential_t3, int distance_t3,
+			int horizontal_adjustment_t3) { 
 		try {
 		boolean equalsE13, equalsColor13;
-		equalsE13 = board[index_x][index_y + 1].equals("e");
-		equalsColor13 = board[index_x][index_y + 1].equals(color);
+		equalsE13 = board_t3[index_x_t3][index_y_t3 + 1].equals("e");
+		equalsColor13 = board_t3[index_x_t3][index_y_t3 + 1].equals(color_t3);
 		while(equalsE13 || 
 				equalsColor13) {
-			if(board[index_x][index_y + 1].equals("e")) {
-				case_3 = false;
-				potential += distance;
-				--distance;
+			if(board_t3[index_x_t3][index_y_t3 + 1].equals("e")) {
+				case_3_t3 = false;
+				potential_t3 += distance_t3;
+				--distance_t3;
 			} else {
-				potential += distance + 2;
-				--distance;
-				if(case_3) {
-					++horizontal_adjustment;
+				potential_t3 += distance_t3 + 2;
+				--distance_t3;
+				if(case_3_t3) {
+					++horizontal_adjustment_t3;
 				}
 			}
-			++index_y;
-			equalsE13 = board[index_x][index_y + 1].equals("e");
-			equalsColor13 = board[index_x][index_y + 1].equals(color);
+			++index_y_t3;
+			equalsE13 = board_t3[index_x_t3][index_y_t3 + 1].equals("e");
+			equalsColor13 = board_t3[index_x_t3][index_y_t3 + 1].equals(color_t3);
 			}
-		}catch(Exception e) { }
+		}catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
-	public void try_4 (String[][] board, int index_x, int index_y,
-			String color, boolean case_4, int potential, int distance,
-			int vertical_adjustment) {
+	
+	public void try_4 (String[][] board_t4, int index_x_t4, int index_y_t4,
+			String color_t4, boolean case_4_t4, int potential_t4, int distance_t4,
+			int vertical_adjustment_t4) {
 		try {
 		boolean equalsE11, equalsColor11;
-		equalsE11 = board[index_x + 1][index_y].equals("e");
-		equalsColor11 = board[index_x + 1][index_y].equals(color);
+		equalsE11 = board_t4[index_x_t4 + 1][index_y_t4].equals("e");
+		equalsColor11 = board_t4[index_x_t4 + 1][index_y_t4].equals(color_t4);
 		while(equalsE11 || 
 				equalsColor11) {
-			if(board[index_x + 1][index_y].equals("e")) {
-				case_4 = false;
-				potential += distance;
-				--distance;
+			if(board_t4[index_x_t4 + 1][index_y_t4].equals("e")) {
+				case_4_t4 = false;
+				potential_t4 += distance_t4;
+				--distance_t4;
 			} else {
-				potential += distance + 2;
-				--distance;
-				if(case_4) {
-					++vertical_adjustment;
+				potential_t4 += distance_t4 + 2;
+				--distance_t4;
+				if(case_4_t4) {
+					++vertical_adjustment_t4;
 				}
 			}
-			++index_x;
-			equalsE11 = board[index_x + 1][index_y].equals("e");
-			equalsColor11 = board[index_x + 1][index_y].equals(color);
+			++index_x_t4;
+			equalsE11 = board_t4[index_x_t4 + 1][index_y_t4].equals("e");
+			equalsColor11 = board_t4[index_x_t4 + 1][index_y_t4].equals(color_t4);
 			}
-		}catch(Exception e) { }
+		}catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
-	public void try_5 (String[][] board,int index_x, int index_y , 
-			String enemyColor, int enemy_adjustment_x  ) {
+	public void try_5 (String[][] board_t5,int index_x_t5, int index_y_t5 , 
+			String enemyColor_t5, int enemy_adjustment_x_t5  ) {
 		try {
-		boolean enemyColor12 = board[index_x - 1][index_y].equals(enemyColor);
+		boolean enemyColor12 = board_t5[index_x_t5 - 1][index_y_t5].equals(enemyColor_t5);
 		while(enemyColor12) {
-			++enemy_adjustment_x;
-			--index_x;
-			enemyColor12 = board[index_x - 1][index_y].equals(enemyColor);
+			++enemy_adjustment_x_t5;
+			--index_x_t5;
+			enemyColor12 = board_t5[index_x_t5 - 1][index_y_t5].equals(enemyColor_t5);
 		}
 		}
-		catch(Exception e) { }
+		catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
-	public void try_6 (String[][] board,int index_x, int index_y , 
-			String enemyColor, int enemy_adjustment_x  ) {
-		boolean enemyColor11 = board[index_x + 1][index_y].equals(enemyColor);
+	public void try_6 (String[][] board_t6,int index_x_t6, int index_y_t6 , 
+			String enemyColor_t6, int enemy_adjustment_x_t6  ) {
+		boolean enemyColor11 = board_t6[index_x_t6 + 1][index_y_t6].equals(enemyColor_t6);
 		while(enemyColor11) {
-			++enemy_adjustment_x;
-			++index_x;
-			enemyColor11 = board[index_x + 1][index_y].equals(enemyColor);
+			++enemy_adjustment_x_t6;
+			++index_x_t6;
+			enemyColor11 = board[index_x_t6 + 1][index_y_t6].equals(enemyColor_t6);
 		}
 		
 	}
 	
-	public void try_7 (String[][] board,int index_x, int index_y , 
-			String enemyColor, int enemy_adjustment_y  ) {
+	public void try_7 (String[][] board_t7,int index_x_t7, int index_y_t7 , 
+			String enemyColor_t7, int enemy_adjustment_y_t7  ) {
 		try {
-		boolean enemyColor10 = board[index_x][index_y - 1].equals(enemyColor);
+		boolean enemyColor10 = board_t7[index_x_t7][index_y_t7 - 1].equals(enemyColor_t7);
 		while(enemyColor10) {
-			++enemy_adjustment_y;
-			--index_y;
-			enemyColor10 = board[index_x][index_y - 1].equals(enemyColor);
+			++enemy_adjustment_y_t7;
+			--index_y_t7;
+			enemyColor10 = board_t7[index_x_t7][index_y_t7 - 1].equals(enemyColor_t7);
 			}
-		}catch(Exception e) { }
+		}catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	}
 	
-	public void try_8 (String[][] board,int index_x, int index_y , 
-			String enemyColor, int enemy_adjustment_y  ) {
+	public void try_8 (String[][] board_t8,int index_x_t8, int index_y_t8 , 
+			String enemyColor_t8, int enemy_adjustment_y_t8  ) {
 		try {
-			boolean enemyColor9 = board[index_x][index_y + 1].equals(enemyColor);
+			boolean enemyColor9 = board_t8[index_x_t8][index_y_t8 + 1].equals(enemyColor_t8);
 		while(enemyColor9) {
-			++enemy_adjustment_y;
-			++index_y;
-			enemyColor9 = board[index_x][index_y + 1].equals(enemyColor);
+			++enemy_adjustment_y_t8;
+			++index_y_t8;
+			enemyColor9 = board_t8[index_x_t8][index_y_t8 + 1].equals(enemyColor_t8);
 			}
 		}
-		catch(Exception e) { }
+		catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
@@ -859,7 +807,9 @@ public class Board implements Serializable{
 				equalsE9 = board[index_x - 1][index_y].equals("e") ;
 				equalsColor9 = board[index_x - 1][index_y].equals(color);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
@@ -888,7 +838,9 @@ public class Board implements Serializable{
 				equalsE8 = board[index_x][index_y - 1].equals("e");
 				equalsColor8 = board[index_x][index_y - 1].equals(color);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 
 		
 	}
@@ -918,7 +870,9 @@ public class Board implements Serializable{
 				equalsE7 =board[index_x][index_y + 1].equals("e");
 				equalsColor7 = board[index_x][index_y + 1].equals(color);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 
 		
 	}
@@ -948,65 +902,75 @@ public class Board implements Serializable{
 				equalsE6 = board[index_x + 1][index_y].equals("e");
 				equalsColor6 = board[index_x + 1][index_y].equals(color);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 
 		
 	}
-	public static void adjustmentForTheOpponentT1 (String[][] board, int index_x, int index_y
-			,String enemyColor, int enemy_adjustment_x) {
+	public static void adjustmentForTheOpponentT1 (String[][] board_o1, int index_x_o1, int index_y_o1
+			,String enemyColor_o1, int enemy_adjustment_x_o1) {
 		
 		try {
-			boolean enemyColor5 =board[index_x - 1][index_y].equals(enemyColor);
+			boolean enemyColor5 =board_o1[index_x_o1 - 1][index_y_o1].equals(enemyColor_o1);
 			while(enemyColor5) {
-				++enemy_adjustment_x;
-				--index_x;
-				enemyColor5 =board[index_x - 1][index_y].equals(enemyColor);
+				++enemy_adjustment_x_o1;
+				--index_x_o1;
+				enemyColor5 = board_o1[index_x_o1 - 1][index_y_o1].equals(enemyColor_o1);
 			}
-		} catch(Exception e) { }	
+		} catch(Exception e) {
+			System.out.println("There's an error"); 
+		}	
 		
 	}
 	
-	public static void adjustmentForTheOpponentT2 (String[][] board, int index_x, int index_y
-			,String enemyColor, int enemy_adjustment_x) {
+	public static void adjustmentForTheOpponentT2 (String[][] board_o2, int index_x_o2, int index_y_o2
+			,String enemyColor_o2, int enemy_adjustment_x_o2) {
 		
 		try {
-			boolean enemyColor4 = board[index_x][index_y - 1].equals(enemyColor);
+			boolean enemyColor4 = board_o2[index_x_o2][index_y_o2 - 1].equals(enemyColor_o2);
 			while(enemyColor4) {
-				++enemy_adjustment_x;
-				++index_x;
-				enemyColor4 = board[index_x][index_y - 1].equals(enemyColor);
+				++enemy_adjustment_x_o2;
+				++index_x_o2;
+				enemyColor4 = board_o2[index_x_o2][index_y_o2 - 1].equals(enemyColor_o2);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	
 		
 	}
 	
-	public static void adjustmentForTheOpponentT3 (String[][] board, int index_x, int index_y
-			,String enemyColor, int enemy_adjustment_y) {
+	public static void adjustmentForTheOpponentT3 (String[][] board_o3, int index_x_o3, int index_y_o3
+			,String enemyColor_o3, int enemy_adjustment_y_o3) {
 		
 		try {
-			boolean enemyColor3 = board[index_x][index_y - 1].equals(enemyColor);
+			boolean enemyColor3 = board_o3[index_x_o3][index_y_o3 - 1].equals(enemyColor_o3);
 			while(enemyColor3) {
-				++enemy_adjustment_y;
-				--index_y;
-				enemyColor3 = board[index_x][index_y - 1].equals(enemyColor);
+				++enemy_adjustment_y_o3;
+				--index_y_o3;
+				enemyColor3 = board_o3[index_x_o3][index_y_o3 - 1].equals(enemyColor_o3);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	
 		
 	}
 	
-	public static void adjustmentForTheOpponentT4 (String[][] board, int index_x, int index_y
-			,String enemyColor, int enemy_adjustment_y) {
+	public static void adjustmentForTheOpponentT4 (String[][] board_o4, int index_x_o4, int index_y_o4
+			,String enemyColor_o4, int enemy_adjustment_y_o4) {
 		
 		try {
-			boolean enemyColor2 = board[index_x][index_y + 1].equals(enemyColor);
+			boolean enemyColor2 = board_o4[index_x_o4][index_y_o4 + 1].equals(enemyColor_o4);
 			while(enemyColor2) {
-				++enemy_adjustment_y;
-				++index_y;
-				enemyColor2 = board[index_x][index_y + 1].equals(enemyColor);
+				++enemy_adjustment_y_o4;
+				++index_y_o4;
+				enemyColor2 = board_o4[index_x_o4][index_y_o4 + 1].equals(enemyColor_o4);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	
 		
 	}
@@ -1028,339 +992,371 @@ public class Board implements Serializable{
 		
 	}
 	
-	public static void direction1 (String[][] board, int index_x, int index_y
-			, boolean case_1, int potential, int distance, int vertical_adjustment, String color) {
+	public static void direction1 (String[][] board_d1, int index_x_d1, int index_y_d1
+			, boolean case_1_d1, int potential_d1, int distance_d1, int vertical_adjustment_d1, String color_d1) {
 		try {	
 		boolean equalsEX_4, equalsColorsX_4;
-		equalsEX_4 = board[index_x - 1][index_y].equals("e");
-		equalsColorsX_4 = board[index_x - 1][index_y].equals(color);
+		equalsEX_4 = board_d1[index_x_d1 - 1][index_y_d1].equals("e");
+		equalsColorsX_4 = board_d1[index_x_d1 - 1][index_y_d1].equals(color_d1);
 		while(equalsEX_4|| equalsColorsX_4) {
-			if(board[index_x - 1][index_y].equals("e")) {
-				case_1 = false;
-				potential += distance;
-				--distance;
+			if(board_d1[index_x_d1 - 1][index_y_d1].equals("e")) {
+				case_1_d1 = false;
+				potential_d1 += distance_d1;
+				--distance_d1;
 			} else {
-				potential += distance + 2;
-				--distance;
-				if(case_1) {
-					++vertical_adjustment;
+				potential_d1 += distance_d1 + 2;
+				--distance_d1;
+				if(case_1_d1) {
+					++vertical_adjustment_d1;
 				}
 			}
-			--index_x;
-			equalsEX_4 = board[index_x - 1][index_y].equals("e");
-			equalsColorsX_4 = board[index_x - 1][index_y].equals(color);
+			--index_x_d1;
+			equalsEX_4 = board_d1[index_x_d1 - 1][index_y_d1].equals("e");
+			equalsColorsX_4 = board_d1[index_x_d1 - 1][index_y_d1].equals(color_d1);
 		}
-	} catch(Exception e) { }
+	} catch(Exception e) { 
+		System.out.println("There's an error"); 
+	}
 		
 	}
 	
-	public static void direction2 (String[][] board, int index_x, int index_y
-			, boolean case_2, int potential, int distance, int horizontal_adjustment, String color) {
+	public static void direction2 (String[][] board_d2, int index_x_d2, int index_y_d2
+			, boolean case_2_d2, int potential_d2, int distance_d2, int horizontal_adjustment_d2, String color_d2) {
 		try {
 			boolean equalsEX_3, equalsColorsX_3;
-			equalsEX_3 = board[index_x][index_y - 1].equals("e") ;
-			equalsColorsX_3 =  board[index_x][index_y - 1].equals(color);
+			equalsEX_3 = board_d2[index_x_d2][index_y_d2 - 1].equals("e") ;
+			equalsColorsX_3 =  board_d2[index_x_d2][index_y_d2 - 1].equals(color_d2);
 			while(equalsEX_3 || equalsColorsX_3) {
-				if(board[index_x][index_y - 1].equals("e")) {
-					case_2 = false;
-					potential += distance;
-					--distance;
+				if(board_d2[index_x_d2][index_y_d2 - 1].equals("e")) {
+					case_2_d2 = false;
+					potential_d2 += distance_d2;
+					--distance_d2;
 				} else {
-					potential += distance + 2;
-					--distance;
-					if(case_2) {
-						++horizontal_adjustment;
+					potential_d2 += distance_d2 + 2;
+					--distance_d2;
+					if(case_2_d2) {
+						++horizontal_adjustment_d2;
 					}
 				}
-				--index_y;
-				equalsEX_3 = board[index_x][index_y - 1].equals("e") ;
-				equalsColorsX_3 =  board[index_x][index_y - 1].equals(color);
+				--index_y_d2;
+				equalsEX_3 = board_d2[index_x_d2][index_y_d2 - 1].equals("e") ;
+				equalsColorsX_3 =  board_d2[index_x_d2][index_y_d2 - 1].equals(color_d2);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
-	public static void direction3 (String[][] board, int index_x, int index_y
-			, boolean case_3, int potential, int distance, int horizontal_adjustment, String color) {
+	public static void direction3 (String[][] board_d3, int index_x_d3, int index_y_d3
+			, boolean case_3_d3, int potential_d3, int distance_d3, int horizontal_adjustment_d3, String color_d3) {
 		try {
 			boolean equalsEX_2, equalsColorsX_2;
-			equalsEX_2 = board[index_x][index_y + 1].equals("e") ;
-			equalsColorsX_2 = board[index_x][index_y + 1].equals(color);
+			equalsEX_2 = board_d3[index_x_d3][index_y_d3 + 1].equals("e") ;
+			equalsColorsX_2 = board_d3[index_x_d3][index_y_d3 + 1].equals(color_d3);
 			while(equalsEX_2 || equalsColorsX_2) {
-				if(board[index_x][index_y + 1].equals("e")) {
-					case_3 = false;
-					potential += distance;
-					--distance;
+				if(board_d3[index_x_d3][index_y_d3 + 1].equals("e")) {
+					case_3_d3 = false;
+					potential_d3 += distance_d3;
+					--distance_d3;
 				} else {
-					potential += distance + 2;
-					--distance;
-					if(case_3) {
-						++horizontal_adjustment;
+					potential_d3 += distance_d3 + 2;
+					--distance_d3;
+					if(case_3_d3) {
+						++horizontal_adjustment_d3;
 					}
 				}
-				++index_y;
-				equalsEX_2 = board[index_x][index_y + 1].equals("e") ;
-				equalsColorsX_2 = board[index_x][index_y + 1].equals(color);
+				++index_y_d3;
+				equalsEX_2 = board_d3[index_x_d3][index_y_d3 + 1].equals("e") ;
+				equalsColorsX_2 = board_d3[index_x_d3][index_y_d3 + 1].equals(color_d3);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 
 		
 	}
 	
-	public static void direction4 (String[][] board, int index_x, int index_y
-			, boolean case_4, int potential, int distance, int vertical_adjustment, String color) {
+	public static void direction4 (String[][] board_d4, int index_x_d4, int index_y_d4
+			, boolean case_4_d4, int potential_d4, int distance_d4, int vertical_adjustment_d4, String color_d4) {
 		try {
 			boolean equalsEX_1, equalsColorsX_1;
-			equalsEX_1 = board[index_x + 1][index_y].equals("e") ;
-			equalsColorsX_1 =board[index_x + 1][index_y].equals(color);
+			equalsEX_1 = board_d4[index_x_d4 + 1][index_y_d4].equals("e") ;
+			equalsColorsX_1 =board_d4[index_x_d4 + 1][index_y_d4].equals(color_d4);
 			while(equalsEX_1|| equalsColorsX_1) {
-				if(board[index_x + 1][index_y].equals("e")) {
-					case_4 = false;
-					potential += distance;
-					--distance;
+				if(board_d4[index_x_d4 + 1][index_y_d4].equals("e")) {
+					case_4_d4 = false;
+					potential_d4 += distance_d4;
+					--distance_d4;
 				} else {
-					potential += distance + 2;
-					--distance;
-					if(case_4) {
-						++vertical_adjustment;
+					potential_d4 += distance_d4 + 2;
+					--distance_d4;
+					if(case_4_d4) {
+						++vertical_adjustment_d4;
 					}
 				}
-				++index_x;
-				equalsEX_1 = board[index_x + 1][index_y].equals("e") ;
-				equalsColorsX_1 =board[index_x + 1][index_y].equals(color);
+				++index_x_d4;
+				equalsEX_1 = board_d4[index_x_d4 + 1][index_y_d4].equals("e") ;
+				equalsColorsX_1 =board_d4[index_x_d4 + 1][index_y_d4].equals(color_d4);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 
 		
 	}
 	
-	public void enemyAdjustment1 (String[][] board, int enemy_adjustment_x
-			,int index_x, int index_y, String enemyColor) {
+	public void enemyAdjustment1 (String[][] board_ea1, int enemy_adjustment_x_ea1
+			,int index_x_ea1, int index_y_ea1, String enemyColor_ea1) {
 		try {
-			boolean enemyColor_3 = board[index_x - 1][index_y].equals(enemyColor);
+			boolean enemyColor_3 = board[index_x_ea1 - 1][index_y_ea1].equals(enemyColor_ea1);
 			while(enemyColor_3) {
-				++enemy_adjustment_x;
-				--index_x;
-				enemyColor_3 = board[index_x - 1][index_y].equals(enemyColor);
+				++enemy_adjustment_x_ea1;
+				--index_x_ea1;
+				enemyColor_3 = board[index_x_ea1 - 1][index_y_ea1].equals(enemyColor_ea1);
 			}
 			//						if(board[index_x - 1][index_y].equals("e")) {
 			//							extra_x_minus = true;
 			//						}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
-	public void enemyAdjustment2 (String[][] board, int enemy_adjustment_x
-			,int index_x, int index_y, String enemyColor) {
+	public void enemyAdjustment2 (String[][] board_ea2, int enemy_adjustment_x_ea2
+			,int index_x_ea2, int index_y_ea2, String enemyColor_ea2) {
 		try {
-			boolean enemyColors_2 = board[index_x + 1][index_y].equals(enemyColor);
+			boolean enemyColors_2 = board[index_x_ea2 + 1][index_y_ea2].equals(enemyColor_ea2);
 			while(enemyColors_2) {
-				++enemy_adjustment_x;
-				++index_x;
-				enemyColors_2 = board[index_x + 1][index_y].equals(enemyColor);
+				++enemy_adjustment_x_ea2;
+				++index_x_ea2;
+				enemyColors_2 = board[index_x_ea2 + 1][index_y_ea2].equals(enemyColor_ea2);
 			}
 			//						if(board[index_x + 1][index_y].equals("e")) {
 			//							extra_x_plus = true;
 			//						}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
-	public void enemyAdjustment3 (String[][] board, int enemy_adjustment_y
-			,int index_x, int index_y, String enemyColor) {
+	public void enemyAdjustment3 (String[][] board_ea3, int enemy_adjustment_y_ea3
+			,int index_x_ea3, int index_y_ea3, String enemyColor_ea3) {
 		try {
-			boolean enemyColors_1 = board[index_x][index_y - 1].equals(enemyColor);
+			boolean enemyColors_1 = board[index_x_ea3][index_y_ea3 - 1].equals(enemyColor_ea3);
 			while(enemyColors_1) {
-				++enemy_adjustment_y;
-				--index_y;
-				enemyColors_1 = board[index_x][index_y - 1].equals(enemyColor);
+				++enemy_adjustment_y_ea3;
+				--index_y_ea3;
+				enemyColors_1 = board[index_x_ea3][index_y_ea3 - 1].equals(enemyColor_ea3);
 			}
 			//						if(board[index_x][index_y - 1].equals("e")) {
 			//							extra_y_minus = true;
 			//						}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	}
 	
-	public void enemyAdjustment4 (String[][] board, int enemy_adjustment_y
-			,int index_x, int index_y, String enemyColor) {
+	public void enemyAdjustment4 (String[][] board_ea4, int enemy_adjustment_y_ea4
+			,int index_x_ea4, int index_y_ea4, String enemyColor_ea4) {
 		try {
-			boolean enemyColors_X = board[index_x][index_y + 1].equals(enemyColor);
+			boolean enemyColors_X = board[index_x_ea4][index_y_ea4 + 1].equals(enemyColor_ea4);
 			while(enemyColors_X) {
-				++enemy_adjustment_y;
-				++index_y;
-				enemyColors_X = board[index_x][index_y + 1].equals(enemyColor);
+				++enemy_adjustment_y_ea4;
+				++index_y_ea4;
+				enemyColors_X = board[index_x_ea4][index_y_ea4 + 1].equals(enemyColor_ea4);
 			}
 			//						if(board[index_x][index_y + 1].equals("e")) {
 			//							extra_y_plus = true;
 			//						}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	}
 	
-	public void directionMovieList1 (String[][] board, int index_x, int index_y , String color
-			, boolean case_1, int potential, int distance, int vertical_adjustment) {
+	public void directionMovieList1 (String[][] board_l1, int index_x_l1, int index_y_l1 , String color_l1
+			, boolean case_1_l1, int potential_l1, int distance_l1, int vertical_adjustment_l1) {
 		try {
 			boolean equalsMinus, equalsColorMinus;
-			equalsMinus = board[index_x - 1][index_y].equals("e") ;
-			equalsColorMinus =  board[index_x - 1][index_y].equals(color);
+			equalsMinus = board[index_x_l1 - 1][index_y_l1].equals("e") ;
+			equalsColorMinus =  board[index_x_l1 - 1][index_y_l1].equals(color_l1);
 			while(equalsMinus || equalsColorMinus) {
-				if(board[index_x - 1][index_y].equals("e")) {
-					case_1 = false;
-					potential += distance;
-					--distance;
+				if(board[index_x_l1 - 1][index_y_l1].equals("e")) {
+					case_1_l1 = false;
+					potential_l1 += distance_l1;
+					--distance_l1;
 				} else {
-					potential += distance + 2;
-					--distance;
-					if(case_1) {
-						++vertical_adjustment;
+					potential_l1 += distance_l1 + 2;
+					--distance_l1;
+					if(case_1_l1) {
+						++vertical_adjustment_l1;
 					}
 				}
-				--index_x;
-				equalsMinus = board[index_x - 1][index_y].equals("e") ;
-				equalsColorMinus =  board[index_x - 1][index_y].equals(color);
+				--index_x_l1;
+				equalsMinus = board[index_x_l1 - 1][index_y_l1].equals("e") ;
+				equalsColorMinus =  board[index_x_l1 - 1][index_y_l1].equals(color_l1);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
-	public void directionMovieList2 (String[][] board, int index_x, int index_y , String color
-			, boolean case_2, int potential, int distance, int horizontal_adjustment) {
+	public void directionMovieList2 (String[][] board_l2, int index_x_l2, int index_y_l2 , String color_l2
+			, boolean case_2_l2, int potential_l2, int distance_l2, int horizontal_adjustment_l2) {
 		try {
 			boolean equalsEXminus, equalsColorXminus;
-			equalsEXminus = board[index_x][index_y - 1].equals("e");
-			equalsColorXminus = board[index_x][index_y - 1].equals(color);
+			equalsEXminus = board[index_x_l2][index_y_l2 - 1].equals("e");
+			equalsColorXminus = board[index_x_l2][index_y_l2 - 1].equals(color_l2);
 			while(equalsEXminus ||equalsColorXminus) {
-				if(board[index_x][index_y - 1].equals("e")) {
-					case_2 = false;
-					potential += distance;
-					--distance;
+				if(board[index_x_l2][index_y_l2 - 1].equals("e")) {
+					case_2_l2 = false;
+					potential_l2 += distance_l2;
+					--distance_l2;
 				} else {
-					potential += distance + 2;
-					--distance;
-					if(case_2) {
-						++horizontal_adjustment;
+					potential_l2 += distance_l2 + 2;
+					--distance_l2;
+					if(case_2_l2) {
+						++horizontal_adjustment_l2;
 					}
 				}
-				--index_y;
-				equalsEXminus = board[index_x][index_y - 1].equals("e");
-				equalsColorXminus = board[index_x][index_y - 1].equals(color);
+				--index_y_l2;
+				equalsEXminus = board[index_x_l2][index_y_l2 - 1].equals("e");
+				equalsColorXminus = board[index_x_l2][index_y_l2 - 1].equals(color_l2);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
-	public void directionMovieList3 (String[][] board, int index_x, int index_y , String color
-			, boolean case_3, int potential, int distance, int horizontal_adjustment) {
+	public void directionMovieList3 (String[][] board_l3, int index_x_l3, int index_y_l3 , String color_l3
+			, boolean case_3_l3, int potential_l3, int distance_l3, int horizontal_adjustment_l3) {
 		try {
 			boolean equalsEX, equalsColorX;
-			equalsEX = board[index_x][index_y + 1].equals("e");
-			equalsColorX = board[index_x][index_y + 1].equals(color);
+			equalsEX = board[index_x_l3][index_y_l3 + 1].equals("e");
+			equalsColorX = board[index_x_l3][index_y_l3 + 1].equals(color_l3);
 			while(equalsEX || equalsColorX) {
-				if(board[index_x][index_y + 1].equals("e")) {
-					case_3 = false;
-					potential += distance;
-					--distance;
+				if(board[index_x_l3][index_y_l3 + 1].equals("e")) {
+					case_3_l3 = false;
+					potential_l3 += distance_l3;
+					--distance_l3;
 				} else {
-					potential += distance + 2;
-					--distance;
-					if(case_3) {
-						++horizontal_adjustment;
+					potential_l3 += distance_l3 + 2;
+					--distance_l3;
+					if(case_3_l3) {
+						++horizontal_adjustment_l3;
 					}
 				}
-				++index_y;
-				equalsEX = board[index_x][index_y + 1].equals("e");
-				equalsColorX = board[index_x][index_y + 1].equals(color);
+				++index_y_l3;
+				equalsEX = board[index_x_l3][index_y_l3 + 1].equals("e");
+				equalsColorX = board[index_x_l3][index_y_l3 + 1].equals(color_l3);
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
 	
-	public void directionMovieList4 (String[][] board, int index_x, int index_y , String color
-			, boolean case_4, int potential, int distance, int vertical_adjustment) {
+	public void directionMovieList4 (String[][] board_l4, int index_xl4, int index_yl4 , String colorl4
+			, boolean case_l4, int potential_l4, int distance_l4, int vertical_adjustment_l4) {
 		try {
 			boolean equalsE, equalsColor;
-			equalsE = board[index_x + 1][index_y].equals("e");
-			equalsColor = board[index_x + 1][index_y].equals(color);
+			equalsE = board[index_xl4 + 1][index_yl4].equals("e");
+			equalsColor = board[index_xl4 + 1][index_yl4].equals(colorl4);
 			while(equalsE || equalsColor) {
-				if(board[index_x + 1][index_y].equals("e")) {
-					case_4 = false;
-					potential += distance;
-					--distance;
-					equalsE = board[index_x + 1][index_y].equals("e");
-					equalsColor = board[index_x + 1][index_y].equals(color);
+				if(board[index_xl4 + 1][index_yl4].equals("e")) {
+					case_l4 = false;
+					potential_l4 += distance_l4;
+					--distance_l4;
+					equalsE = board[index_xl4 + 1][index_yl4].equals("e");
+					equalsColor = board[index_xl4 + 1][index_yl4].equals(colorl4);
 				} else {
-					potential += distance + 2;
-					--distance;
-					if(case_4) {
-						++vertical_adjustment;
+					potential_l4 += distance_l4 + 2;
+					--distance_l4;
+					if(case_l4) {
+						++vertical_adjustment_l4;
 					}
 				}
-				++index_x;
+				++index_xl4;
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 		
 	}
-	public void enemyAdjustmentExtra1 (String[][] board, int index_x, int index_y
-			,String enemyColor, int enemy_adjustment_x, boolean extra_x_minus) {
+	public void enemyAdjustmentExtra1 (String[][] board1, int index_x1, int index_y1
+			,String enemyColor1, int enemy_adjustment_x1, boolean extra_x_minus1) {
 		
 		try {
-			boolean ValueEnemyColor_1Minus = board[index_x - 1][index_y].equals(enemyColor);
+			boolean ValueEnemyColor_1Minus = board[index_x1 - 1][index_y1].equals(enemyColor1);
 			while(ValueEnemyColor_1Minus) {
-				++enemy_adjustment_x;
-				--index_x;
-				ValueEnemyColor_1Minus = board[index_x - 1][index_y].equals(enemyColor);
+				++enemy_adjustment_x1;
+				--index_x1;
+				ValueEnemyColor_1Minus = board[index_x1 - 1][index_y1].equals(enemyColor1);
 			}
-			if(board[index_x - 1][index_y].equals("e")) {
-				extra_x_minus = true;
+			if(board[index_x1 - 1][index_y1].equals("e")) {
+				extra_x_minus1 = true;
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	}
 	
-	public void enemyAdjustmentExtra2 (String[][] board, int index_x, int index_y
-			,String enemyColor, int enemy_adjustment_x, boolean extra_x_plus) {
+	public void enemyAdjustmentExtra2 (String[][] board2, int index_x2, int index_y2
+			,String enemyColor2, int enemy_adjustment_x2, boolean extra_x_plus2) {
 		
 		try {
-			boolean ValueEnemyColor_1Plus = board[index_x + 1][index_y].equals(enemyColor);
+			boolean ValueEnemyColor_1Plus = board[index_x2 + 1][index_y2].equals(enemyColor2);
 			while(ValueEnemyColor_1Plus) {
-				++enemy_adjustment_x;
-				++index_x;
-				ValueEnemyColor_1Plus = board[index_x + 1][index_y].equals(enemyColor);
+				++enemy_adjustment_x2;
+				++index_x2;
+				ValueEnemyColor_1Plus = board[index_x2 + 1][index_y2].equals(enemyColor2);
 			}
-			if(board[index_x + 1][index_y].equals("e")) {
-				extra_x_plus = true;
+			if(board[index_x2 + 1][index_y2].equals("e")) {
+				extra_x_plus2 = true;
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	}
 	
-	public void enemyAdjustmentExtra3 (String[][] board, int index_x, int index_y
-			,String enemyColor, int enemy_adjustment_y, boolean extra_y_minus) {
+	public void enemyAdjustmentExtra3 (String[][] board_3, int index_x3, int index_y3
+			,String enemyColor3, int enemy_adjustment_y3, boolean extra_y_minus3) {
 		
 		try {
-			boolean ValueEnemyColor_1Minus = board[index_x][index_y - 1].equals(enemyColor);
+			boolean ValueEnemyColor_1Minus = board[index_x3][index_y3 - 1].equals(enemyColor3);
 			while(ValueEnemyColor_1Minus) {
-				++enemy_adjustment_y;
-				--index_y;
-				ValueEnemyColor_1Minus = board[index_x][index_y - 1].equals(enemyColor);
+				++enemy_adjustment_y3;
+				--index_y3;
+				ValueEnemyColor_1Minus = board[index_x3][index_y3 - 1].equals(enemyColor3);
 			}
-			if(board[index_x][index_y - 1].equals("e")) {
-				extra_y_minus = true;
+			if(board[index_x3][index_y3 - 1].equals("e")) {
+				extra_y_minus3 = true;
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	}
 	
-	public void enemyAdjustmentExtra4 (String[][] board, int index_x, int index_y
-			,String enemyColor, int enemy_adjustment_y, boolean extra_y_plus) {
+	public void enemyAdjustmentExtra4 (String[][] board_ea4, int index_xea4, int index_yea4
+			,String enemyColor_ea4, int enemy_adjustment_yea4, boolean extra_y_plusea4) {
 		
 		try {
-			boolean ValueEnemyColor = board[index_x][index_y + 1].equals(enemyColor);
+			boolean ValueEnemyColor = board[index_xea4][index_yea4 + 1].equals(enemyColor_ea4);
 			while(ValueEnemyColor) {
-				++enemy_adjustment_y;
-				++index_y;
-				ValueEnemyColor = board[index_x][index_y + 1].equals(enemyColor);
+				++enemy_adjustment_yea4;
+				++index_yea4;
+				ValueEnemyColor = board[index_xea4][index_yea4 + 1].equals(enemyColor_ea4);
 			}
-			if(board[index_x][index_y + 1].equals("e")) {
-				extra_y_plus = true;
+			if(board[index_xea4][index_yea4 + 1].equals("e")) {
+				extra_y_plusea4 = true;
 			}
-		} catch(Exception e) { }
+		} catch(Exception e) { 
+			System.out.println("There's an error"); 
+		}
 	}
 	
 	public void enemyAdjustmentDirectionXY (boolean extra_x_minus, boolean extra_x_plus 

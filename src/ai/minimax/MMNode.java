@@ -151,10 +151,10 @@ public class MMNode {
 		}
 	}
 	
-	public static void makeMovers (Tuple<Integer, Integer> move, Board board, String color) throws Exception {
+	public static void makeMovers (Tuple<Integer, Integer> move_mk, Board board_mk, String color_mk) throws Exception {
 		
-		if(move != null) {
-			board.makeMove(move, color);
+		if(move_mk != null) {
+			board_mk.makeMove(move_mk, color_mk);
 		}
 	}
 	

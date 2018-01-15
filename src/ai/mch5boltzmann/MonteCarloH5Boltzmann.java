@@ -97,7 +97,7 @@ public class MonteCarloH5Boltzmann implements Engine {
 			//Check if node is fully expanded.
 			if(treePolicy_node.getUntriedMoves().size() != 0) {
 				//Not fully expanded. Return a newly created node.
-				Node newNode =  treePolicy_node.expand(treePolicy_board, this.color);
+				Node newNode =  treePolicy_node.expand(treePolicy_board);
 				numberNode = treePolicy_node.getMoveNumber();
 				return newNode;
 			} else {

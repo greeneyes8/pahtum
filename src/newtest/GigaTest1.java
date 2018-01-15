@@ -280,7 +280,6 @@ public static void testOne1 () throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTime = System.currentTimeMillis();
 	int value1_gt1_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test1 = new BufferedWriter(
@@ -532,7 +531,6 @@ public static void testTwo1 () throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest2 = System.currentTimeMillis();
 	int value2_gt1_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test2 = new BufferedWriter(
@@ -786,7 +784,6 @@ public static void testThree1 () throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest3 = System.currentTimeMillis();
 	int value3_gt1_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test3 = new BufferedWriter(
@@ -1040,7 +1037,6 @@ public static void testFour1() throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest4 = System.currentTimeMillis();
 	int value4_gt1_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test4 = new BufferedWriter(
@@ -1295,7 +1291,7 @@ public static void testFive1() throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest5 = System.currentTimeMillis();
+
 	int value5_gt1_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test5 = new BufferedWriter(
@@ -1552,7 +1548,6 @@ public static void testSix1 () throws Exception {
 	} //End of the test case. (for)
 
 	//Report when games ended.
-	endTimeTest6 = System.currentTimeMillis();
 	int value6_gt1_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test6 = new BufferedWriter(

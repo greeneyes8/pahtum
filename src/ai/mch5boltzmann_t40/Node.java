@@ -47,7 +47,6 @@ public class Node {
 		this.parent = parent;
 		this.probability = -1;
 		this.value = 0;
-		this.visit = 0;
 		this.children = new ArrayList<Node>();
 		int valuenode_t40_5 = 5;
 		this.untriedMoves = board.heuristic_bestX_moves(color, valuenode_t40_5);
@@ -133,8 +132,8 @@ public class Node {
 	/**
 	 * @param value the value of which update
 	 */
-	public void updateValue(double value) {
-		this.value += value;
+	public void updateValue(double u_value) {
+		this.value += u_value;
 	}
 
 	/**

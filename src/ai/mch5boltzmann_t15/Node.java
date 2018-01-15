@@ -47,7 +47,6 @@ public class Node {
 		this.parent = parent;
 		this.probability = -1;
 		this.value = 0;
-		this.visit = 0;
 		this.children = new ArrayList<Node>();
 		int valuenode_t15_5 = 5;
 		this.untriedMoves = board.heuristic_bestX_moves(color, valuenode_t15_5);
