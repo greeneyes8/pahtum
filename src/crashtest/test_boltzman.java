@@ -50,9 +50,6 @@ public class test_boltzman {
 		e2DrawAsPlayer2 = 0,
 		e2LoseAsPlayer2 = 0;
 		int value_1000= 1000;
-		
-		BufferedWriter output1Test1 = new BufferedWriter(
-				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
 		/***********************************************************************
 		 * Test #1: (1050,000 roll-outs) MCTS + H(7) v Charles_2 3-point board.
 		 **********************************************************************/
@@ -85,29 +82,49 @@ public class test_boltzman {
 		int totalNumberOfMovesTest1 = 46;
 		
 		//Load board.
+		FileInputStream fisTest1 = null;
 		
-			FileInputStream fisTest1 = new FileInputStream("50_boards_3.sav");
+		try{
+			fisTest1 = new FileInputStream("50_boards_3.sav");
 			ObjectInputStream oisTest1 = new ObjectInputStream(fisTest1);
-			try{
-				boardCollectionTest1 = (Board[]) oisTest1.readObject();
-			}catch(Exception e)
-			{
-				System.out.println(e);
-			}finally{
-				oisTest1.close();
-				fisTest1.close();
-			}
-			
+			boardCollectionTest1 = (Board[]) oisTest1.readObject();
+		} catch(Exception e) {
+			System.err.println("Error" + e.getMessage());
+		} finally {
+			   if (fisTest1 != null) {
+	               try {
+	            	   fisTest1.close (); 
+	               } catch (java.io.IOException e3) {
+	                 System.out.println("I/O Exception");
+	               }	
+	           	}	
+		}
+		
+
 		//The beginning and the end of the test.
 		 
 		//Report when games commenced.
 		long startTime = System.currentTimeMillis();
 
 		//Declare buffers.
-		BufferedWriter outputTest1 = new BufferedWriter(
-				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
-		outputTest1.close();
-		outputTest1.flush();
+		BufferedWriter outputTest1 = null;
+		
+		try{
+			outputTest1 = new BufferedWriter(
+					new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		} catch(Exception e) {
+			System.err.println("Error" + e.getMessage());
+		} finally {
+			   if (outputTest1 != null) {
+	               try {
+	            	   outputTest1.close (); 
+	               } catch (java.io.IOException e3) {
+	                 System.out.println("I/O Exception");
+	               }	
+	           	}	
+		}
+		
+		
 		
 		MonteCarloH5Boltzmann mc = new MonteCarloH5Boltzmann(
 				boardTest1.duplicate(), 
@@ -117,7 +134,6 @@ public class test_boltzman {
 		Charles_2 charles = new Charles_2(playersTest1[currentIndexTest1].getColor(), boardTest1);
 
 		//Boards are OK. Proceed to testing.
-		try{
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
 			System.out.println("Test1: " + testIndex + " / 100");
 			//Reset settings.
@@ -155,6 +171,8 @@ public class test_boltzman {
 			outputTest1.append("Player 1: " + playersTest1[0].getName() + 
 					" Player 2: " + playersTest1[1].getName());
 			outputTest1.newLine();
+			outputTest1.close();
+			outputTest1.flush();
 
 			//Append the result to the text file and update counters..
 			if(gameOutcome.equals(zero)) {
@@ -163,7 +181,8 @@ public class test_boltzman {
 				//Append information to the file.
 				outputTest1.append("Result: draw");
 				outputTest1.newLine();
-
+				outputTest1.close();
+				outputTest1.flush();
 
 				//Update statistics.
 				boolean valuePlayersTest1 = playersTest1[0].getName().equals("Charles_2");
@@ -201,75 +220,76 @@ public class test_boltzman {
 				outputTest1.close();
 				outputTest1.flush();
 			}			
-		} 
-		}catch(Exception e ){
-			System.out.println(e);
-		}finally{
-			outputTest1.close();
-			outputTest1.flush();
-		}//End of the test case. (for)
+		} //End of the test case. (for)
 
 		//Report when games ended.
 		long endTime = System.currentTimeMillis();	
 		//Append total outcome of the test case to the file.
+		BufferedWriter output1Test1 = null;
+		
 		try{
-			
-			
-			output1Test1.append("========================================");
-			output1Test1.newLine();
-			output1Test1.append("*Summary (1k/100) 3-point board*");
-			output1Test1.newLine();
-			output1Test1.append("Draw occurred: " + totalDraws);
-			output1Test1.newLine();
-			output1Test1.append("Boltzmann1k total wins: " + e2TotalWins);
-			output1Test1.newLine();
-			output1Test1.append("Charles_2 total wins: " + e1TotalWins);
-			output1Test1.newLine();
-			output1Test1.append("Play time: " + (endTime - startTime)/value_1000 + " seconds.");
-			output1Test1.newLine();
-
-			//Write statistics for MCTS.
-			output1Test1.append("Boltzmann1k wins as player #1 : " + e2WinAsPlayer1);
-			output1Test1.newLine();
-			output1Test1.append("Boltzmann1k wins as player #2 : " + e2WinAsPlayer2);
-			output1Test1.newLine();
-			output1Test1.append("Boltzmann1k draws as player #1 : " + e2DrawAsPlayer1);
-			output1Test1.newLine();
-			output1Test1.append("Boltzmann1k draws as player #2 : " + e2DrawAsPlayer2);
-			output1Test1.newLine();
-			output1Test1.append("Boltzmann1k loses as player #1 : " + e2LoseAsPlayer1);
-			output1Test1.newLine();
-			output1Test1.append("Boltzmann1k loses as player #2 : " + e2LoseAsPlayer2);
-			output1Test1.newLine();
-
-			//Write statistics for Random AI.
-			output1Test1.append("Charles_2 wins as player #1 : " + e1WinAsPlayer1);
-			output1Test1.newLine();
-			output1Test1.append("Charles_2 wins as player #2 : " + e1WinAsPlayer2);
-			output1Test1.newLine();
-			output1Test1.append("Charles_2 draws as player #1 : " + e1DrawAsPlayer1);
-			output1Test1.newLine();
-			output1Test1.append("Charles_2 draws as player #2 : " + e1DrawAsPlayer2);
-			output1Test1.newLine();
-			output1Test1.append("Charles_2 loses as player #1 : " + e1LoseAsPlayer1);
-			output1Test1.newLine();
-			output1Test1.append("Charles_2 loses as player #2 : " + e1LoseAsPlayer2);
-			output1Test1.newLine();
-
-			output1Test1.append("========================================");
-
-			
-
-		}catch(java.io.IOException e2){
-            System.out.println("I/O Exception");
-			
-		}finally{
-
-			output1Test1.flush();
-			output1Test1.close();
-			
+			output1Test1 = new BufferedWriter(
+					new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		}catch(Exception e) {
+			System.err.println("Error" + e.getMessage());
+		} finally {
+			   if (output1Test1 != null) {
+	               try {
+	            	   output1Test1.close (); 
+	               } catch (java.io.IOException e3) {
+	                 System.out.println("I/O Exception");
+	               }	
+	           	}	
 		}
 		
+		
+		output1Test1.append("========================================");
+		output1Test1.newLine();
+		output1Test1.append("*Summary (1k/100) 3-point board*");
+		output1Test1.newLine();
+		output1Test1.append("Draw occurred: " + totalDraws);
+		output1Test1.newLine();
+		output1Test1.append("Boltzmann1k total wins: " + e2TotalWins);
+		output1Test1.newLine();
+		output1Test1.append("Charles_2 total wins: " + e1TotalWins);
+		output1Test1.newLine();
+		output1Test1.append("Play time: " + (endTime - startTime)/value_1000 + " seconds.");
+		output1Test1.newLine();
+
+		//Write statistics for MCTS.
+		output1Test1.append("Boltzmann1k wins as player #1 : " + e2WinAsPlayer1);
+		output1Test1.newLine();
+		output1Test1.append("Boltzmann1k wins as player #2 : " + e2WinAsPlayer2);
+		output1Test1.newLine();
+		output1Test1.append("Boltzmann1k draws as player #1 : " + e2DrawAsPlayer1);
+		output1Test1.newLine();
+		output1Test1.append("Boltzmann1k draws as player #2 : " + e2DrawAsPlayer2);
+		output1Test1.newLine();
+		output1Test1.append("Boltzmann1k loses as player #1 : " + e2LoseAsPlayer1);
+		output1Test1.newLine();
+		output1Test1.append("Boltzmann1k loses as player #2 : " + e2LoseAsPlayer2);
+		output1Test1.newLine();
+
+		//Write statistics for Random AI.
+		output1Test1.append("Charles_2 wins as player #1 : " + e1WinAsPlayer1);
+		output1Test1.newLine();
+		output1Test1.append("Charles_2 wins as player #2 : " + e1WinAsPlayer2);
+		output1Test1.newLine();
+		output1Test1.append("Charles_2 draws as player #1 : " + e1DrawAsPlayer1);
+		output1Test1.newLine();
+		output1Test1.append("Charles_2 draws as player #2 : " + e1DrawAsPlayer2);
+		output1Test1.newLine();
+		output1Test1.append("Charles_2 loses as player #1 : " + e1LoseAsPlayer1);
+		output1Test1.newLine();
+		output1Test1.append("Charles_2 loses as player #2 : " + e1LoseAsPlayer2);
+		output1Test1.newLine();
+
+		output1Test1.append("========================================");
+
+		output1Test1.flush();
+		output1Test1.close();
+		
+
 //		/***********************************************************************
 //		 * Test #2: (100,000 roll-outs) MCTS + H(7) v Charles_2.
 //		 **********************************************************************/

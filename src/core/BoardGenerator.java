@@ -1,11 +1,7 @@
 package core;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 
 import core.Board;
 
@@ -19,39 +15,34 @@ public class BoardGenerator {
 
 	/**
 	 * @param args
-	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		Board[] boardCollection = new Board[200];
-		FileOutputStream fos = new FileOutputStream("200_boards_3.sav");
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		//Generate boards (9 dead fields each, no guarantee that in terms of 
 		//duplicates).
-		int valueboardGB1 = 1;
-		boolean valueboardGB2 = true;
-		int valueboardGB3 = 3;
-		
-		
 		for(int i = 0; i < 200; ++i) {
-			boardCollection[i] = new Board(valueboardGB1, valueboardGB2, valueboardGB3);
+			boardCollection[i] = new Board(1, true, 3);
 		}
 
 		//Save to the file.
-		try{
-			
-			oos.writeObject(boardCollection);			
-		}catch(Exception e){
-			System.out.println(e);
-		}finally{
-			oos.close();
-			oos.flush();
-			fos.close();
-			fos.flush();
-		}
-			
-			
-			
+		FileOutputStream fos = null;
 		
-	}
-
+		try {
+			fos = new FileOutputStream("200_boards_3.sav");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(boardCollection);
+			oos.close();
+		} catch(Exception e) {
+			System.err.println("Error" + e.getMessage());
+		} finally {
+			   if (fos != null) {
+	               try {
+	            	   fos.close (); 
+	               } catch (java.io.IOException e3) {
+	                 System.out.println("I/O Exception");
+	               }	
+	           	}	
+		}
 }
+}
+
