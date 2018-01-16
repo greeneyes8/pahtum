@@ -3,6 +3,7 @@ package core;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
+
 import core.Board;
 
 /**
@@ -33,14 +34,13 @@ public class BoardGenerator {
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(boardCollection);
 			oos.close();
+			oos.flush();
 			fos.close();
 			fos.flush();
 		} catch(Exception e) {
-			System.err.println("Error occured during saving.");
+			System.err.println("Error occured during saving: " + e);
 			System.out.println("Something was wrong");
-		}finally {
-	                 System.out.println("I/O Exception");
-	               }
+		}
 	}
 
 }

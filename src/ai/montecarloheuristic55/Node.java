@@ -22,6 +22,7 @@ public class Node {
 	private List<Node> children;
 	private List<Tuple<Integer, Integer>> untriedMoves;
 	
+	
 	/**
 	 * 
 	 * @param parent
@@ -37,6 +38,7 @@ public class Node {
 		this.color = color;
 		this.parent = parent;
 		this.value = 0;
+		this.visit = 0;
 		this.children = new ArrayList<Node>();
 		int valuenodeh55 = 5;
 		this.untriedMoves = board.heuristic_bestX_moves(color, valuenodeh55);
@@ -49,7 +51,7 @@ public class Node {
 	 * @return
 	 * @throws Exception
 	 */
-	public Node expand(Board board, String mcColor){
+	public Node expand(Board board){
 		String newColor;
 		Random generator = new Random();
 		int randomIndex = generator.nextInt(this.untriedMoves.size());
@@ -58,7 +60,6 @@ public class Node {
 		try {
 			board.makeMove(move, color);
 		} catch (Exception e) {
-			System.out.println("There's an error"); 
 			// TODO Auto-generated catch block
 		}
 		if(this.color.equals("w")) {
