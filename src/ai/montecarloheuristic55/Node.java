@@ -60,6 +60,7 @@ public class Node {
 		try {
 			board.makeMove(move, color);
 		} catch (Exception e) {
+			System.out.println("The error is: " + e);
 			// TODO Auto-generated catch block
 		}
 		if(this.color.equals("w")) {
