@@ -1027,13 +1027,22 @@ public static void testFour2 () throws Exception {
 	int totalNumberOfMovesTest4 = 46;
 
 	//Load board.
+	FileInputStream fisTest4 = null;
 	try {
-		FileInputStream fisTest4 = new FileInputStream("50_boards_3.sav");
+		fisTest4 = new FileInputStream("50_boards_3.sav");
 		ObjectInputStream oisTest4 = new ObjectInputStream(fisTest4);
 		boardCollectionTest4 = (Board[]) oisTest4.readObject();
 		oisTest4.close();
 	} catch(Exception e) {
 		System.err.println("Error" + e.getMessage());
+	}finally {
+		   if (fisTest4 != null) {
+               try {
+            	   fisTest4.close (); 
+               } catch (java.io.IOException e3) {
+                 System.out.println("I/O Exception");
+               }	
+           	}	
 	}
 
 	//The beginning and the end of the test.
@@ -1314,14 +1323,25 @@ public static void testFive2 () throws Exception {
 	int totalNumberOfMovesTest5 = 46;
 
 	//Load board.
+	FileInputStream fisTest5 = null;
+	
 	try {
-		FileInputStream fisTest5 = new FileInputStream("50_boards_3.sav");
+		fisTest5 = new FileInputStream("50_boards_3.sav");
 		ObjectInputStream oisTest5 = new ObjectInputStream(fisTest5);
 		boardCollectionTest5 = (Board[]) oisTest5.readObject();
 		oisTest5.close();
 	} catch(Exception e) {
 		System.err.println("Error" + e.getMessage());
+	}finally {
+		   if (fisTest5 != null) {
+               try {
+            	   fisTest5.close (); 
+               } catch (java.io.IOException e3) {
+                 System.out.println("I/O Exception");
+               }	
+           	}	
 	}
+
 
 	//The beginning and the end of the test.
 	long startTimeTest5 = 0, endTimeTest5 = 0;
