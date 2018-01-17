@@ -31,7 +31,7 @@ public class LuckyAI {
 		ArrayList<Tuple<Integer, Integer>> listOfMoves = new ArrayList<Tuple<Integer,Integer>>();
 		for(int x = 0; x < 7; ++x) {
 			for(int y = 0; y < 7; ++y) {
-				if(b[x][y].equals("e")) {
+				if("e".equals(b[x][y])) {
 					listOfMoves.add(new Tuple<Integer, Integer>(x, y));
 				}
 			}

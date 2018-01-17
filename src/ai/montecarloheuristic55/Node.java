@@ -62,7 +62,7 @@ public class Node {
 			System.out.println("There's an error");
 			// TODO Auto-generated catch block
 		}
-		if(this.color.equals("w")) {
+		if("w".equals(this.color)) {
 			newColor = "b";
 		} else {
 			newColor = "w";

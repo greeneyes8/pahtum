@@ -64,7 +64,7 @@ public class Rules {
 		while(valueW) {
 			white_Line++;
 			y++;
-			valueW = b[x][y+1].equals("w");
+			valueW = "w".equals(b[x][y+1]);
 		}
 		
 	}
@@ -75,7 +75,7 @@ public class Rules {
 		while(valueB) {
 			bl_blackLine++;
 			y++;
-			valueB = b[x][y+1].equals("b");
+			valueB = "b".equals(b[x][y+1]);
 		}
 		
 	}
@@ -141,17 +141,17 @@ public class Rules {
 	
 	public static void stringA (String [][] b, int x, int y, int str_whiteLine, int str_blackLine) {
 		
-		if(b[x][y].equals("w")) {
+		if("w".equals(b[x][y])) {
 			try {
-				boolean valueW = b[x][y+1].equals("w");
+				boolean valueW = "w".equals(b[x][y+1]);
 				whiteLine ( valueW,  str_whiteLine, 
 						 y, b,  x );
 			}catch(Exception e) {
 				System.out.println("There's an error"); 
 			}
-		} else if(b[x][y].equals("b")){
+		} else if("b".equals(b[x][y])){
 			try {
-				boolean value_ = b[x][y+1].equals("b");
+				boolean value_ = "b".equals(b[x][y+1]);
 				blackLine ( value_,  str_blackLine, 
 						 y, b,  x );
 			} catch(Exception e) { 

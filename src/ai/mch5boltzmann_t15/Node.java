@@ -53,7 +53,7 @@ public class Node {
 		this.moveNumber = moveNumber;
 		
 		String w = "w";
-		String b = "b";
+		String b = "b"; 
 		
 		//Update potential.
 		if(move != null) {
@@ -109,7 +109,7 @@ public class Node {
 		}
 		
 		//Switch colors.
-		newColor = this.color.equals("w") ? "b" : "w";
+		newColor = "w".equals(this.color) ? "b" : "w";
 		
 		//Initialize a new node.
 		Node node = new Node(this, move, newColor, board, this.moveNumber + 1);
