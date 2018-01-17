@@ -93,13 +93,15 @@ public class test_boltzman {
 		} catch(Exception e) {
 			oisTest1.readObject();
 			System.err.println("Error" + e.getMessage());
-		} finally {
-			if (oisTest1 !=null) {
-				oisTest1.close();
-			}
-			
-			
-		}
+		}  finally {
+			   if (fisTest1 != null) {
+	               try {
+	            	   fisTest1.close (); 
+	               } catch (java.io.IOException e3) {
+	                 System.out.println("I/O Exception");
+	               }	
+	           	}	
+}
 	
 		 
 		//The beginning and the end of the test.
@@ -109,9 +111,23 @@ public class test_boltzman {
 		startTime = System.currentTimeMillis();
 
 		//Declare buffers.
-		BufferedWriter outputTest1 = new BufferedWriter(
-				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
-		outputTest1.close();
+BufferedWriter outputTest1 = null;
+		
+		try{
+			outputTest1 = new BufferedWriter(
+					new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		} catch(Exception e) {
+			System.err.println("Error" + e.getMessage());
+		} finally {
+			   if (outputTest1 != null) {
+	               try {
+	            	   outputTest1.close (); 
+	               } catch (java.io.IOException e3) {
+	                 System.out.println("I/O Exception");
+	               }	
+	           	}	
+}
+		
 		MonteCarloH5Boltzmann mc = new MonteCarloH5Boltzmann(
 				boardTest1.duplicate(), 
 				playersTest1[currentIndexTest1].getColor(), 
@@ -256,7 +272,7 @@ public class test_boltzman {
 		output1Test1.append("========================================");
 		output1Test1.close();
 		} catch (java.io.FileNotFoundException e1){
-			
+			System.out.println("Error detected: " + e1);
 		} finally {
 			if (output1Test1 != null) {
 	             try {

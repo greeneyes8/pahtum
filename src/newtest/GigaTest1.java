@@ -82,7 +82,7 @@ public static Integer maxCast (int a){
 	
 public static void newRandomBoardOne (int testIndex, Board boardTest, 
 		Board[] boardCollectionTest, Board initialPositionTest1) {
-	if(testIndex % 2 == 1) {
+	if(testIndex % 2 !=0 ) {
 		//Load a new board.
 		boardTest = boardCollectionTest[(Integer) testIndex/2];
 		initialPositionTest1 = boardTest.duplicate();
@@ -188,7 +188,7 @@ public static void testOne1 () throws Exception {
 
 		//Run a single game.
 		while(numberOfMoveTest1 < totalNumberOfMovesTest1) {
-			if(playersTest1[currentIndexTest1].getType().equals("MCTS_UCT")) {
+			if("MCTS_UCT".equals(playersTest1[currentIndexTest1].getType())) {
 				//MCTS + H(7) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select a move.
@@ -204,7 +204,7 @@ public static void testOne1 () throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest1 = (currentIndexTest1 + 1) % 2;
-			} else if(playersTest1[currentIndexTest1].getType().equals("MCTS_H(5)")) {
+			} else if("MCTS_H(5)".equals(playersTest1[currentIndexTest1].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -243,7 +243,7 @@ public static void testOne1 () throws Exception {
 			outputTest1.close();
 
 			//Update statistics.
-			boolean valuePlayers1 = playersTest1[0].getName().equals("MCTS_H(5)");
+			boolean valuePlayers1 = "MCTS_H(5)".equals(playersTest1[0].getName());
 			updateStatisticsA1 ( valuePlayers1,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 
@@ -440,7 +440,7 @@ public static void testTwo1 () throws Exception {
 
 		//Run a single game.
 		while(numberOfMoveTest2 < totalNumberOfMovesTest2) {
-			if(playersTest2[currentIndexTest2].getType().equals("MCTS_H(7)")) {
+			if("MCTS_H(7)".equals(playersTest2[currentIndexTest2].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -455,7 +455,7 @@ public static void testTwo1 () throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest2 = (currentIndexTest2 + 1) % 2;
-			} else if(playersTest2[currentIndexTest2].getType().equals("MCTS_UCT")) {
+			} else if("MCTS_UCT".equals(playersTest2[currentIndexTest2].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -493,7 +493,7 @@ public static void testTwo1 () throws Exception {
 			outputTest2.close();
 
 			//Update statistics.
-			boolean valuePlayers2 = playersTest2[0].getName().equals("MCTS_H(7)");
+			boolean valuePlayers2 = "MCTS_H(7)".equals(playersTest2[0].getName());
 			updateStatisticsA1 ( valuePlayers2,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 
@@ -660,7 +660,7 @@ public static void testThree1 () throws Exception {
 
 		//Run a single game.
 		while(numberOfMoveTest3 < totalNumberOfMovesTest3) {
-			if(playersTest3[currentIndexTest3].getType().equals("MCTS_H(10)")) {
+			if("MCTS_H(10)".equals(playersTest3[currentIndexTest3].getType())) {
 				//MCTS + H(5) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo + H(5) will select new move.
@@ -675,7 +675,7 @@ public static void testThree1 () throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest3 = (currentIndexTest3 + 1) % 2;
-			} else if(playersTest3[currentIndexTest3].getType().equals("MCTS_UCT")) {
+			} else if("MCTS_UCT".equals(playersTest3[currentIndexTest3].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 
@@ -715,7 +715,7 @@ public static void testThree1 () throws Exception {
 			outputTest3.close();
 
 			//Update statistics.
-			boolean valuePlayers3 = playersTest3[0].getName().equals("MCTS_H(10)");
+			boolean valuePlayers3 = "MCTS_H(10)".equals(playersTest3[0].getName());
 			updateStatisticsA1 ( valuePlayers3,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 
@@ -878,7 +878,7 @@ public static void testFour1() throws Exception {
 
 		//Run a single game.
 		while(numberOfMoveTest4 < totalNumberOfMovesTest4) {
-			if(playersTest4[currentIndexTest4].getType().equals("MCTS_H(5+5)")) {
+			if("MCTS_H(5+5)".equals(playersTest4[currentIndexTest4].getType())) {
 				//MCTS + H(5) to play.
 				Tuple<Integer, Integer> move;
 
@@ -895,7 +895,7 @@ public static void testFour1() throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest4 = (currentIndexTest4 + 1) % 2;
-			} else if(playersTest4[currentIndexTest4].getType().equals("MCTS_UCT")) {
+			} else if("MCTS_UCT".equals(playersTest4[currentIndexTest4].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 
@@ -935,7 +935,7 @@ public static void testFour1() throws Exception {
 			outputTest4.close();
 
 			//Update statistics.
-			boolean valuePlayers4 = playersTest4[0].getName().equals("MCTS_H(5+5)");
+			boolean valuePlayers4 = "MCTS_H(5+5)".equals(playersTest4[0].getName());
 			updateStatisticsA1 ( valuePlayers4,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 
@@ -1100,7 +1100,7 @@ public static void testFive1() throws Exception {
 
 		//Run a single game.
 		while(numberOfMoveTest5 < totalNumberOfMovesTest5) {
-			if(playersTest5[currentIndexTest5].getType().equals("MCTS_H(7)")) {
+			if("MCTS_H(7)".equals(playersTest5[currentIndexTest5].getType())) {
 				//MCTS + H(10) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo + H(10) will select new move.
@@ -1119,7 +1119,7 @@ public static void testFive1() throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest5 = (currentIndexTest5 + 1) % 2;
-			} else if(playersTest5[currentIndexTest5].getType().equals("MCTS_H(5)")) {
+			} else if("MCTS_H(5)".equals(playersTest5[currentIndexTest5].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -1158,7 +1158,7 @@ public static void testFive1() throws Exception {
 			outputTest5.close();
 
 			//Update statistics.
-			boolean valuePlayers5 = playersTest5[0].getName().equals("MCTS_H(7)");
+			boolean valuePlayers5 = "MCTS_H(7)".equals(playersTest5[0].getName());
 			updateStatisticsA1 ( valuePlayers5,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 
@@ -1326,7 +1326,7 @@ public static void testSix1 () throws Exception {
 
 		//Run a single game.
 		while(numberOfMoveTest6 < totalNumberOfMovesTest6) {
-			if(playersTest6[currentIndexTest6].getType().equals("MCTS_H(10)")) {
+			if("MCTS_H(10)".equals(playersTest6[currentIndexTest6].getType())) {
 				//MCTS + H(10) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo + H(10) will select new move.
@@ -1345,7 +1345,7 @@ public static void testSix1 () throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest6 = (currentIndexTest6 + 1) % 2;
-			} else if(playersTest6[currentIndexTest6].getType().equals("MCTS_H(7)")) {
+			} else if("MCTS_H(7)".equals(playersTest6[currentIndexTest6].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -1383,7 +1383,7 @@ public static void testSix1 () throws Exception {
 			outputTest6.close();
 
 			//Update statistics.
-			boolean valuePlayers6 = playersTest6[1].getName().equals("MCTS_H(10)");
+			boolean valuePlayers6 = "MCTS_H(10)".equals(playersTest6[1].getName());
 			updateStatisticsA1 ( valuePlayers6,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 
