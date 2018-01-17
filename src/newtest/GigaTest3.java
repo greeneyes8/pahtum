@@ -719,11 +719,11 @@ public static void testThree3 () throws Exception {
 
 	//Number of all moves that was made during the game.
 	int numberOfMoveTest3 = 0;
-
+	int value3_grt3_20000 = 20000; 
 	//Players participating in the test case.
 	Player[] playersTest3 =  {
-			new Player("MCTS_UCT", "MCTS_UCT", "w", 20000),
-			new Player("MCTS_H(10)", "MCTS_H(10)", "b", 20000)
+			new Player("MCTS_UCT", "MCTS_UCT", "w", value3_grt3_20000),
+			new Player("MCTS_H(10)", "MCTS_H(10)", "b", value3_grt3_20000)
 	};
 
 	//Number of total moves. It is used to check whether the game is in 
@@ -901,6 +901,7 @@ public static void testThree3 () throws Exception {
 
 
 	//Append total outcome of the test case to the file.
+	int value3gt3_1000 = 1000;
 	BufferedWriter output1Test3 = null;
 	
 	try{
@@ -929,7 +930,7 @@ public static void testThree3 () throws Exception {
 	output1Test3.newLine();
 	output1Test3.append("MCTS_H(10) total wins: " + e1TotalWins);
 	output1Test3.newLine();
-	output1Test3.append("Play time: " + (endTimeTest3 - startTimeTest3)/1000 + " seconds.");
+	output1Test3.append("Play time: " + (endTimeTest3 - startTimeTest3)/value3gt3_1000 + " seconds.");
 	output1Test3.newLine();
 
 	//Write statistics for MCTS.
@@ -1225,7 +1226,7 @@ public static void testFour3() throws Exception {
 	output1Test4.newLine();
 	output1Test4.append("MCTS_H(5+5) total wins: " + e1TotalWins);
 	output1Test4.newLine();
-	output1Test4.append("Play time: " + (endTimeTest4 - startTimeTest4)/1000 + " seconds.");
+	output1Test4.append("Play time: " + (endTimeTest4 - startTimeTest4)/value4gt3_1000 + " seconds.");
 	output1Test4.newLine();
 
 	//Write statistics for MCTS.

@@ -10,7 +10,7 @@ import core.Board;
  */
 
 public class MiniMax {
-	static String color = null;
+	static String color = " ";
 	private Root root;
 	
 	/**

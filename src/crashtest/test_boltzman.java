@@ -82,35 +82,50 @@ public class test_boltzman {
 		int totalNumberOfMovesTest1 = 46;
 		
 		//Load board.
-		FileInputStream fisTest1 = new FileInputStream("50_boards_3.sav");
-		ObjectInputStream oisTest1 = new ObjectInputStream(fisTest1);
-		try {
-			
+		FileInputStream fisTest1 = null;
+		
+		try{
+			fisTest1 = new FileInputStream("50_boards_3.sav");
+			ObjectInputStream oisTest1 = new ObjectInputStream(fisTest1);
 			boardCollectionTest1 = (Board[]) oisTest1.readObject();
-			oisTest1.close();
-			
 		} catch(Exception e) {
-			oisTest1.readObject();
 			System.err.println("Error" + e.getMessage());
 		} finally {
-			if (oisTest1 !=null) {
-				oisTest1.close();
-			}
-			
-			
+			   if (fisTest1 != null) {
+	               try {
+	            	   fisTest1.close (); 
+	               } catch (java.io.IOException e3) {
+	                 System.out.println("I/O Exception");
+	               }	
+	           	}	
 		}
-	
-		 
-		//The beginning and the end of the test.
-		long startTime = 0, endTime = 0;
+		
 
+		//The beginning and the end of the test.
+		 
 		//Report when games commenced.
-		startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis();
 
 		//Declare buffers.
-		BufferedWriter outputTest1 = new BufferedWriter(
-				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
-		outputTest1.close();
+		BufferedWriter outputTest1 = null;
+		
+		try{
+			outputTest1 = new BufferedWriter(
+					new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		} catch(Exception e) {
+			System.err.println("Error" + e.getMessage());
+		} finally {
+			   if (outputTest1 != null) {
+	               try {
+	            	   outputTest1.close (); 
+	               } catch (java.io.IOException e3) {
+	                 System.out.println("I/O Exception");
+	               }	
+	           	}	
+		}
+		
+		
+		long endTime = System.currentTimeMillis();
 		MonteCarloH5Boltzmann mc = new MonteCarloH5Boltzmann(
 				boardTest1.duplicate(), 
 				playersTest1[currentIndexTest1].getColor(), 
@@ -134,7 +149,7 @@ public class test_boltzman {
 			//new random board.
 			if(testIndex % 2 == 1) {
 				//Load a new board.
-				boardTest1 = boardCollectionTest1[(Integer) testIndex/2];
+				boardTest1 = boardCollectionTest1[(Integer) testIndex/2];	
 				initialPositionTest1 = boardTest1.duplicate();
 			} else {
 				//Reset the board.
@@ -156,6 +171,8 @@ public class test_boltzman {
 			outputTest1.append("Player 1: " + playersTest1[0].getName() + 
 					" Player 2: " + playersTest1[1].getName());
 			outputTest1.newLine();
+			outputTest1.close();
+			outputTest1.flush();
 
 			//Append the result to the text file and update counters..
 			if(gameOutcome.equals(zero)) {
@@ -165,6 +182,7 @@ public class test_boltzman {
 				outputTest1.append("Result: draw");
 				outputTest1.newLine();
 				outputTest1.close();
+				outputTest1.flush();
 
 				//Update statistics.
 				boolean valuePlayersTest1 = playersTest1[0].getName().equals("Charles_2");
@@ -200,16 +218,30 @@ public class test_boltzman {
 				}
 				outputTest1.newLine();
 				outputTest1.close();
+				outputTest1.flush();
 			}			
 		} //End of the test case. (for)
 
 		//Report when games ended.
-		endTime = System.currentTimeMillis();	
+			
 		//Append total outcome of the test case to the file.
 		BufferedWriter output1Test1 = null;
-		try {
-		output1Test1 = new BufferedWriter(
-				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		
+		try{
+			output1Test1 = new BufferedWriter(
+					new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		}catch(Exception e) {
+			System.err.println("Error" + e.getMessage());
+		} finally {
+			   if (output1Test1 != null) {
+	               try {
+	            	   output1Test1.close (); 
+	               } catch (java.io.IOException e3) {
+	                 System.out.println("I/O Exception");
+	               }	
+	           	}	
+		}
+		
 		
 		output1Test1.append("========================================");
 		output1Test1.newLine();
@@ -253,18 +285,10 @@ public class test_boltzman {
 		output1Test1.newLine();
 
 		output1Test1.append("========================================");
+
+		output1Test1.flush();
 		output1Test1.close();
-		} catch (java.io.FileNotFoundException e1){
-			
-		} finally {
-			if (output1Test1 != null) {
-	             try {
-	            	 output1Test1.close (); // OK
-	             } catch (java.io.IOException e3) {
-	               System.out.println("I/O Exception");
-	               }
-	             }
-		}
+		
 
 //		/***********************************************************************
 //		 * Test #2: (100,000 roll-outs) MCTS + H(7) v Charles_2.

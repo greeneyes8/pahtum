@@ -90,7 +90,7 @@ public class Board implements Serializable{
 	 */
 	public void makeMove(Tuple<Integer, Integer> filed, String color) 
 	throws Exception {
-		if(board[filed.getFirstElement()][filed.getSecondElement()].equals("e")) 
+		if("e".equals(board[filed.getFirstElement()][filed.getSecondElement()]))
 		{
 			board[filed.getFirstElement()][filed.getSecondElement()] = color;
 		} else {
@@ -133,7 +133,7 @@ public class Board implements Serializable{
 			new ArrayList<Tuple<Integer, Integer>>();
 		for(int x = 0; x < 7; ++x) {
 			for(int y = 0; y < 7; ++y) {
-				if(board[x][y].equals("e")) {
+				if("e".equals(board[x][y])) {
 					list.add(new Tuple<Integer, Integer>(x, y));
 				}
 			}
@@ -256,7 +256,7 @@ public class Board implements Serializable{
 		//  There are quite few empty fields left.
 		for(int x = 0; x < 7; ++x) {
 			for(int y = 0; y < 7; ++y) {
-				if(board[x][y].equals("e")) {
+				if("e".equals(board[x][y])) {
 					// Empty field => calculate potential.
 					int index_x = x, index_y = y;
 					int potential = 0;
@@ -358,7 +358,7 @@ public class Board implements Serializable{
 		int tmpPotential = -1;
 		for(int x = 0; x < 7; ++x) {
 			for(int y = 0; y < 7; ++y) {
-				if(board[x][y].equals("e")) {
+				if("e".equals(board[x][y])) {
 					// Empty field => calculate potential.
 					int index_x = x, index_y = y;
 					int potential = 0;
@@ -460,7 +460,7 @@ public class Board implements Serializable{
 		int tmpPotential = -1;
 		for(int x = 0; x < 7; ++x) {
 			for(int y = 0; y < 7; ++y) {
-				if(board[x][y].equals("e")) {
+				if("e".equals(board[x][y])) {
 					// Empty field => calculate potential.
 					int index_x = x, index_y = y;
 					int potential = 0;
@@ -555,7 +555,7 @@ public class Board implements Serializable{
 			while(numberBlackHoles > 0) {
 				int coordianteX = generator.nextInt(sevenvalue);
 				int coordinateY = generator.nextInt(sevenvalue);
-				if(board[coordianteX][coordinateY].equals("e")) {
+				if("e".equals(board[coordianteX][coordinateY])) {
 					board[coordianteX][coordinateY] = "x";
 					--numberBlackHoles;
 				}
@@ -589,11 +589,11 @@ public class Board implements Serializable{
 		
 		try {
 		boolean equalsE12, equalsColor12;
-		equalsE12 = board_try[index_x_try][index_y_try - 1].equals("e");
+		equalsE12 = "e".equals(board_try[index_x_try][index_y_try - 1]);
 		equalsColor12 = board_try[index_x_try][index_y_try - 1].equals(color_try);
 		while(equalsE12|| 
 				equalsColor12) {
-			if(board_try[index_x_try][index_y_try - 1].equals("e")) {
+			if("e".equals(board_try[index_x_try][index_y_try - 1])) {
 				case_2_try = false;
 				potential_try += distance_try;
 				--distance_try;
@@ -605,7 +605,7 @@ public class Board implements Serializable{
 				}
 			}
 			--index_y_try;
-			equalsE12 = board_try[index_x_try][index_y_try - 1].equals("e");
+			equalsE12 = "e".equals(board_try[index_x_try][index_y_try - 1]);
 			equalsColor12 = board_try[index_x_try][index_y_try - 1].equals(color_try);
 		}
 		}	catch(Exception e) { 
@@ -620,11 +620,11 @@ public class Board implements Serializable{
 			int vertical_adjustment_t1) { 
 		try {
 			boolean 	equalsE14, equalsColor14;
-		equalsE14 = board_t1[index_x_t1 - 1][index_y_t1].equals("e");
+		equalsE14 = "e".equals(board_t1[index_x_t1 - 1][index_y_t1]);
 		equalsColor14 = board_t1[index_x_t1 - 1][index_y_t1].equals(color_t1);
 		while(equalsE14 || 
 				equalsColor14) {
-			if(board_t1[index_x_t1 - 1][index_y_t1].equals("e")) {
+			if("e".equals(board_t1[index_x_t1 - 1][index_y_t1])) {
 				case_1_t1 = false;
 				potential_t1 += distance_t1;
 				--distance_t1;
@@ -636,7 +636,7 @@ public class Board implements Serializable{
 				}
 			}
 			--index_x_t1;
-			equalsE14 = board_t1[index_x_t1 - 1][index_y_t1].equals("e");
+			equalsE14 = "e".equals(board_t1[index_x_t1 - 1][index_y_t1]);
 			equalsColor14 = board_t1[index_x_t1 - 1][index_y_t1].equals(color_t1);
 		}
 		} catch(Exception e) { 
@@ -650,11 +650,11 @@ public class Board implements Serializable{
 			int horizontal_adjustment_t3) { 
 		try {
 		boolean equalsE13, equalsColor13;
-		equalsE13 = board_t3[index_x_t3][index_y_t3 + 1].equals("e");
+		equalsE13 = "e".equals(board_t3[index_x_t3][index_y_t3 + 1]);
 		equalsColor13 = board_t3[index_x_t3][index_y_t3 + 1].equals(color_t3);
 		while(equalsE13 || 
 				equalsColor13) {
-			if(board_t3[index_x_t3][index_y_t3 + 1].equals("e")) {
+			if("e".equals(board_t3[index_x_t3][index_y_t3 + 1])){
 				case_3_t3 = false;
 				potential_t3 += distance_t3;
 				--distance_t3;
@@ -666,7 +666,7 @@ public class Board implements Serializable{
 				}
 			}
 			++index_y_t3;
-			equalsE13 = board_t3[index_x_t3][index_y_t3 + 1].equals("e");
+			equalsE13 = "e".equals(board_t3[index_x_t3][index_y_t3 + 1]);
 			equalsColor13 = board_t3[index_x_t3][index_y_t3 + 1].equals(color_t3);
 			}
 		}catch(Exception e) { 
@@ -680,11 +680,11 @@ public class Board implements Serializable{
 			int vertical_adjustment_t4) {
 		try {
 		boolean equalsE11, equalsColor11;
-		equalsE11 = board_t4[index_x_t4 + 1][index_y_t4].equals("e");
+		equalsE11 = "e".equals(board_t4[index_x_t4 + 1][index_y_t4]);
 		equalsColor11 = board_t4[index_x_t4 + 1][index_y_t4].equals(color_t4);
 		while(equalsE11 || 
 				equalsColor11) {
-			if(board_t4[index_x_t4 + 1][index_y_t4].equals("e")) {
+			if("e".equals(board_t4[index_x_t4 + 1][index_y_t4])) {
 				case_4_t4 = false;
 				potential_t4 += distance_t4;
 				--distance_t4;
@@ -696,7 +696,7 @@ public class Board implements Serializable{
 				}
 			}
 			++index_x_t4;
-			equalsE11 = board_t4[index_x_t4 + 1][index_y_t4].equals("e");
+			equalsE11 = "e".equals(board_t4[index_x_t4 + 1][index_y_t4]);
 			equalsColor11 = board_t4[index_x_t4 + 1][index_y_t4].equals(color_t4);
 			}
 		}catch(Exception e) { 
@@ -778,7 +778,7 @@ public class Board implements Serializable{
 		
 		for(int x = 0; x < 7; ++x) {
 			for(int y = 0; y < 7; ++y) {
-				if(board[x][y].equals("e")) {
+				if("e".equals(board[x][y])) {
 					++countE;
 				}
 			}
@@ -793,11 +793,11 @@ public class Board implements Serializable{
 		
 		try {
 			boolean equalsE9, equalsColor9;
-			equalsE9 = board[index_x - 1][index_y].equals("e") ;
+			equalsE9 = "e".equals(board[index_x - 1][index_y]) ;
 			equalsColor9 = board[index_x - 1][index_y].equals(color);
 			while(equalsE9 || 
 					equalsColor9) {
-				if(board[index_x - 1][index_y].equals("e")) {
+				if("e".equals(board[index_x - 1][index_y])) {
 					case_1 = false;
 					potential += distance;
 					--distance;
@@ -809,7 +809,7 @@ public class Board implements Serializable{
 					}
 				}
 				--index_x;
-				equalsE9 = board[index_x - 1][index_y].equals("e") ;
+				equalsE9 = "e".equals(board[index_x - 1][index_y]) ;
 				equalsColor9 = board[index_x - 1][index_y].equals(color);
 			}
 		} catch(Exception e) { 
@@ -824,11 +824,11 @@ public class Board implements Serializable{
 		
 		try {
 			boolean equalsE8, equalsColor8;
-			equalsE8 = board[index_x][index_y - 1].equals("e");
+			equalsE8 = "e".equals(board[index_x][index_y - 1]);
 			equalsColor8 = board[index_x][index_y - 1].equals(color);
 			while(equalsE8 || 
 					equalsColor8) {
-				if(board[index_x][index_y - 1].equals("e")) {
+				if("e".equals(board[index_x][index_y - 1])) {
 					case_2 = false;
 					potential += distance;
 					--distance;
@@ -840,7 +840,7 @@ public class Board implements Serializable{
 					}
 				}
 				--index_y;
-				equalsE8 = board[index_x][index_y - 1].equals("e");
+				equalsE8 = "e".equals(board[index_x][index_y - 1]);
 				equalsColor8 = board[index_x][index_y - 1].equals(color);
 			}
 		} catch(Exception e) { 
@@ -856,11 +856,11 @@ public class Board implements Serializable{
 		
 		try {
 			boolean equalsE7, equalsColor7;
-			equalsE7 =board[index_x][index_y + 1].equals("e");
+			equalsE7 = "e".equals(board[index_x][index_y + 1]);
 			equalsColor7 = board[index_x][index_y + 1].equals(color);
 			while(equalsE7 || 
 					equalsColor7) {
-				if(board[index_x][index_y + 1].equals("e")) {
+				if("e".equals(board[index_x][index_y + 1])) {
 					case_3 = false;
 					potential += distance;
 					--distance;
@@ -872,7 +872,7 @@ public class Board implements Serializable{
 					}
 				}
 				++index_y;
-				equalsE7 =board[index_x][index_y + 1].equals("e");
+				equalsE7 = "e".equals(board[index_x][index_y + 1]);
 				equalsColor7 = board[index_x][index_y + 1].equals(color);
 			}
 		} catch(Exception e) { 
@@ -888,11 +888,11 @@ public class Board implements Serializable{
 		
 		try {
 			boolean equalsE6, equalsColor6;
-			equalsE6 = board[index_x + 1][index_y].equals("e");
+			equalsE6 = "e".equals(board[index_x + 1][index_y]);
 			equalsColor6 = board[index_x + 1][index_y].equals(color);
 			while(equalsE6|| 
 					equalsColor6) {
-				if(board[index_x + 1][index_y].equals("e")) {
+				if("e".equals(board[index_x + 1][index_y])) {
 					case_4 = false;
 					potential += distance;
 					--distance;
@@ -904,7 +904,7 @@ public class Board implements Serializable{
 					}
 				}
 				++index_x;
-				equalsE6 = board[index_x + 1][index_y].equals("e");
+				equalsE6 = "e".equals(board[index_x + 1][index_y]);
 				equalsColor6 = board[index_x + 1][index_y].equals(color);
 			}
 		} catch(Exception e) { 
@@ -1001,10 +1001,10 @@ public class Board implements Serializable{
 			, boolean case_1_d1, int potential_d1, int distance_d1, int vertical_adjustment_d1, String color_d1) {
 		try {	
 		boolean equalsEX_4, equalsColorsX_4;
-		equalsEX_4 = board_d1[index_x_d1 - 1][index_y_d1].equals("e");
+		equalsEX_4 = "e".equals(board_d1[index_x_d1 - 1][index_y_d1]);
 		equalsColorsX_4 = board_d1[index_x_d1 - 1][index_y_d1].equals(color_d1);
 		while(equalsEX_4|| equalsColorsX_4) {
-			if(board_d1[index_x_d1 - 1][index_y_d1].equals("e")) {
+			if("e".equals(board_d1[index_x_d1 - 1][index_y_d1])) {
 				case_1_d1 = false;
 				potential_d1 += distance_d1;
 				--distance_d1;
@@ -1016,7 +1016,7 @@ public class Board implements Serializable{
 				}
 			}
 			--index_x_d1;
-			equalsEX_4 = board_d1[index_x_d1 - 1][index_y_d1].equals("e");
+			equalsEX_4 = "e".equals(board_d1[index_x_d1 - 1][index_y_d1]);
 			equalsColorsX_4 = board_d1[index_x_d1 - 1][index_y_d1].equals(color_d1);
 		}
 	} catch(Exception e) { 
@@ -1029,10 +1029,10 @@ public class Board implements Serializable{
 			, boolean case_2_d2, int potential_d2, int distance_d2, int horizontal_adjustment_d2, String color_d2) {
 		try {
 			boolean equalsEX_3, equalsColorsX_3;
-			equalsEX_3 = board_d2[index_x_d2][index_y_d2 - 1].equals("e") ;
+			equalsEX_3 = "e".equals(board_d2[index_x_d2][index_y_d2 - 1]) ;
 			equalsColorsX_3 =  board_d2[index_x_d2][index_y_d2 - 1].equals(color_d2);
 			while(equalsEX_3 || equalsColorsX_3) {
-				if(board_d2[index_x_d2][index_y_d2 - 1].equals("e")) {
+				if("e".equals(board_d2[index_x_d2][index_y_d2 - 1])) {
 					case_2_d2 = false;
 					potential_d2 += distance_d2;
 					--distance_d2;
@@ -1044,7 +1044,7 @@ public class Board implements Serializable{
 					}
 				}
 				--index_y_d2;
-				equalsEX_3 = board_d2[index_x_d2][index_y_d2 - 1].equals("e") ;
+				equalsEX_3 = "e".equals(board_d2[index_x_d2][index_y_d2 - 1]) ;
 				equalsColorsX_3 =  board_d2[index_x_d2][index_y_d2 - 1].equals(color_d2);
 			}
 		} catch(Exception e) { 
@@ -1057,10 +1057,10 @@ public class Board implements Serializable{
 			, boolean case_3_d3, int potential_d3, int distance_d3, int horizontal_adjustment_d3, String color_d3) {
 		try {
 			boolean equalsEX_2, equalsColorsX_2;
-			equalsEX_2 = board_d3[index_x_d3][index_y_d3 + 1].equals("e") ;
+			equalsEX_2 = "e".equals(board_d3[index_x_d3][index_y_d3 + 1]) ;
 			equalsColorsX_2 = board_d3[index_x_d3][index_y_d3 + 1].equals(color_d3);
 			while(equalsEX_2 || equalsColorsX_2) {
-				if(board_d3[index_x_d3][index_y_d3 + 1].equals("e")) {
+				if("e".equals(board_d3[index_x_d3][index_y_d3 + 1])) {
 					case_3_d3 = false;
 					potential_d3 += distance_d3;
 					--distance_d3;
@@ -1072,7 +1072,7 @@ public class Board implements Serializable{
 					}
 				}
 				++index_y_d3;
-				equalsEX_2 = board_d3[index_x_d3][index_y_d3 + 1].equals("e") ;
+				equalsEX_2 = "e".equals(board_d3[index_x_d3][index_y_d3 + 1]) ;
 				equalsColorsX_2 = board_d3[index_x_d3][index_y_d3 + 1].equals(color_d3);
 			}
 		} catch(Exception e) { 
@@ -1086,10 +1086,10 @@ public class Board implements Serializable{
 			, boolean case_4_d4, int potential_d4, int distance_d4, int vertical_adjustment_d4, String color_d4) {
 		try {
 			boolean equalsEX_1, equalsColorsX_1;
-			equalsEX_1 = board_d4[index_x_d4 + 1][index_y_d4].equals("e") ;
+			equalsEX_1 = "e".equals(board_d4[index_x_d4 + 1][index_y_d4]) ;
 			equalsColorsX_1 =board_d4[index_x_d4 + 1][index_y_d4].equals(color_d4);
 			while(equalsEX_1|| equalsColorsX_1) {
-				if(board_d4[index_x_d4 + 1][index_y_d4].equals("e")) {
+				if("e".equals(board_d4[index_x_d4 + 1][index_y_d4])) {
 					case_4_d4 = false;
 					potential_d4 += distance_d4;
 					--distance_d4;
@@ -1101,7 +1101,7 @@ public class Board implements Serializable{
 					}
 				}
 				++index_x_d4;
-				equalsEX_1 = board_d4[index_x_d4 + 1][index_y_d4].equals("e") ;
+				equalsEX_1 = "e".equals(board_d4[index_x_d4 + 1][index_y_d4]) ;
 				equalsColorsX_1 =board_d4[index_x_d4 + 1][index_y_d4].equals(color_d4);
 			}
 		} catch(Exception e) { 
@@ -1185,10 +1185,10 @@ public class Board implements Serializable{
 			, boolean case_1_l1, int potential_l1, int distance_l1, int vertical_adjustment_l1) {
 		try {
 			boolean equalsMinus, equalsColorMinus;
-			equalsMinus = board[index_x_l1 - 1][index_y_l1].equals("e") ;
+			equalsMinus = "e".equals(board[index_x_l1 - 1][index_y_l1]) ;
 			equalsColorMinus =  board[index_x_l1 - 1][index_y_l1].equals(color_l1);
 			while(equalsMinus || equalsColorMinus) {
-				if(board[index_x_l1 - 1][index_y_l1].equals("e")) {
+				if("e".equals(board[index_x_l1 - 1][index_y_l1])) {
 					case_1_l1 = false;
 					potential_l1 += distance_l1;
 					--distance_l1;
@@ -1200,7 +1200,7 @@ public class Board implements Serializable{
 					}
 				}
 				--index_x_l1;
-				equalsMinus = board[index_x_l1 - 1][index_y_l1].equals("e") ;
+				equalsMinus = "e".equals(board[index_x_l1 - 1][index_y_l1]) ;
 				equalsColorMinus =  board[index_x_l1 - 1][index_y_l1].equals(color_l1);
 			}
 		} catch(Exception e) { 
@@ -1213,10 +1213,10 @@ public class Board implements Serializable{
 			, boolean case_2_l2, int potential_l2, int distance_l2, int horizontal_adjustment_l2) {
 		try {
 			boolean equalsEXminus, equalsColorXminus;
-			equalsEXminus = board[index_x_l2][index_y_l2 - 1].equals("e");
+			equalsEXminus = "e".equals(board[index_x_l2][index_y_l2 - 1]);
 			equalsColorXminus = board[index_x_l2][index_y_l2 - 1].equals(color_l2);
 			while(equalsEXminus ||equalsColorXminus) {
-				if(board[index_x_l2][index_y_l2 - 1].equals("e")) {
+				if("e".equals(board[index_x_l2][index_y_l2 - 1])){
 					case_2_l2 = false;
 					potential_l2 += distance_l2;
 					--distance_l2;
@@ -1228,7 +1228,7 @@ public class Board implements Serializable{
 					}
 				}
 				--index_y_l2;
-				equalsEXminus = board[index_x_l2][index_y_l2 - 1].equals("e");
+				equalsEXminus = "e".equals(board[index_x_l2][index_y_l2 - 1]);
 				equalsColorXminus = board[index_x_l2][index_y_l2 - 1].equals(color_l2);
 			}
 		} catch(Exception e) { 
@@ -1241,10 +1241,10 @@ public class Board implements Serializable{
 			, boolean case_3_l3, int potential_l3, int distance_l3, int horizontal_adjustment_l3) {
 		try {
 			boolean equalsEX, equalsColorX;
-			equalsEX = board[index_x_l3][index_y_l3 + 1].equals("e");
+			equalsEX = "e".equals(board[index_x_l3][index_y_l3 + 1]);
 			equalsColorX = board[index_x_l3][index_y_l3 + 1].equals(color_l3);
 			while(equalsEX || equalsColorX) {
-				if(board[index_x_l3][index_y_l3 + 1].equals("e")) {
+				if("e".equals(board[index_x_l3][index_y_l3 + 1])) {
 					case_3_l3 = false;
 					potential_l3 += distance_l3;
 					--distance_l3;
@@ -1256,7 +1256,7 @@ public class Board implements Serializable{
 					}
 				}
 				++index_y_l3;
-				equalsEX = board[index_x_l3][index_y_l3 + 1].equals("e");
+				equalsEX = "e".equals(board[index_x_l3][index_y_l3 + 1]);
 				equalsColorX = board[index_x_l3][index_y_l3 + 1].equals(color_l3);
 			}
 		} catch(Exception e) { 
@@ -1269,14 +1269,14 @@ public class Board implements Serializable{
 			, boolean case_l4, int potential_l4, int distance_l4, int vertical_adjustment_l4) {
 		try {
 			boolean equalsE, equalsColor;
-			equalsE = board[index_xl4 + 1][index_yl4].equals("e");
+			equalsE = "e".equals(board[index_xl4 + 1][index_yl4]);
 			equalsColor = board[index_xl4 + 1][index_yl4].equals(colorl4);
 			while(equalsE || equalsColor) {
-				if(board[index_xl4 + 1][index_yl4].equals("e")) {
+				if("e".equals(board[index_xl4 + 1][index_yl4])) {
 					case_l4 = false;
 					potential_l4 += distance_l4;
 					--distance_l4;
-					equalsE = board[index_xl4 + 1][index_yl4].equals("e");
+					equalsE = "e".equals(board[index_xl4 + 1][index_yl4]);
 					equalsColor = board[index_xl4 + 1][index_yl4].equals(colorl4);
 				} else {
 					potential_l4 += distance_l4 + 2;
@@ -1302,7 +1302,7 @@ public class Board implements Serializable{
 				--index_x1;
 				ValueEnemyColor_1Minus = board[index_x1 - 1][index_y1].equals(enemyColor1);
 			}
-			if(board[index_x1 - 1][index_y1].equals("e")) {
+			if("e".equals(board[index_x1 - 1][index_y1])) {
 				extra_x_minus1 = true;
 			}
 		} catch(Exception e) { 
@@ -1320,7 +1320,7 @@ public class Board implements Serializable{
 				++index_x2;
 				ValueEnemyColor_1Plus = board[index_x2 + 1][index_y2].equals(enemyColor2);
 			}
-			if(board[index_x2 + 1][index_y2].equals("e")) {
+			if("e".equals(board[index_x2 + 1][index_y2])) {
 				extra_x_plus2 = true;
 			}
 		} catch(Exception e) { 
@@ -1338,7 +1338,7 @@ public class Board implements Serializable{
 				--index_y3;
 				ValueEnemyColor_1Minus = board[index_x3][index_y3 - 1].equals(enemyColor3);
 			}
-			if(board[index_x3][index_y3 - 1].equals("e")) {
+			if("e".equals(board[index_x3][index_y3 - 1])) {
 				extra_y_minus3 = true;
 			}
 		} catch(Exception e) { 
@@ -1356,7 +1356,7 @@ public class Board implements Serializable{
 				++index_yea4;
 				ValueEnemyColor = board[index_xea4][index_yea4 + 1].equals(enemyColor_ea4);
 			}
-			if(board[index_xea4][index_yea4 + 1].equals("e")) {
+			if("e".equals(board[index_xea4][index_yea4 + 1])) {
 				extra_y_plusea4 = true;
 			}
 		} catch(Exception e) { 

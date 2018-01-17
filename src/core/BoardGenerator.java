@@ -16,7 +16,7 @@ import core.Board;
 
 public class BoardGenerator {
 
-	private static ObjectOutputStream oos;
+	
 
 	/**
 	 * @param args
@@ -25,6 +25,7 @@ public class BoardGenerator {
 	public static void main(String[] args) throws IOException {
 		Board[] boardCollection = new Board[200];
 		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
 		//Generate boards (9 dead fields each, no guarantee that in terms of 
 		//duplicates).
 		int valueboardGB1 = 1;

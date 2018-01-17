@@ -1816,7 +1816,7 @@ public static void testSix2 () throws Exception {
 	output1Test6.newLine();
 	output1Test6.append("MCTS_H(10) total wins: " + e1TotalWins);
 	output1Test6.newLine();
-	output1Test6.append("Play time: " + (endTimeTest6 - startTimeTest6)/1000 + " seconds.");
+	output1Test6.append("Play time: " + (endTimeTest6 - startTimeTest6)/value6_gt2_1000 + " seconds.");
 	output1Test6.newLine();
 
 	//Write statistics for MCTS (UCT).
