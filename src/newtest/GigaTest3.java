@@ -3,6 +3,7 @@ package newtest;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import util.Tuple;
@@ -81,9 +82,9 @@ public static Integer maxCast (int a){
 		return valInteger;
 		}
 
-public static void newRandomBoardOne3 (int testIndex, Board boardTest1, 
+public static void newRandomBoardThree (int testIndex, Board boardTest1, 
 		Board[] boardCollectionTest1, Board initialPositionTest1 ) {
-	if(testIndex % 2 == 1) {
+	if(testIndex % 2 != 0) {
 		//Load a new board.
 		boardTest1 = boardCollectionTest1[(Integer) testIndex/2];
 		initialPositionTest1 = boardTest1.duplicate();
@@ -147,49 +148,18 @@ public static void testOne3() throws Exception {
 	int totalNumberOfMovesTest1 = 38;
 
 	//Load board.
-	FileInputStream fisTest1 = null;
+	String name3Board1 = "50_boards_11.sav";
+	loadBoard ( boardCollectionTest1, name3Board1);
 	
-	try {
-		fisTest1 = new FileInputStream("50_boards_11.sav");
-		ObjectInputStream oisTest1 = new ObjectInputStream(fisTest1);
-		boardCollectionTest1 = (Board[]) oisTest1.readObject();
-		oisTest1.close();
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	}finally {
-		   if (fisTest1 != null) {
-               try {
-            	   fisTest1.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
-
 	//The beginning and the end of the test.
 	long startTime = 0, endTime = 0;
 
 	//Report when games commenced.
 	startTime = System.currentTimeMillis();
-
+	String name3File1 = "results_20k_11b_MCTS_UCTvMCTS_H(5).txt";
 	//Define buffers.
 	BufferedWriter outputTest1 = null;
-	
-	try{
-		outputTest1 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_UCTvMCTS_H(5).txt", true));
-	}catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (outputTest1 != null) {
-               try {
-            	   outputTest1.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
+	defineBuffers ( outputTest1, name3File1);
 	
 	MonteCarlo mc_t1 = new MonteCarlo(
 			boardTest1.duplicate(), 
@@ -216,12 +186,12 @@ public static void testOne3() throws Exception {
 
 		//Reset the board to an initial state. When index is odd generate a 
 		//new random board.
-		newRandomBoardOne3 ( testIndex,  boardTest1, 
+		newRandomBoardThree( testIndex,  boardTest1, 
 				 boardCollectionTest1,  initialPositionTest1 );
 
 		//Run a single game.
 		while(numberOfMoveTest1 < totalNumberOfMovesTest1) {
-			if(playersTest1[currentIndexTest1].getType().equals("MCTS_UCT")) {
+			if("MCTS_UCT".equals(playersTest1[currentIndexTest1].getType())) {
 				//MCTS + H(7) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select a move.
@@ -236,7 +206,7 @@ public static void testOne3() throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest1 = (currentIndexTest1 + 1) % 2;
-			} else if(playersTest1[currentIndexTest1].getType().equals("MCTS_H(5)")) {
+			} else if("MCTS_H(5)".equals(playersTest1[currentIndexTest1].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -274,38 +244,20 @@ public static void testOne3() throws Exception {
 			outputTest1.close();
 
 			//Update statistics.
-			boolean valuePlayers1 = playersTest1[0].getName().equals("MCTS_H(5)");
+			boolean valuePlayers1 = "MCTS_H(5)".equals(playersTest1[0].getName());
 			updateStatisticsA3 ( valuePlayers1,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 
 		} else {
+			boolean value = true;
 			//One side wins the game.
-			if(gameOutcome.equals(playersTest1[0].getColor())) {
-				//Player #1, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest1.append("Result: " + playersTest1[0].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer1 = playersTest1[0].getName().equals("MCTS_H(5)");
-				updateStatisticsB3 ( valuePlayer1,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-
-			} else {
-				//Player #2, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest1.append("Result: " + playersTest1[1].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer1 = playersTest1[1].getName().equals("MCTS_H(5)");
-				updateStatisticsB3 ( valuePlayer1,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-			}
-			outputTest1.newLine();
-			outputTest1.close();
+			String phrase3_1 = "MCTS_H(5)";
+			OneSideWinsTheGame ( gameOutcome,  playersTest1 
+					, outputTest1,  value ,  e1TotalWins,
+					 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+					 e2TotalWins,  e1TotalLoses, e2WinAsPlayer2, 
+					 e1LoseAsPlayer1, phrase3_1);
+		
 		}			
 	} //End of the test case. (for)
 
@@ -313,21 +265,8 @@ public static void testOne3() throws Exception {
 	int value1gt3_1000 = 1000;
 	//Append total outcome of the test case to the file.
 	BufferedWriter output1Test1 = null;
+	defineBuffers ( output1Test1,  name3File1);
 	
-	try{
-		output1Test1 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_UCTvMCTS_H(5).txt", true));
-	}catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (output1Test1 != null) {
-               try {
-            	   output1Test1.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
 	
 	output1Test1.append("========================================");
 	output1Test1.newLine();
@@ -376,19 +315,7 @@ public static void testOne3() throws Exception {
 }
 
 
-public static void newRandomBoardTwo3 (int testIndex, Board boardTest2, 
-		Board[] boardCollectionTest2, Board initialPositionTest2 ) {
-	if(testIndex % 2 == 1) {
-		//Load a new board.
-		boardTest2 = boardCollectionTest2[(Integer) testIndex/2];
-		initialPositionTest2 = boardTest2.duplicate();
-	} else {
-		//Reset the board.
-		boardTest2 = initialPositionTest2.duplicate();
-	}
 
-	
-}
 
 public static void testTwo3 () throws Exception {
 	
@@ -438,50 +365,18 @@ public static void testTwo3 () throws Exception {
 	int totalNumberOfMovesTest2 = 38;
 
 	//Load board.
-	FileInputStream fisTest2 = null;
+	String name3Board2 = "50_boards_11.sav";
+	loadBoard ( boardCollectionTest2, name3Board2);
 	
-	try {
-		fisTest2 = new FileInputStream("50_boards_11.sav");
-		ObjectInputStream oisTest2 = new ObjectInputStream(fisTest2);
-		boardCollectionTest2 = (Board[]) oisTest2.readObject();
-		oisTest2.close();
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	}finally {
-		   if (fisTest2 != null) {
-               try {
-            	   fisTest2.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
-
 	//The beginning and the end of the test.
 	long startTimeTest2 = 0, endTimeTest2 = 0;
 
 	//Report when games commenced.
 	startTimeTest2 = System.currentTimeMillis();
-
-	//Define buffers
+	String name3File2 = "results_20k_11b_MCTS_UCTvMCTS_H(7).txt";
+	//Define buffers.
 	BufferedWriter outputTest2 = null;
-	
-	try{
-		outputTest2 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_UCTvMCTS_H(7).txt", true));
-	}catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (outputTest2 != null) {
-               try {
-            	   outputTest2.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
+	defineBuffers ( outputTest2, name3File2);
 	
 	MonteCarloH7 mc_mh7 = new MonteCarloH7(
 			boardTest2.duplicate(), 
@@ -508,12 +403,12 @@ public static void testTwo3 () throws Exception {
 
 		//Reset the board to an initial state. When index is odd generate a 
 		//new random board.
-		newRandomBoardTwo3 ( testIndex,  boardTest2, 
+		newRandomBoardThree ( testIndex,  boardTest2, 
 				 boardCollectionTest2,  initialPositionTest2 );
 
 		//Run a single game.
 		while(numberOfMoveTest2 < totalNumberOfMovesTest2) {
-			if(playersTest2[currentIndexTest2].getType().equals("MCTS_H(7)")) {
+			if("MCTS_H(7)".equals(playersTest2[currentIndexTest2].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -529,7 +424,7 @@ public static void testTwo3 () throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest2 = (currentIndexTest2 + 1) % 2;
-			} else if(playersTest2[currentIndexTest2].getType().equals("MCTS_UCT")) {
+			} else if("MCTS_UCT".equals(playersTest2[currentIndexTest2].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -568,61 +463,26 @@ public static void testTwo3 () throws Exception {
 			outputTest2.close();
 
 			//Update statistics.
-			boolean valuePlayers2 = playersTest2[0].getName().equals("MCTS_H(7)");
+			boolean valuePlayers2 = "MCTS_H(7)".equals(playersTest2[0].getName());
 			updateStatisticsA3 ( valuePlayers2,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 			
 		} else {
-			//One side wins the game.
-			if(gameOutcome.equals(playersTest2[0].getColor())) {
-				//Player #1, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest2.append("Result: " + playersTest2[0].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer2 = playersTest2[0].getName().equals("MCTS_H(7)");
-				updateStatisticsB3 ( valuePlayer2,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-
-			} else {
-				//Player #2, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest2.append("Result: " + playersTest2[1].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer2 = playersTest2[1].getName().equals("MCTS_H(7)");
-				updateStatisticsB3 ( valuePlayer2,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-			}
-			outputTest2.newLine();
-			outputTest2.close();
+			boolean value = true;
+			String phrase2_3 = "MCTS_H(7)";
+			OneSideWinsTheGame ( gameOutcome,  playersTest2 
+					, outputTest2,  value ,  e1TotalWins,
+					 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+					 e2TotalWins,  e1TotalLoses,
+					 e2WinAsPlayer2,  e1LoseAsPlayer1, phrase2_3 );
 		}			
 	} //End of the test case. (for)
 
 	//Report when games ended.
 	int value2gt3_1000 = 1000;
 	//Append total outcome of the test case to the file.
-	BufferedWriter output1Test2 = null;
-	
-	try{
-		 output1Test2 = new BufferedWriter(
-					new FileWriter("results_20k_11b_MCTS_UCTvMCTS_H(7).txt", true));
-	}catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (output1Test2 != null) {
-               try {
-            	   output1Test2.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
+	BufferedWriter output1Test2 = null;	
+	defineBuffers ( output1Test2,  name3File2);
 	
 	output1Test2.append("========================================");
 	output1Test2.newLine();
@@ -670,18 +530,6 @@ public static void testTwo3 () throws Exception {
 	
 }
 
-public static void newRandomBoardThree3 (int testIndex, Board boardTest3, 
-		Board[] boardCollectionTest3, Board initialPositionTest3 ) {
-	if(testIndex % 2 == 1) {
-		//Load a new board.
-		boardTest3 = boardCollectionTest3[(Integer) testIndex/2];
-		initialPositionTest3 = boardTest3.duplicate();
-	} else {
-		//Reset the board.
-		boardTest3 = initialPositionTest3.duplicate();
-	}
-
-}
 
 
 public static void testThree3 () throws Exception {
@@ -732,49 +580,22 @@ public static void testThree3 () throws Exception {
 	int totalNumberOfMovesTest3 = 38;
 
 	//Load board.
-	FileInputStream fisTest3 = null;
+	//Load board.
+		String name3Board3 = "50_boards_11.sav";
+		loadBoard ( boardCollectionTest3, name3Board3);
+		
 	
-	try {
-		fisTest3 = new FileInputStream("50_boards_11.sav");
-		ObjectInputStream oisTest3 = new ObjectInputStream(fisTest3);
-		boardCollectionTest3 = (Board[]) oisTest3.readObject();
-		oisTest3.close();
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	}finally {
-		   if (fisTest3 != null) {
-               try {
-            	   fisTest3.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
 	//The beginning and the end of the test.
 	long startTimeTest3 = 0, endTimeTest3 = 0;
 
 	//Report when games commenced.
 	startTimeTest3 = System.currentTimeMillis();
 
-	//Define buffers
-	BufferedWriter outputTest3 = null;
 	
-	try{
-		outputTest3 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_UCTvMCTS_H(10).txt", true));
-	}catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (outputTest3 != null) {
-               try {
-            	   outputTest3.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
+	String name3File3 = "results_20k_3b_MCTS_UCTvMCTS_H(10).txt";
+	//Define buffers.
+	BufferedWriter outputTest3 = null;
+	defineBuffers ( outputTest3, name3File3);
 	
 	MonteCarloH10 h10_mc = new MonteCarloH10(
 			boardTest3.duplicate(), 
@@ -801,12 +622,12 @@ public static void testThree3 () throws Exception {
 
 		//Reset the board to an initial state. When index is odd generate a 
 		//new random board.
-		newRandomBoardThree3 ( testIndex,  boardTest3, 
+		newRandomBoardThree ( testIndex,  boardTest3, 
 				 boardCollectionTest3,  initialPositionTest3 );
 
 		//Run a single game.
 		while(numberOfMoveTest3 < totalNumberOfMovesTest3) {
-			if(playersTest3[currentIndexTest3].getType().equals("MCTS_H(10)")) {
+			if("MCTS_H(10)".equals(playersTest3[currentIndexTest3].getType())) {
 				//MCTS + H(5) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo + H(5) will select new move.
@@ -821,7 +642,7 @@ public static void testThree3 () throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest3 = (currentIndexTest3 + 1) % 2;
-			} else if(playersTest3[currentIndexTest3].getType().equals("MCTS_UCT")) {
+			} else if("MCTS_UCT".equals(playersTest3[currentIndexTest3].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 
@@ -861,39 +682,20 @@ public static void testThree3 () throws Exception {
 			outputTest3.close();
 
 			//Update statistics.
-			boolean valuePlayers3 = playersTest3[0].getName().equals("MCTS_H(10)");
+			boolean valuePlayers3 = "MCTS_H(10)".equals(playersTest3[0].getName());
 			updateStatisticsA3 ( valuePlayers3,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 			
 
 		} else {
 			//One side wins the game.
-			if(gameOutcome.equals(playersTest3[0].getColor())) {
-				//Player #1, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest3.append("Result: " + playersTest3[0].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer3 = playersTest3[0].getName().equals("MCTS_H(10)");
-				updateStatisticsB3 ( valuePlayer3,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-
-			} else {
-				//Player #2, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest3.append("Result: " + playersTest3[1].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer3 = playersTest3[1].getName().equals("MCTS_H(10)");
-				updateStatisticsB3 ( valuePlayer3,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-			}
-			outputTest3.newLine();
-			outputTest3.close();
+			boolean value = true;
+			String phrase3_3 = "MCTS_H(10)";
+			OneSideWinsTheGame ( gameOutcome,  playersTest3 
+					, outputTest3,  value ,  e1TotalWins,
+					 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+					 e2TotalWins,  e1TotalLoses,
+					 e2WinAsPlayer2,  e1LoseAsPlayer1, phrase3_3 );
 		}			
 	} //End of the test case. (for)
 
@@ -902,23 +704,9 @@ public static void testThree3 () throws Exception {
 
 	//Append total outcome of the test case to the file.
 	int value3gt3_1000 = 1000;
-	BufferedWriter output1Test3 = null;
+	BufferedWriter output1Test3 = null;	
+	defineBuffers ( output1Test3,  name3File3);
 	
-	try{
-		output1Test3 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_UCTvMCTS_H(10).txt", true));
-	}catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (output1Test3 != null) {
-               try {
-            	   output1Test3.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
 	
 	output1Test3.append("========================================");
 	output1Test3.newLine();
@@ -966,18 +754,6 @@ public static void testThree3 () throws Exception {
 	
 }
 
-public static void newRandomBoardFour3 (int testIndex, Board boardTest4, 
-		Board[] boardCollectionTest4, Board initialPositionTest4 ) {
-	if(testIndex % 2 == 1) {
-		//Load a new board.
-		boardTest4 = boardCollectionTest4[(Integer) testIndex/2];
-		initialPositionTest4 = boardTest4.duplicate();
-	} else {
-		//Reset the board.
-		boardTest4 = initialPositionTest4.duplicate();
-	}
-
-}
 
 
 public static void testFour3() throws Exception {
@@ -1027,50 +803,23 @@ public static void testFour3() throws Exception {
 	//fields in the board).
 	int totalNumberOfMovesTest4 = 38;
 
-	//Load board.
-	FileInputStream fisTest4 = null;
 	
-	try {
-		fisTest4 = new FileInputStream("50_boards_11.sav");
-		ObjectInputStream oisTest4 = new ObjectInputStream(fisTest4);
-		boardCollectionTest4 = (Board[]) oisTest4.readObject();
-		oisTest4.close();
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (fisTest4 != null) {
-               try {
-            	   fisTest4.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
-
+	//Load board.
+		String name3Board4 = "50_boards_11.sav";
+		loadBoard ( boardCollectionTest4, name3Board4);
+		
+	
 	//The beginning and the end of the test.
 	long startTimeTest4 = 0, endTimeTest4 = 0;
 
 	//Report when games commenced.
 	startTimeTest4 = System.currentTimeMillis();
 	
+	String name3File4 = "results_20k_3b_MCTS_UCTvMCTS_H(5+5).txt";
 	//Define buffers.
 	BufferedWriter outputTest4 = null;
+	defineBuffers ( outputTest4, name3File4);
 	
-	try{
-		outputTest4 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_UCTvMCTS_H(5+5).txt", true));
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (outputTest4 != null) {
-               try {
-            	   outputTest4.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
 	
 	MonteCarloH55 mc_h55 = new MonteCarloH55(
 			boardTest4.duplicate(), 
@@ -1097,13 +846,13 @@ public static void testFour3() throws Exception {
 
 		//Reset the board to an initial state. When index is odd generate a 
 		//new random board.
-		newRandomBoardFour3 ( testIndex,  boardTest4, 
+		newRandomBoardThree ( testIndex,  boardTest4, 
 				 boardCollectionTest4,  initialPositionTest4 );
 
 
 		//Run a single game.
 		while(numberOfMoveTest4 < totalNumberOfMovesTest4) {
-			if(playersTest4[currentIndexTest4].getType().equals("MCTS_H(5+5)")) {
+			if("MCTS_H(5+5)".equals(playersTest4[currentIndexTest4].getType())) {
 				//MCTS + H(5) to play.
 				Tuple<Integer, Integer> move;
 
@@ -1121,7 +870,7 @@ public static void testFour3() throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest4 = (currentIndexTest4 + 1) % 2;
-			} else if(playersTest4[currentIndexTest4].getType().equals("MCTS_UCT")) {
+			} else if("MCTS_UCT".equals(playersTest4[currentIndexTest4].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 
@@ -1162,59 +911,28 @@ public static void testFour3() throws Exception {
 			outputTest4.close();
 
 			//Update statistics.
-			boolean valuePlayers4 = playersTest4[0].getName().equals("MCTS_H(5+5)");
+			boolean valuePlayers4 = "MCTS_H(5+5)".equals(playersTest4[0].getName());
 			updateStatisticsA3 ( valuePlayers4,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 			
 		} else {
 			//One side wins the game.
-			if(gameOutcome.equals(playersTest4[0].getColor())) {
-				//Player #1, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest4.append("Result: " + playersTest4[0].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer4 = playersTest4[0].getName().equals("MCTS_H(5+5)");
-				updateStatisticsB3 ( valuePlayer4,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-			} else {
-				//Player #2, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest4.append("Result: " + playersTest4[1].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer4 = playersTest4[1].getName().equals("MCTS_H(5+5)");
-				updateStatisticsB3 ( valuePlayer4,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-			}
-			outputTest4.newLine();
-			outputTest4.close();
+			boolean value = true;
+			String phrase4_3 = "MCTS_H(5+5)";
+			OneSideWinsTheGame ( gameOutcome,  playersTest4 
+					, outputTest4,  value ,  e1TotalWins,
+					 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+					 e2TotalWins,  e1TotalLoses,
+					 e2WinAsPlayer2,  e1LoseAsPlayer1, phrase4_3 );
 		}			
 	} //End of the test case. (for)
 
 	//Report when games ended.
 	int value4gt3_1000 = 1000;
 	//Append total outcome of the test case to the file.
-	BufferedWriter output1Test4 = null;
+	BufferedWriter output1Test4 = null;	
+	defineBuffers ( output1Test4,  name3File4);
 	
-	try{
-		output1Test4 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_UCTvMCTS_H(5+5).txt", true));
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (output1Test4 != null) {
-               try {
-            	   output1Test4.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
 	
 	output1Test4.append("========================================");
 	output1Test4.newLine();
@@ -1262,18 +980,6 @@ public static void testFour3() throws Exception {
 	
 }
 
-public static void newRandomBoardFive3 (int testIndex, Board boardTest5, 
-		Board[] boardCollectionTest5, Board initialPositionTest5 ) {
-	if(testIndex % 2 == 1) {
-		//Load a new board.
-		boardTest5 = boardCollectionTest5[(Integer) testIndex/2];
-		initialPositionTest5 = boardTest5.duplicate();
-	} else {
-		//Reset the board.
-		boardTest5 = initialPositionTest5.duplicate();
-	}
-
-}
 
 
 public static void testFive3 () throws Exception {
@@ -1323,26 +1029,10 @@ public static void testFive3 () throws Exception {
 	//fields in the board).
 	int totalNumberOfMovesTest5 = 38;
 
-	//Load board.
-	FileInputStream fisTest5 = null;
 	
-	try {
-		fisTest5 = new FileInputStream("50_boards_11.sav");
-		ObjectInputStream oisTest5 = new ObjectInputStream(fisTest5);
-		boardCollectionTest5 = (Board[]) oisTest5.readObject();
-		oisTest5.close();
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (fisTest5 != null) {
-               try {
-            	   fisTest5.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
+	//Load board.
+			String name3Board5 = "50_boards_11.sav";
+			loadBoard ( boardCollectionTest5, name3Board5);
 
 	//The beginning and the end of the test.
 	long startTimeTest5 = 0, endTimeTest5 = 0;
@@ -1350,23 +1040,11 @@ public static void testFive3 () throws Exception {
 	//Report when games commenced.
 	startTimeTest5 = System.currentTimeMillis();
 
+	String name3File5 = "results_20k_11b_MCTS_H(5)vMCTS_H(7).txt";
 	//Define buffers.
 	BufferedWriter outputTest5 = null;
+	defineBuffers ( outputTest5, name3File5);
 	
-	try{
-		outputTest5 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_H(5)vMCTS_H(7).txt", true));
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (outputTest5 != null) {
-               try {
-            	   outputTest5.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
 	
 	MonteCarloH7 h7mc = new MonteCarloH7(
 			boardTest5.duplicate(), 
@@ -1393,12 +1071,12 @@ public static void testFive3 () throws Exception {
 
 		//Reset the board to an initial state. When index is odd generate a 
 		//new random board.
-		newRandomBoardFive3 ( testIndex,  boardTest5, 
+		newRandomBoardThree ( testIndex,  boardTest5, 
 				 boardCollectionTest5,  initialPositionTest5 );
 
 		//Run a single game.
 		while(numberOfMoveTest5 < totalNumberOfMovesTest5) {
-			if(playersTest5[currentIndexTest5].getType().equals("MCTS_H(7)")) {
+			if("MCTS_H(7)".equals(playersTest5[currentIndexTest5].getType())) {
 				//MCTS + H(10) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo + H(10) will select new move.
@@ -1417,7 +1095,7 @@ public static void testFive3 () throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest5 = (currentIndexTest5 + 1) % 2;
-			} else if(playersTest5[currentIndexTest5].getType().equals("MCTS_H(5)")) {
+			} else if("MCTS_H(5)".equals(playersTest5[currentIndexTest5].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -1456,7 +1134,7 @@ public static void testFive3 () throws Exception {
 			outputTest5.close();
 
 			//Update statistics.
-			boolean valuePlayers5 = playersTest5[0].getName().equals("MCTS_H(7)");
+			boolean valuePlayers5 = "MCTS_H(7)".equals(playersTest5[0].getName());
 			updateStatisticsA3 ( valuePlayers5,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 			
@@ -1464,53 +1142,22 @@ public static void testFive3 () throws Exception {
 
 		} else {
 			//One side wins the game.
-			if(gameOutcome.equals(playersTest5[0].getColor())) {
-				//Player #1, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest5.append("Result: " + playersTest5[0].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer5 = playersTest5[0].getName().equals("MCTS_H(7)");
-				updateStatisticsB3 ( valuePlayer5,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-			} else {
-				//Player #2, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest5.append("Result: " + playersTest5[1].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer5 = playersTest5[1].getName().equals("MCTS_H(7)");
-				updateStatisticsB3 ( valuePlayer5,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-			}
-			outputTest5.newLine();
-			outputTest5.close();
+			boolean value = true;
+			String phrase5_3 = "MCTS_H(7)";
+			OneSideWinsTheGame ( gameOutcome,  playersTest5 
+					, outputTest5,  value ,  e1TotalWins,
+					 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+					 e2TotalWins,  e1TotalLoses,
+					 e2WinAsPlayer2,  e1LoseAsPlayer1, phrase5_3 );
 		}			
 	} //End of the test case. (for)
 
 	//Report when games ended.
 	int value5gt3_1000 = 1000;
 	//Append total outcome of the test case to the file.
-	BufferedWriter output1Test5 = null;
+	BufferedWriter output1Test5 = null;	
+	defineBuffers ( output1Test5,  name3File5);
 	
-	try{
-		output1Test5 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_H(5)vMCTS_H(7).txt", true));
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (output1Test5 != null) {
-               try {
-            	   output1Test5.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
 	
 	output1Test5.append("========================================");
 	output1Test5.newLine();
@@ -1558,18 +1205,6 @@ public static void testFive3 () throws Exception {
 	
 }
 
-public static void newRandomBoardSix3 (int testIndex, Board boardTest6, 
-		Board[] boardCollectionTest6, Board initialPositionTest6 ) {
-	if(testIndex % 2 == 1) {
-		//Load a new board.
-		boardTest6 = boardCollectionTest6[(Integer) testIndex/2];
-		initialPositionTest6 = boardTest6.duplicate();
-	} else {
-		//Reset the board.
-		boardTest6 = initialPositionTest6.duplicate();
-	}
-
-}
 
 
 public static void testSix3() throws Exception {
@@ -1620,49 +1255,18 @@ public static void testSix3() throws Exception {
 	int totalNumberOfMovesTest6 = 38;
 
 	//Load board.
-	FileInputStream fisTest6 = null;
+	String name3Board6 = "50_boards_11.sav";
+	loadBoard ( boardCollectionTest6, name3Board6);
 	
-	try {
-		fisTest6 = new FileInputStream("50_boards_11.sav");
-		ObjectInputStream oisTest6 = new ObjectInputStream(fisTest6);
-		boardCollectionTest6 = (Board[]) oisTest6.readObject();
-		oisTest6.close();
-	} catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	}finally {
-		   if (fisTest6 != null) {
-               try {
-            	   fisTest6.close ();
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
-
-
 	//The beginning and the end of the test.
 	long startTimeTest6 = 0, endTimeTest6 = 0;
 
 	//Report when games commenced.
 	startTimeTest6 = System.currentTimeMillis();
-
+	String name3File6 = "results_20k_11b_MCTS_H(7)vMCTS_H(10).txt";
 	//Define buffers.
 	BufferedWriter outputTest6 = null;
-	
-	try{
-		outputTest6 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_H(7)vMCTS_H(10).txt", true));
-	}catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (outputTest6 != null) {
-               try {
-            	   outputTest6.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
+	defineBuffers ( outputTest6, name3File6);
 	
 	MonteCarloH10 mc_h10 = new MonteCarloH10(
 			boardTest6.duplicate(), 
@@ -1689,13 +1293,13 @@ public static void testSix3() throws Exception {
 
 		//Reset the board to an initial state. When index is odd generate a 
 		//new random board.
-		newRandomBoardSix3 ( testIndex,  boardTest6, 
+		newRandomBoardThree ( testIndex,  boardTest6, 
 				 boardCollectionTest6,  initialPositionTest6 );
 
 
 		//Run a single game.
 		while(numberOfMoveTest6 < totalNumberOfMovesTest6) {
-			if(playersTest6[currentIndexTest6].getType().equals("MCTS_H(10)")) {
+			if("MCTS_H(10)".equals(playersTest6[currentIndexTest6].getType())) {
 				//MCTS + H(10) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo + H(10) will select new move.
@@ -1714,7 +1318,7 @@ public static void testSix3() throws Exception {
 
 				//Adjust index of current player.
 				currentIndexTest6 = (currentIndexTest6 + 1) % 2;
-			} else if(playersTest6[currentIndexTest6].getType().equals("MCTS_H(7)")) {
+			} else if("MCTS_H(7)".equals(playersTest6[currentIndexTest6].getType())) {
 				//MCTS (UCT) to play.
 				Tuple<Integer, Integer> move;
 				//Pure Monte-Carlo will select move.
@@ -1752,7 +1356,7 @@ public static void testSix3() throws Exception {
 			outputTest6.close();
 
 			//Update statistics.
-			boolean valuePlayers6 = playersTest6[0].getName().equals("MCTS_H(10)");
+			boolean valuePlayers6 = "MCTS_H(10)".equals(playersTest6[0].getName());
 			updateStatisticsA3 ( valuePlayers6,  e1DrawAsPlayer1,
 					 e2DrawAsPlayer2,  e1DrawAsPlayer2,  e2DrawAsPlayer1);
 			
@@ -1760,54 +1364,24 @@ public static void testSix3() throws Exception {
 
 		} else {
 			//One side wins the game.
-			if(gameOutcome.equals(playersTest6[0].getColor())) {
-				//Player #1, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest6.append("Result: " + playersTest6[0].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer6 = playersTest6[0].getName().equals("MCTS_H(10)");
-				updateStatisticsB3 ( valuePlayer6,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-
-			} else {
-				//Player #2, whoever it is, wins the game.
-
-				//Add note about the winner to the file.
-				outputTest6.append("Result: " + playersTest6[1].getName() + " wins");
-
-				//Update statistics.
-				boolean valuePlayer6 = playersTest6[1].getName().equals("MCTS_H(10)");
-				updateStatisticsB3 ( valuePlayer6,  e1TotalWins,
-						 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
-						 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
-			}
-			outputTest6.newLine();
-			outputTest6.close();
+			boolean value = true;
+			//One side wins the game.
+			String phrase3_6 = "MCTS_H(10)";
+			OneSideWinsTheGame ( gameOutcome,  playersTest6 
+					, outputTest6,  value ,  e1TotalWins,
+					 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+					 e2TotalWins,  e1TotalLoses, e2WinAsPlayer2, 
+					 e1LoseAsPlayer1, phrase3_6);
+			
 		}			
 	} //End of the test case. (for)
 
 	//Report when games ended.
 	int value6gt3_1000 = 1000;
 	//Append total outcome of the test case to the file.
-	BufferedWriter output1Test6 = null;
+	BufferedWriter output1Test6 = null;	
+	defineBuffers ( output1Test6,  name3File6);
 
-	try{
-		output1Test6 = new BufferedWriter(
-				new FileWriter("results_20k_11b_MCTS_H(7)vMCTS_H(10).txt", true));
-	}catch(Exception e) {
-		System.err.println("Error" + e.getMessage());
-	} finally {
-		   if (output1Test6 != null) {
-               try {
-            	   output1Test6.close (); 
-               } catch (java.io.IOException e3) {
-                 System.out.println("I/O Exception");
-               }	
-           	}	
-	}
 	
 	output1Test6.append("========================================");
 	output1Test6.newLine();
@@ -1889,6 +1463,81 @@ public static void updateStatisticsB3 (boolean value, int e1TotalWins,
 	
 }
 
+public static void loadBoard (Board[] boardCollectionTest1, String nameBoard) {
+	FileInputStream fisTest = null ;
+	//Load board.
+	try {
+		 fisTest = new FileInputStream(nameBoard);
+		ObjectInputStream oisTest1 = new ObjectInputStream(fisTest);
+		boardCollectionTest1 = (Board[]) oisTest1.readObject();
+		oisTest1.close();
+	} catch(Exception e) {
+		System.err.println("Error" + e.getMessage());
+	} finally {
+		   if (fisTest != null) {
+               try {
+            	   fisTest.close (); 
+               } catch (java.io.IOException e3) {
+                 System.out.println("I/O Exception");
+               }	
+           	}
+		
+		}
+	}
+
+public static  void defineBuffers (BufferedWriter output1Test, String nameFile) {
+	
+	try {
+	 output1Test = new BufferedWriter(
+			new FileWriter(nameFile, true));
+	} catch(Exception e) {
+		System.err.println("Error occured during saving.");
+		System.out.println("Something was wrong");
+	}finally {
+           if (output1Test != null) {
+               try {
+            	   output1Test.close (); 
+               } catch (java.io.IOException e3) {
+                 System.out.println("I/O Exception");
+               }	
+           }
+	}
+	
+}
+
+public static void OneSideWinsTheGame (String gameOutcome, Player[] playersTest1 
+		,BufferedWriter outputTest1, boolean value, int e1TotalWins,
+		int e2TotalLoses,int e1WinAsPlayer2, int e2LoseAsPlayer1,
+		int e2TotalWins, int e1TotalLoses, int e2WinAsPlayer2, int e1LoseAsPlayer1, String phrase ) throws IOException {
+	//One side wins the game.
+	if(gameOutcome.equals(playersTest1[0].getColor())) {
+		//Player #1, whoever it is, wins the game.
+
+		//Add note about the winner to the file.
+		outputTest1.append("Result: " + playersTest1[0].getName() + " wins");
+
+		//Update statistics.
+		boolean valuePlayers1 = playersTest1[0].getName().equals(phrase);
+		updateStatisticsB3 ( valuePlayers1,  e1TotalWins,
+				 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+				 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
+
+	} else {
+		//Player #2, whoever it is, wins the game.
+
+		//Add note about the winner to the file.
+		outputTest1.append("Result: " + playersTest1[1].getName() + " wins");
+
+		//Update statistics.
+		boolean valuePlayers1 = playersTest1[1].getName().equals(phrase);
+		updateStatisticsB3 ( valuePlayers1,  e1TotalWins,
+				 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
+				 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
+	}
+	outputTest1.newLine();
+	outputTest1.close();
+	
+}
 
 }
 
