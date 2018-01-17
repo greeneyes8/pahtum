@@ -72,6 +72,7 @@ public class Board implements Serializable{
 			board = qwe;
 			break;
 		 default:
+			 break;
 		}
 
 	}
@@ -237,9 +238,7 @@ public class Board implements Serializable{
 	 */
 	public List<Tuple<Integer, Integer>> heuristic_bestX_moves(String color, 
 			int MAGIC_NUMBER) {
-		List<Tuple<Integer, Integer>> list = 
-			new ArrayList<Tuple<Integer,Integer>>();
-
+		
 		List<Tuple<Integer, Tuple<Integer, Integer>>> ratingList = 
 			new ArrayList<Tuple<Integer,Tuple<Integer,Integer>>>();
 

@@ -133,7 +133,7 @@ public class test_boltzman {
 
 			//Reset the board to an initial state. When index is odd generate a 
 			//new random board.
-			if(testIndex % 2 == 1) {
+			if(testIndex % 2 != 0) {
 				//Load a new board.
 				boardTest1 = boardCollectionTest1[(Integer) testIndex/2];
 				initialPositionTest1 = boardTest1.duplicate();

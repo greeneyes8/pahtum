@@ -122,7 +122,6 @@ public class MonteCarlo {
 		Random generator = new Random();
 		String color = no_de.getColor();
 		int moveNumber = no_de.getMoveNumber();
-		String w = "w";
 		
 		//Check if terminal state hasn't been reached. If not play next move.
 		while(moveNumber < this.allMovesNumber) {
