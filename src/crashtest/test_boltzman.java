@@ -25,6 +25,8 @@ import core.Rules;
 
 public class test_boltzman {
 
+	private static Board[] boardCollectionTest1s;
+
 	/**
 	 * 
 	 * @param args
@@ -61,8 +63,7 @@ public class test_boltzman {
 		//board before new game take place.
 		Board initialPositionTest1 = null;
 
-		//Array of all boards that are used in the test case.
-		Board[] boardCollectionTest1 = null;
+		boardCollectionTest1s = null;
 
 		//Index of player that is entitled to make a move.
 		int currentIndexTest1 = 0;
@@ -82,27 +83,10 @@ public class test_boltzman {
 		int totalNumberOfMovesTest1 = 46;
 		
 		//Load board.
-		FileInputStream fisTest1 = null;
-		ObjectInputStream oisTest1 = null;
-		try {
-			fisTest1 = new FileInputStream("50_boards_3.sav");
-			oisTest1 = new ObjectInputStream(fisTest1);
-			boardCollectionTest1 = (Board[]) oisTest1.readObject();
-			oisTest1.close();
-			fisTest1.close();
-		} catch(Exception e) {
-			oisTest1.readObject();
-			System.err.println("Error" + e.getMessage());
-		}  finally {
-			   if (fisTest1 != null) {
-	               try {
-	            	   fisTest1.close (); 
-	               } catch (java.io.IOException e3) {
-	                 System.out.println("I/O Exception");
-	               }	
-	           	}	
-}
-	
+		String nameBoard = "50_boards_3.sav";
+		//Load board.
+		loadBoard ( boardCollectionTest1s, nameBoard);
+		
 		 
 		//The beginning and the end of the test.
 		long startTime = 0, endTime = 0;
@@ -111,29 +95,15 @@ public class test_boltzman {
 		startTime = System.currentTimeMillis();
 
 		//Declare buffers.
-BufferedWriter outputTest1 = null;
-		
-		try{
-			outputTest1 = new BufferedWriter(
-					new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
-		} catch(Exception e) {
-			System.err.println("Error" + e.getMessage());
-		} finally {
-			   if (outputTest1 != null) {
-	               try {
-	            	   outputTest1.close (); 
-	               } catch (java.io.IOException e3) {
-	                 System.out.println("I/O Exception");
-	               }	
-	           	}	
-}
-		
+			BufferedWriter outputTest1 = null;
+			DeclareBuffers (extracted(outputTest1));
+	
 		MonteCarloH5Boltzmann mc = new MonteCarloH5Boltzmann(
-				boardTest1.duplicate(), 
+				extracted(boardTest1).duplicate(), 
 				playersTest1[currentIndexTest1].getColor(), 
 				numberOfMoveTest1, 
 				totalNumberOfMovesTest1);
-		Charles_2 charles = new Charles_2(playersTest1[currentIndexTest1].getColor(), boardTest1);
+		Charles_2 charles = new Charles_2(playersTest1[currentIndexTest1].getColor(), extracted(boardTest1));
 
 		//Boards are OK. Proceed to testing.
 		for(int testIndex = 1; testIndex <= 100; ++testIndex) {
@@ -151,37 +121,37 @@ BufferedWriter outputTest1 = null;
 			//new random board.
 			if(testIndex % 2 != 0) {
 				//Load a new board.
-				boardTest1 = boardCollectionTest1[(Integer) testIndex/2];
-				initialPositionTest1 = boardTest1.duplicate();
+				boardTest1 = boardCollectionTest1s[(Integer) testIndex/2];
+				initialPositionTest1 = extracted(boardTest1).duplicate();
 			} else {
 				//Reset the board.
-				boardTest1 = initialPositionTest1.duplicate();
+				boardTest1 = extracted(initialPositionTest1).duplicate();
 			}
 
 
 			//Run a single game.
 			RunASingleGame ( numberOfMoveTest1,  totalNumberOfMovesTest1
 					,  currentIndexTest1,  playersTest1,
-					 boardTest1,  mc,  charles);
+					 extracted(boardTest1),  mc,  charles);
 		 //end of single game.
 
-			String gameOutcome = Rules.calculateScore(boardTest1);
+			String gameOutcome = Rules.calculateScore(extracted(boardTest1));
 			String zero= "0";
 			
-			outputTest1.append("Match #" + testIndex);
-			outputTest1.newLine();
-			outputTest1.append("Player 1: " + playersTest1[0].getName() + 
+			extracted(outputTest1).append("Match #" + testIndex);
+			extracted(outputTest1).newLine();
+			extracted(outputTest1).append("Player 1: " + playersTest1[0].getName() + 
 					" Player 2: " + playersTest1[1].getName());
-			outputTest1.newLine();
+			extracted(outputTest1).newLine();
 
 			//Append the result to the text file and update counters..
 			if(gameOutcome.equals(zero)) {
 				//The game was a draw.
 				++totalDraws;
 				//Append information to the file.
-				outputTest1.append("Result: draw");
-				outputTest1.newLine();
-				outputTest1.close();
+				extracted(outputTest1).append("Result: draw");
+				extracted(outputTest1).newLine();
+				extracted(outputTest1).close();
 
 				//Update statistics.
 				boolean valuePlayersTest1 = "Charles_2".equals(playersTest1[0].getName());
@@ -195,7 +165,7 @@ BufferedWriter outputTest1 = null;
 					//Player #1, whoever it is, wins the game.
 
 					//Add note about the winner to the file.
-					outputTest1.append("Result: " + playersTest1[0].getName() + " wins");
+					extracted(outputTest1).append("Result: " + playersTest1[0].getName() + " wins");
 
 					//Update statistics.
 					boolean valuePlayersTest1 = "Charles_2".equals(playersTest1[0].getName());
@@ -207,7 +177,7 @@ BufferedWriter outputTest1 = null;
 					//Player #2, whoever it is, wins the game.
 
 					//Add note about the winner to the file.
-					outputTest1.append("Result: " + playersTest1[1].getName() + " wins");
+					extracted(outputTest1).append("Result: " + playersTest1[1].getName() + " wins");
 
 					//Update statistics.
 					boolean valuePlayersTest1 = "Charles_2".equals(playersTest1[1].getName());
@@ -215,8 +185,8 @@ BufferedWriter outputTest1 = null;
 							 e2TotalLoses, e1WinAsPlayer2,  e2LoseAsPlayer1,
 							 e2TotalWins,  e1TotalLoses,  e2WinAsPlayer2,  e1LoseAsPlayer1);
 				}
-				outputTest1.newLine();
-				outputTest1.close();
+				extracted(outputTest1).newLine();
+				extracted(outputTest1).close();
 			}			
 		} //End of the test case. (for)
 
@@ -224,63 +194,52 @@ BufferedWriter outputTest1 = null;
 		endTime = System.currentTimeMillis();	
 		//Append total outcome of the test case to the file.
 		BufferedWriter output1Test1 = null;
-		try {
-		output1Test1 = new BufferedWriter(
-				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+		DeclareBuffers ( outputTest1);
 		
-		output1Test1.append("========================================");
-		output1Test1.newLine();
-		output1Test1.append("*Summary (1k/100) 3-point board*");
-		output1Test1.newLine();
-		output1Test1.append("Draw occurred: " + totalDraws);
-		output1Test1.newLine();
-		output1Test1.append("Boltzmann1k total wins: " + e2TotalWins);
-		output1Test1.newLine();
-		output1Test1.append("Charles_2 total wins: " + e1TotalWins);
-		output1Test1.newLine();
-		output1Test1.append("Play time: " + (endTime - startTime)/value_1000 + " seconds.");
-		output1Test1.newLine();
+		extracted(output1Test1).append("========================================");
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("*Summary (1k/100) 3-point board*");
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Draw occurred: " + totalDraws);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Boltzmann1k total wins: " + e2TotalWins);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Charles_2 total wins: " + e1TotalWins);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Play time: " + (endTime - startTime)/value_1000 + " seconds.");
+		extracted(output1Test1).newLine();
 
 		//Write statistics for MCTS.
-		output1Test1.append("Boltzmann1k wins as player #1 : " + e2WinAsPlayer1);
-		output1Test1.newLine();
-		output1Test1.append("Boltzmann1k wins as player #2 : " + e2WinAsPlayer2);
-		output1Test1.newLine();
-		output1Test1.append("Boltzmann1k draws as player #1 : " + e2DrawAsPlayer1);
-		output1Test1.newLine();
-		output1Test1.append("Boltzmann1k draws as player #2 : " + e2DrawAsPlayer2);
-		output1Test1.newLine();
-		output1Test1.append("Boltzmann1k loses as player #1 : " + e2LoseAsPlayer1);
-		output1Test1.newLine();
-		output1Test1.append("Boltzmann1k loses as player #2 : " + e2LoseAsPlayer2);
-		output1Test1.newLine();
+		extracted(output1Test1).append("Boltzmann1k wins as player #1 : " + e2WinAsPlayer1);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Boltzmann1k wins as player #2 : " + e2WinAsPlayer2);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Boltzmann1k draws as player #1 : " + e2DrawAsPlayer1);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Boltzmann1k draws as player #2 : " + e2DrawAsPlayer2);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Boltzmann1k loses as player #1 : " + e2LoseAsPlayer1);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Boltzmann1k loses as player #2 : " + e2LoseAsPlayer2);
+		extracted(output1Test1).newLine();
 
 		//Write statistics for Random AI.
-		output1Test1.append("Charles_2 wins as player #1 : " + e1WinAsPlayer1);
-		output1Test1.newLine();
-		output1Test1.append("Charles_2 wins as player #2 : " + e1WinAsPlayer2);
-		output1Test1.newLine();
-		output1Test1.append("Charles_2 draws as player #1 : " + e1DrawAsPlayer1);
-		output1Test1.newLine();
-		output1Test1.append("Charles_2 draws as player #2 : " + e1DrawAsPlayer2);
-		output1Test1.newLine();
-		output1Test1.append("Charles_2 loses as player #1 : " + e1LoseAsPlayer1);
-		output1Test1.newLine();
-		output1Test1.append("Charles_2 loses as player #2 : " + e1LoseAsPlayer2);
-		output1Test1.newLine();
+		extracted(output1Test1).append("Charles_2 wins as player #1 : " + e1WinAsPlayer1);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Charles_2 wins as player #2 : " + e1WinAsPlayer2);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Charles_2 draws as player #1 : " + e1DrawAsPlayer1);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Charles_2 draws as player #2 : " + e1DrawAsPlayer2);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Charles_2 loses as player #1 : " + e1LoseAsPlayer1);
+		extracted(output1Test1).newLine();
+		extracted(output1Test1).append("Charles_2 loses as player #2 : " + e1LoseAsPlayer2);
+		extracted(output1Test1).newLine();
 
-		output1Test1.append("========================================");
-		output1Test1.close();
-		} catch (java.io.FileNotFoundException e1){
-			System.out.println("Error detected: " + e1);
-		} finally {
-			if (output1Test1 != null) {
-	             try {
-	            	 output1Test1.close (); // OK
-	             } catch (java.io.IOException e3) {
-	               System.out.println("I/O Exception");
-	               }
-	             }
+		extracted(output1Test1).append("========================================");
+		extracted(output1Test1).close();
+		
 		}
 
 //		/***********************************************************************
@@ -1576,6 +1535,12 @@ BufferedWriter outputTest1 = null;
 //		output1Test6.append("========================================");
 //		output1Test6.close();
 
+	
+	private static BufferedWriter extracted(BufferedWriter outputTest1) {
+		return outputTest1;
+	}
+	private static Board extracted(Board boardTest1) {
+		return boardTest1;
 	}
 public static void updateStatisticsFirst (boolean value, int e1DrawAsPlayer1, 
 		int e2DrawAsPlayer2, int e1DrawAsPlayer2, int e2DrawAsPlayer1) {
@@ -1626,7 +1591,7 @@ public static void RunASingleGame (int numberOfMoveTest1, int totalNumberOfMoves
 					getSimulationNumber());
 
 
-			boardTest1.makeMove(move, playersTest1[currentIndexTest1].getColor());
+			extracted(boardTest1).makeMove(move, playersTest1[currentIndexTest1].getColor());
 //			System.out.println("move >> " + move.toString());
 			//Increment number of currently made moves.
 			++numberOfMoveTest1;
@@ -1664,7 +1629,7 @@ public static void RunASingleGame (int numberOfMoveTest1, int totalNumberOfMoves
 //					getSimulationNumber());
 
 
-			boardTest1.makeMove(move, playersTest1[currentIndexTest1].getColor());
+			extracted(boardTest1).makeMove(move, playersTest1[currentIndexTest1].getColor());
 
 			//Increment number of currently made moves.
 			++numberOfMoveTest1;
@@ -1673,6 +1638,46 @@ public static void RunASingleGame (int numberOfMoveTest1, int totalNumberOfMoves
 			currentIndexTest1 = (currentIndexTest1 + 1) % 2;
 		}
 	}
+	
+}
+
+public static void loadBoard (Board[] boardCollectionTest1, String nameBoard) {
+	FileInputStream fisTest = null ;
+	//Load board.
+	try {
+		 fisTest = new FileInputStream(nameBoard);
+		ObjectInputStream oisTest1 = new ObjectInputStream(fisTest);
+		boardCollectionTest1 = (Board[]) oisTest1.readObject();
+		oisTest1.close();
+	} catch(Exception e) {
+		System.err.println("Error" + e.getMessage());
+	} finally {
+		   if (fisTest != null) {
+               try {
+            	   fisTest.close (); 
+               } catch (java.io.IOException e3) {
+                 System.out.println("I/O Exception");
+               }	
+           	}
+		
+		}
+	}
+
+public static void DeclareBuffers (BufferedWriter outputTest1) {
+	try{
+		outputTest1 = new BufferedWriter(
+				new FileWriter("results_100_3b_Boltzmann1kvCharles_2.txt", true));
+	} catch(Exception e) {
+		System.err.println("Error" + e.getMessage());
+	} finally {
+		   if (extracted(outputTest1) != null) {
+               try {
+            	   extracted(outputTest1).close (); 
+               } catch (java.io.IOException e3) {
+                 System.out.println("I/O Exception");
+               }	
+           	}	
+}
 	
 }
 
